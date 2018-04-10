@@ -81,3 +81,7 @@ deploy:
   type: git
   repository: git@github.com:liujingen/liujingen.github.io.git
   branch: master
+
+# 自己添加的功能
+#1.头像
+avatar: /avatar/avatar.png
