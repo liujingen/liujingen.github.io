@@ -34,6 +34,7 @@ menu:
   tags: /tags
   guestbook: /guestbook
   about: /about
+  resume: /resume
   commonweal: /404.html
 
 
@@ -52,6 +53,7 @@ menu_icons:
   guestbook: commenting
   archives: archive
   commonweal: heartbeat
+  resume: file
 
 
 
