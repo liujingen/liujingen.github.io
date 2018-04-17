@@ -6,7 +6,7 @@
 favicon: /favicon/favicon.ico
 
 # Set default keywords (Use a comma to separate)
-keywords: "Hexo, NexT, Neveryu, Never_yu, Blog, Node.js, Git, PHP, JAVA, JAVASCRIPT, HTML, CSS, jQuery, Angular, Vue, React"
+keywords: "Hexo, NexT, Gengen, liujingen, Blog, Node.js, Git, PHP, JAVA, JAVASCRIPT, HTML, CSS, jQuery, Angular, Vue, React"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
@@ -14,7 +14,7 @@ keywords: "Hexo, NexT, Neveryu, Never_yu, Blog, Node.js, Git, PHP, JAVA, JAVASCR
 rss: /atom.xml
 
 # Specify the date when the site was setup
-since: 2016
+since: 2018
 
 # Canonical, set a canonical link tag in your hexo, you could use it for your SEO of blog.
 # See: https://support.google.com/webmasters/answer/139066
@@ -34,7 +34,7 @@ menu:
   tags: /tags
   guestbook: /guestbook
   about: /about
-  commonweal: /404
+  commonweal: /404.html
 
 
 # Enable/Disable menu icons.
@@ -124,8 +124,8 @@ font:
 # Key is the link label showing to end users.
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
 social:
-  Github: https://github.com/Neveryu
-  Weibo: http://weibo.com/Neveryu
+  Github: https://github.com/liujingen
+  Weibo: https://weibo.com/u/3416723104
 
 # Social Links Icons
 # Icon Mapping:
@@ -187,7 +187,7 @@ links_title: 友情链接
 links_layout: inline
 links:
   建站日志: /weblog
-  CSDN: http://blog.csdn.net/csdn_yudong
+  CSDN: 
 
 
 # ---------------------------------------------------------------
