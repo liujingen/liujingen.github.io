@@ -16,7 +16,6 @@ hexo s
 ``` bash
 
 # 提交
-git add .
 
 git commit -am 'hexo'
 
