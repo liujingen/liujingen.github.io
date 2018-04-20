@@ -11,6 +11,14 @@ hexo s
 
 ```
 
+## git
+
+```
+# 提交
+git add .
+git commit -am 'hexo'
+
+```
 ---
 
 ## 浏览器支持 Browser support
