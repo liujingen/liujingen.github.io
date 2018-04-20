@@ -13,10 +13,14 @@ hexo s
 
 ## git
 
-```
+``` bash
+
 # 提交
 git add .
+
 git commit -am 'hexo'
+
+git push origin hexo
 
 ```
 ---
