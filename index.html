@@ -562,21 +562,15 @@
         
 <!-- 自定义结束 -->
         
-          
-            <blockquote>
+          <blockquote>
 <p>我们已经对 GitHub 有了一定的了解，包括创建仓库、拉分支，或者通过Clone or download克隆或者下载代码；我们也下载并安装了 Git，也了解了其常用的命令。But，无论是 GitHub，还是 Git，我们都是单独或者说是独立操作的，并没有将两者绑定啊！也就是说，我们现在只能通过 GitHub 下载代码，并不能通过 Git 向 GitHub 提交代码。<br>因此，在本篇博文中，我们就一起完成 Git 和 GitHub 的绑定，体验通过 Git 向 GitHub 提交代码的能力。不过在这之前，我们需要先了解 SSh（安全外壳协议），因为在 GitHub 上，一般都是通过 SSH 来授权的，而且大多数 Git 服务器也会选择使用 SSH 公钥来进行授权，所以想要向 GitHub 提交代码，首先就得在 GitHub 上添加 SSH key配置。</p>
 </blockquote>
 <h3 id="第-1-步：生成-SSH-key"><a href="#第-1-步：生成-SSH-key" class="headerlink" title="第 1 步：生成 SSH key"></a>第 1 步：生成 SSH key</h3><p>我们首先在 <code>git Bash</code> 里边输入 <code>ssh</code> 来查看本机是否安装了SSH<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ssh</span><br><span class="line">usage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]</span><br><span class="line">           [-D [bind_address:]port] [-E log_file] [-e escape_char]</span><br><span class="line">           [-F configfile] [-I pkcs11] [-i identity_file]</span><br><span class="line">           [-J [user@]host[:port]] [-L address] [-l login_name] [-m mac_spec]</span><br><span class="line">           [-O ctl_cmd] [-o option] [-p port] [-Q query_option] [-R address]</span><br><span class="line">           [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]]</span><br><span class="line">           [user@]hostname [command]</span><br></pre></td></tr></table></figure></p>
-<p>如上图所示，此结果表示我们已经安装 SSH 啦！接下来，输入ssh-keygen -t rsa命令表示我们指定 RSA 算法生成密钥，然后敲三次回车键，期间不需要输入密码，之后就就会生成两个文件，分别为id_rsa和id_rsa.pub，即密钥id_rsa和公钥id_rsa.pub</p>
-<p>密钥和公钥生成之后，我们要做的事情就是把公钥id_rsa.pub的内容添加到 GitHub，这样我们本地的密钥id_rsa和 GitHub 上的公钥id_rsa.pub才可以进行匹配，授权成功后，就可以向 GitHub 提交代码啦！</p>
-<h3 id="第-2-步：添加-SSH-key"><a href="#第-2-步：添加-SSH-key" class="headerlink" title="第 2 步：添加 SSH key"></a>第 2 步：添加 SSH key</h3><p><img src="../images/1.png" alt="Alt text"></p>
-<p>如上图所示，进入我们的 GitHub 主页，先点击右上角所示的倒三角▽图标，然后再点击<code>Settins</code>，进行设置页面；点击我们的头像亦可直接进入设置页面：</p>
-<p><img src="https://img-blog.csdn.net/20170404134608330" alt="Alt text"></p>
-<p>如上图所示，进入<code>Settings</code>页面后，再点击<code>SSH and GPG Keys</code>进入此子界面，然后点击New SSH key按钮：</p>
-<p><img src="https://img-blog.csdn.net/20170404135835070" alt="Alt text"></p>
-<p>如上图所示，我们只需要将公钥<code>id_rsa.pub</code>的内容粘贴到Key处的位置（Titles的内容不填写也没事），然后点击<code>Add SSH key</code> 即可。</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2018/04/22/github_ssh/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
