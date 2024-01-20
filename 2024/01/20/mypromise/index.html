@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<!--Description-->
+
+
+
+    <meta name="description" content="基础回顾先回顾一下Promise的基本使用方法及特点
+
+promise三个状态：进⾏中（pending）、已完成(fulfilled)、已拒绝（rejected）
+处理promise异常的三种方式：
+通过promise的then的第二个参数
+通过.catch处理
+通过try…catch处理
+
+
+pr"/>
+
+
+<!--Author-->
+
+    <meta name="author" content="John Doe"/>
+
+
+<!--Open Graph Title-->
+
+    <meta property="og:title" content="手写一个自定义的Promise"/>
+
+
+<!--Open Graph Description-->
+
+    <meta property="og:description" content="基础回顾先回顾一下Promise的基本使用方法及特点
+
+promise三个状态：进⾏中（pending）、已完成(fulfilled)、已拒绝（rejected）
+处理promise异常的三种方式：
+通过promise的then的第二个参数
+通过.catch处理
+通过try…catch处理
+
+
+pr"/>
+
+
+<!--Open Graph Site Name-->
+    <meta property="og:site_name" content="&lt;img src=&#34;/images/liu.jpg&#34; style=&#34;width:100px; height:100px; object-fit:cover; border-radius:50%; object-position:top;&#34; /&gt;"/>
+
+<!--Type page-->
+
+    <meta property="og:type" content="article"/>
+
+
+<!--Page Cover-->
+
+
+    <meta property="og:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+
+
+
+
+    <meta name="twitter:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<!-- Title -->
+
+<title>刘金根个人博客</title>
+
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+<!-- Custom CSS -->
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<!-- Custom Fonts -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Gallery -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/featherlight@1.4.0/src/featherlight.css" integrity="sha256-30DV/STftlyQ6v8yaOWlabammvCYtRJERLj/m0b3zno=" crossorigin="anonymous">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/css/lightgallery.min.css">
+
+<!-- favicon -->
+
+<link rel="icon" href="/img/favicon.png"/>
+
+
+
+    <!-- Google Analytics -->
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<!-- Head tag -->
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top bg-transparent position-absolute w-100 p-0" id="nav">
+    <div class="container pl-0 pr-0">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <a class="navbar-brand text-white p-1 pl-3" href="/">刘金根</a>
+        </div>
+        <div class="navbar-nav float-right">
+            <button class="btn btn-link search-btn navbar-item" data-toggle="modal" data-target="#searchModal">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="post-heading text-white">
+                    <h1>手写一个自定义的Promise</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                
+                    <span class="meta d-inline-block">
+    
+    
+    <!-- Date -->
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-calendar-check fa-fw"></i>
+        2024-01-20
+    
+    <!-- word count and read count -->
+    
+
+    
+
+    
+</span>  
+                
+                <h3 id="基础回顾"><a href="#基础回顾" class="headerlink" title="基础回顾"></a>基础回顾</h3><p>先回顾一下Promise的基本使用方法及特点</p>
+<ul>
+<li>promise三个状态：进⾏中（pending）、已完成(fulfilled)、已拒绝（rejected）</li>
+<li>处理promise异常的三种方式：<ul>
+<li>通过promise的then的第二个参数</li>
+<li>通过.catch处理</li>
+<li>通过try…catch处理</li>
+</ul>
+</li>
+<li>promise状态处理<ul>
+<li>处于等待态时，promise 需满⾜以下条件：可以变为「已完成」或「已拒绝」</li>
+<li>处于已完成时，promise 需满⾜以下条件：不能迁移⾄其他任何状态；必须拥有⼀个不可变的值</li>
+<li>处于已拒绝时，promise 需满⾜以下条件：不能迁移⾄其他任何状态；必须拥有⼀个不可变的原</li>
+</ul>
+</li>
+</ul>
+<h3 id="一、声明Promise类，并进行初始化操作"><a href="#一、声明Promise类，并进行初始化操作" class="headerlink" title="一、声明Promise类，并进行初始化操作"></a>一、声明Promise类，并进行初始化操作</h3><p>首先定义一个Promise类，然后进行一些初始化操作。</p>
+<ul>
+<li>接收一个回调函数callback，回调函数包含两个参数，一个resolve，一个reject</li>
+<li>初始化状态为pending</li>
+<li>初始化成功状态的值</li>
+<li>初始化失败状态的值</li>
+<li>定义resolve函数</li>
+<li>定义reject函数</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyPromise</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">callback</span>) &#123;</span><br><span class="line">    <span class="comment">// 初始化状态为 pending</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">status</span> = <span class="string">&#x27;pending&#x27;</span>;</span><br><span class="line">    <span class="comment">// 初始化成功状态的值</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">value</span> = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="comment">// 初始化失败状态的值</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">reason</span> = <span class="literal">undefined</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义 resolve 函数</span></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">resolve</span> = value =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">        <span class="comment">// 更新状态为 resolved</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">status</span> = <span class="string">&#x27;resolved&#x27;</span>;</span><br><span class="line">        <span class="comment">// 存储成功状态的值</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">value</span> = value;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义 reject 函数</span></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">reject</span> = reason =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">        <span class="comment">// 更新状态为 rejected</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">status</span> = <span class="string">&#x27;rejected&#x27;</span>;</span><br><span class="line">        <span class="comment">// 存储失败状态的值</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">reason</span> = reason;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 调用回调函数，将 resolve 和 reject 传递给它</span></span><br><span class="line">    <span class="title function_">callback</span>(resolve, reject);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="二、then方法"><a href="#二、then方法" class="headerlink" title="二、then方法"></a>二、then方法</h3><p>接下来定义Promsie类中then函数。</p>
+<ul>
+<li>首先创建一个Promise对象，根据Promise的状态来执行不同的回调函数。then函数接收两个参数，一个onResolved（Promise 的状态为成功时候调用），一个onRejected（Promise 的状态为失败时候调用）。</li>
+<li>then函数返回一个新的Promsie对象，它的值取决于回调函数的返回值</li>
+<li>如果当前状态是pending，需要将onResolved，onRejected回调保存起来，等异步结束之后再执行<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyPromise</span> &#123;</span><br><span class="line"> <span class="title function_">then</span>(<span class="params">onResolved, onRejected</span>) &#123;</span><br><span class="line">    <span class="comment">// 创建一个新的 Promise 对象</span></span><br><span class="line">    <span class="keyword">const</span> newPromise = <span class="keyword">new</span> <span class="title class_">MyPromise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 如果当前 Promise 的状态为 resolved</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="string">&#x27;resolved&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="comment">// 执行 onResolved 回调函数</span></span><br><span class="line">          <span class="keyword">const</span> x = <span class="title function_">onResolved</span>(<span class="variable language_">this</span>.<span class="property">value</span>);</span><br><span class="line">          <span class="comment">// 处理返回值</span></span><br><span class="line">          <span class="title function_">resolve</span>(x);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">          <span class="comment">// 如果回调函数抛出异常，将异常作为失败状态的值</span></span><br><span class="line">          <span class="title function_">reject</span>(error);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 如果当前 Promise 的状态为 rejected</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="string">&#x27;rejected&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="comment">// 执行 onRejected 回调函数</span></span><br><span class="line">          <span class="keyword">const</span> x = <span class="title function_">onRejected</span>(<span class="variable language_">this</span>.<span class="property">reason</span>);</span><br><span class="line">          <span class="comment">// 处理返回值</span></span><br><span class="line">          <span class="title function_">resolve</span>(x);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">          <span class="comment">// 如果回调函数抛出异常，将异常作为失败状态的值</span></span><br><span class="line">          <span class="title function_">reject</span>(error);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 如果当前 Promise 的状态为 pending</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">        <span class="comment">// 将 onResolved 和 onRejected 保存起来</span></span><br><span class="line">        <span class="comment">// 等待异步操作完成后再执行</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">onResolvedCallbacks</span>.<span class="title function_">push</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> x = <span class="title function_">onResolved</span>(<span class="variable language_">this</span>.<span class="property">value</span>);</span><br><span class="line">            <span class="title function_">resolve</span>(x);</span><br><span class="line">          &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            <span class="title function_">reject</span>(error);</span><br><span class="line">                &#125;);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">onRejectedCallbacks</span>.<span class="title function_">push</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> x = <span class="title function_">onRejected</span>(<span class="variable language_">this</span>.<span class="property">reason</span>);</span><br><span class="line">            <span class="title function_">resolve</span>(x);</span><br><span class="line">          &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            <span class="title function_">reject</span>(error);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 返回新的 Promise 对象</span></span><br><span class="line"><span class="keyword">return</span> newPromise;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="三、catch方法"><a href="#三、catch方法" class="headerlink" title="三、catch方法"></a>三、catch方法</h3><p>将 catch 方法转化为 then 方法的一个语法糖，就可以实现啦。到这里我们基本已经实现了一个Promise</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyPromise</span> &#123;</span><br><span class="line">  <span class="keyword">catch</span>(onRejected) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">then</span>(<span class="literal">null</span>, onRejected);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="四、完整版代码"><a href="#四、完整版代码" class="headerlink" title="四、完整版代码"></a>四、完整版代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">class</span> <span class="title class_">MyPromise</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">callback</span>) &#123;</span><br><span class="line">      <span class="comment">// 初始化状态为 pending</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">status</span> = <span class="string">&#x27;pending&#x27;</span>;</span><br><span class="line">      <span class="comment">// 初始化成功状态的值</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">value</span> = <span class="literal">undefined</span>;</span><br><span class="line">      <span class="comment">// 初始化失败状态的值</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">reason</span> = <span class="literal">undefined</span>;</span><br><span class="line">      <span class="comment">// 存储成功状态的回调函数</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">onResolvedCallbacks</span> = [];</span><br><span class="line">      <span class="comment">// 存储失败状态的回调函数</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">onRejectedCallbacks</span> = [];</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 定义 resolve 函数</span></span><br><span class="line">      <span class="keyword">const</span> <span class="title function_">resolve</span> = value =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">          <span class="comment">// 更新状态为 resolved</span></span><br><span class="line">          <span class="variable language_">this</span>.<span class="property">status</span> = <span class="string">&#x27;resolved&#x27;</span>;</span><br><span class="line">          <span class="comment">// 存储成功状态的值</span></span><br><span class="line">          <span class="variable language_">this</span>.<span class="property">value</span> = value;</span><br><span class="line">          <span class="comment">// 执行所有成功状态的回调函数</span></span><br><span class="line">          <span class="variable language_">this</span>.<span class="property">onResolvedCallbacks</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">cb</span> =&gt;</span> <span class="title function_">cb</span>());</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 定义 reject 函数</span></span><br><span class="line">      <span class="keyword">const</span> <span class="title function_">reject</span> = reason =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">          <span class="comment">// 更新状态为 rejected</span></span><br><span class="line">          <span class="variable language_">this</span>.<span class="property">status</span> = <span class="string">&#x27;rejected&#x27;</span>;</span><br><span class="line">          <span class="comment">// 存储失败状态的值</span></span><br><span class="line">          <span class="variable language_">this</span>.<span class="property">reason</span> = reason;</span><br><span class="line">          <span class="comment">// 执行所有失败状态的回调函数</span></span><br><span class="line">          <span class="variable language_">this</span>.<span class="property">onRejectedCallbacks</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">cb</span> =&gt;</span> <span class="title function_">cb</span>());</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 调用回调函数，将 resolve 和 reject 传递给它</span></span><br><span class="line">      <span class="title function_">callback</span>(resolve, reject);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">then</span>(<span class="params">onResolved, onRejected</span>) &#123;</span><br><span class="line">      <span class="comment">// 创建一个新的 Promise 对象</span></span><br><span class="line">      <span class="keyword">const</span> newPromise = <span class="keyword">new</span> <span class="title class_">MyPromise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 如果当前 Promise 的状态为 resolved</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="string">&#x27;resolved&#x27;</span>) &#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 执行 onResolved 回调函数</span></span><br><span class="line">            <span class="keyword">const</span> x = <span class="title function_">onResolved</span>(<span class="variable language_">this</span>.<span class="property">value</span>);</span><br><span class="line">            <span class="comment">// 处理返回值</span></span><br><span class="line">            <span class="title function_">resolve</span>(x);</span><br><span class="line">          &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            <span class="comment">// 如果回调函数抛出异常，将异常作为失败状态的值</span></span><br><span class="line">            <span class="title function_">reject</span>(error);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果当前 Promise 的状态为 rejected</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="string">&#x27;rejected&#x27;</span>) &#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 执行 onRejected 回调函数</span></span><br><span class="line">            <span class="keyword">const</span> x = <span class="title function_">onRejected</span>(<span class="variable language_">this</span>.<span class="property">reason</span>);</span><br><span class="line">            <span class="comment">// 处理返回值</span></span><br><span class="line">            <span class="title function_">resolve</span>(x);</span><br><span class="line">          &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            <span class="comment">// 如果回调函数抛出异常，将异常作为失败状态的值</span></span><br><span class="line">            <span class="title function_">reject</span>(error);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果当前 Promise 的状态为 pending</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">status</span> === <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">          <span class="comment">// 将 onResolved 和 onRejected 保存起来</span></span><br><span class="line">          <span class="comment">// 等待异步操作完成后再执行</span></span><br><span class="line">          <span class="variable language_">this</span>.<span class="property">onResolvedCallbacks</span>.<span class="title function_">push</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="keyword">const</span> x = <span class="title function_">onResolved</span>(<span class="variable language_">this</span>.<span class="property">value</span>);</span><br><span class="line">              <span class="title function_">resolve</span>(x);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">              <span class="title function_">reject</span>(error);</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">          <span class="variable language_">this</span>.<span class="property">onRejectedCallbacks</span>.<span class="title function_">push</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="keyword">const</span> x = <span class="title function_">onRejected</span>(<span class="variable language_">this</span>.<span class="property">reason</span>);</span><br><span class="line">              <span class="title function_">resolve</span>(x);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">              <span class="title function_">reject</span>(error);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="comment">// 返回新的 Promise 对象</span></span><br><span class="line">      <span class="keyword">return</span> newPromise;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span>(onRejected) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">then</span>(<span class="literal">null</span>, onRejected);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;    </span><br><span class="line"></span><br><span class="line">  <span class="comment">// 案例</span></span><br><span class="line">  <span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">MyPromise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">		<span class="title function_">resolve</span>(<span class="string">&#x27;成功&#x27;</span>)</span><br><span class="line">	&#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;)</span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;2&#x27;</span>)</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;第一次&quot;</span></span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;3&#x27;</span>)</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyPromise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">			<span class="title function_">resolve</span>(<span class="string">&#x27;第二次处理结果&#x27;</span>);</span><br><span class="line">		&#125;, <span class="number">1000</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">	<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;抛出异常&#x27;</span>);</span><br><span class="line">&#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+            </div>
+
+            <!-- Post information -->
+            
+            
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <ul class="pagination d-block text-center">
+            
+            
+                <li class="next page-item d-inline"><a href="/2024/01/20/hook/" class="page-link float-right">Older  &rarr;</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+                <!-- Comments -->
+                
+
+                
+
+            
+
+        </div>
+    </div>
+</article> 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <style>
+        #toc-content .toc-link::before {
+            background-color: transparent;
+            max-height: 25px;
+        }
+
+        #toc-content .toc-link.is-active-link::before {
+            background-color: #404040;
+        }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
+        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
+            <div class="toc-widget">
+                <div id="toc-content" class="text-truncate">
+                </div>
+            </div>
+            <div class="toc-menu pt-3 pl-4">
+                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">Expand all</span><span class="close-text" style="display: none;">Collapse all</span></a>
+                <a class="back-to-top d-block py-1" href="#">Back to top</a>
+                <a class="go-to-bottom d-block py-1" href="#">Go to bottom</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '#toc-content',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: 'article',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+        });
+    </script>
+
+
+    
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center">
+                <ul class="list-inline">
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <ul class="copyright footer-menu list-inline">
+                    
+                    
+                        <li class="list-inline-item">
+                            
+                            
+                            <a href="/">
+                                
+                                    首页
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/archives">
+                                
+                                    归档
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/tags">
+                                
+                                    标签
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/categories">
+                                
+                                    类别
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/about">
+                                
+                                    关于
+                                
+                            </a>
+                        </li>
+                    
+                </ul>
+                <p class="copyright footer-author">
+                    &copy; -2024 
+                    <a rel="external" class="copyright-link" href="" target="_blank">John Doe</a><br/>
+                    Powered by <a rel="external" class="copyright-link" href="https://hexo.io/" target="_blank">Hexo</a>  
+                    <span class="copyright-split">&nbsp;|&nbsp;&nbsp;</span>
+                    Theme <a rel="external" class="copyright-link" href="https://github.com/luswdev/hexo-theme-clean.git" target="_blank">Clean</a>
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+<script src="//cdn.jsdelivr.net/npm/jquery@2.1.4/dist/jquery.min.js"></script>
+
+<!-- For drop down -->
+<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+<!-- Gallery -->
+<script src="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/js/lightgallery-all.min.js"></script>
+<!-- Busuanzi -->
+
+
+<!-- Search script -->
+
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        searchFunc( '/search.xml' , 'searchInput', 'searchResult');
+    });
+</script>
+
+
+
+<script src="/js/main.js"></script>
+
+
+
+    <!-- Search Modal -->
+    <!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content overflow-auto">
+            <div class="modal-header">
+                <input type="text" class="form-control" placeholder="Searching Keywords..." id="searchInput">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="searchResult">
+                    <div class="search-empty text-center text-muted p-5">
+                        <i class="far fa-meh"></i>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
