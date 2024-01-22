@@ -9,6 +9,9 @@
 
 
 
+    <meta name="description" content="NaN（“not a number”）代表不是数字的值，记住NaN是一个值，NaN的数据类型为number。一般在数字的运算中会出现NaN。比如：
+1234567var a=&amp;quot;前端&amp;quot;var b=a/2console.log(b);console.log(typeof b);//N"/>
+
 
 <!--Author-->
 
@@ -17,10 +20,13 @@
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="&lt;img src=&#34;/images/liu.jpg&#34; style=&#34;width:100px; height:100px; object-fit:cover; border-radius:50%; object-position:top;&#34; /&gt;"/>
+    <meta property="og:title" content="js判断NaN的四种方法"/>
 
 
 <!--Open Graph Description-->
+
+    <meta property="og:description" content="NaN（“not a number”）代表不是数字的值，记住NaN是一个值，NaN的数据类型为number。一般在数字的运算中会出现NaN。比如：
+1234567var a=&amp;quot;前端&amp;quot;var b=a/2console.log(b);console.log(typeof b);//N"/>
 
 
 <!--Open Graph Site Name-->
@@ -28,7 +34,7 @@
 
 <!--Type page-->
 
-    <meta property="og:type" content="website"/>
+    <meta property="og:type" content="article"/>
 
 
 <!--Page Cover-->
@@ -108,158 +114,119 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-                <div class="site-heading text-center text-white">
-                    <h1>Archives</h1>
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="post-heading text-white">
+                    <h1>js判断NaN的四种方法</h1>
+                    
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container page-archives">
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center mb-5">
-            <div class="btn-group archives-filter-group" role="group" aria-label="archives filter">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                
+                    <span class="meta d-inline-block">
+    
+    
+    <!-- Date -->
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-calendar-check fa-fw"></i>
+        2024-01-22
+    
+    <!-- word count and read count -->
     
 
     
-        
-            <button type="button" class="btn btn-light" onclick="javascript:window,location.href = '/archives/2024'">
-                2024
-            </button>
-        
-    
-</div>
 
-    <button class="btn btn-info archives-filter-all" type="button" disabled>
-        All
-        <span class="badge badge-light">8</span>
-    </button>
- 
-        </div>
-        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-            
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/2024/01/22/js%E5%88%A4%E6%96%ADNaN%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/">
-        <h1 class="post-title">
-            js判断NaN的四种方法
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-01-22
-    </p>
-</div>
-            
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/2024/01/22/axios%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
-        <h1 class="post-title">
-            来，花点时间带你深入了解axios源码实现
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-01-22
-    </p>
-</div>
-            
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/2024/01/21/width100/">
-        <h1 class="post-title">
-            width:100%与width:auto区别
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-01-21
-    </p>
-</div>
-            
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/2024/01/20/mypromise/">
-        <h1 class="post-title">
-            手写一个自定义的Promise
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-01-20
-    </p>
-</div>
-            
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/2024/01/20/hook/">
-        <h1 class="post-title">
-            自定义一个Vue3的useMouse
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-01-20
-    </p>
-</div>
-            
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/2024/01/19/srot/">
-        <h1 class="post-title">
-            前端常见的三种排序算法
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-01-19
-    </p>
-</div>
-            
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/2024/01/19/sso/">
-        <h1 class="post-title">
-            前端实现单点登录（SSO）
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-01-19
-    </p>
-</div>
-            
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/2024/01/18/m/">
-        <h1 class="post-title">
-            hexo更换主题色
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-01-18
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pagination d-block text-center">
     
-    
-</ul>
+</span>  
+                
+                <p>NaN（“not a number”）代表不是数字的值，记住NaN是一个值，NaN的数据类型为number。<br>一般在数字的运算中会出现NaN。<br>比如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="string">&quot;前端&quot;</span></span><br><span class="line"><span class="keyword">var</span> b=a/<span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> b);</span><br><span class="line"></span><br><span class="line"><span class="comment">//NaN</span></span><br><span class="line"><span class="comment">//number 作者：Arieslyg https://www.bilibili.com/read/cv24005324/ 出处：bilibili</span></span><br></pre></td></tr></table></figure>
+            </div>
+
+            <!-- Post information -->
+            
+            
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <ul class="pagination d-block text-center">
+            
+            
+                <li class="next page-item d-inline"><a href="/2024/01/22/axios%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" class="page-link float-right">Older  &rarr;</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+                <!-- Comments -->
+                
+
+                
+
+            
+
         </div>
     </div>
-</div>
+</article> 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <style>
+        #toc-content .toc-link::before {
+            background-color: transparent;
+            max-height: 25px;
+        }
+
+        #toc-content .toc-link.is-active-link::before {
+            background-color: #404040;
+        }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
+        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
+            <div class="toc-widget">
+                <div id="toc-content" class="text-truncate">
+                </div>
+            </div>
+            <div class="toc-menu pt-3 pl-4">
+                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">Expand all</span><span class="close-text" style="display: none;">Collapse all</span></a>
+                <a class="back-to-top d-block py-1" href="#">Back to top</a>
+                <a class="go-to-bottom d-block py-1" href="#">Go to bottom</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '#toc-content',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: 'article',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+        });
+    </script>
+
+
+    
 
 
     <!-- Footer -->
