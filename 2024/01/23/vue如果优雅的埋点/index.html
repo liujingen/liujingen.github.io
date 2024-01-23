@@ -9,8 +9,11 @@
 
 
 
-    <meta name="description" content="NaN（“not a number”）代表不是数字的值，记住NaN是一个值，NaN的数据类型为number。一般在数字的运算中会出现NaN。比如：
-12345var a=&amp;quot;前端&amp;quot;var b=a/2console.log(b); //NaNconsole.log(typeof b)"/>
+    <meta name="description" content="前言埋点顾名思义就是监控，对用户行为、页面的性能、页面的异常进行监控。
+前端埋点主要分为以下三类：
+代码埋点：在需要埋点的地方添加埋点逻辑代码或自定义属性实现。
+可视化埋点：使用可视化的工具进行埋点，即无痕埋点。前端页面加载时根据埋点配置，自动调用接口上传埋点数据。
+无埋点：前端自动采集全部事件并上"/>
 
 
 <!--Author-->
@@ -20,13 +23,16 @@
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="js判断NaN的四种方法"/>
+    <meta property="og:title" content="vue如果优雅的埋点"/>
 
 
 <!--Open Graph Description-->
 
-    <meta property="og:description" content="NaN（“not a number”）代表不是数字的值，记住NaN是一个值，NaN的数据类型为number。一般在数字的运算中会出现NaN。比如：
-12345var a=&amp;quot;前端&amp;quot;var b=a/2console.log(b); //NaNconsole.log(typeof b)"/>
+    <meta property="og:description" content="前言埋点顾名思义就是监控，对用户行为、页面的性能、页面的异常进行监控。
+前端埋点主要分为以下三类：
+代码埋点：在需要埋点的地方添加埋点逻辑代码或自定义属性实现。
+可视化埋点：使用可视化的工具进行埋点，即无痕埋点。前端页面加载时根据埋点配置，自动调用接口上传埋点数据。
+无埋点：前端自动采集全部事件并上"/>
 
 
 <!--Open Graph Site Name-->
@@ -122,7 +128,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 text-center">
                 <div class="post-heading text-white">
-                    <h1>js判断NaN的四种方法</h1>
+                    <h1>vue如果优雅的埋点</h1>
                     
                 </div>
             </div>
@@ -144,7 +150,7 @@
     
         <span class="post-meta-split">&nbsp;|&nbsp;</span>
         <i class="far fa-calendar-check fa-fw"></i>
-        2024-01-22
+        2024-01-23
     
     <!-- word count and read count -->
     
@@ -154,19 +160,31 @@
     
 </span>  
                 
-                <p>NaN（“not a number”）代表不是数字的值，记住NaN是一个值，NaN的数据类型为number。<br>一般在数字的运算中会出现NaN。<br>比如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="string">&quot;前端&quot;</span></span><br><span class="line"><span class="keyword">var</span> b=a/<span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b); <span class="comment">//NaN</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> b); <span class="comment">//number </span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="判断数据是否为NaN的方法"><a href="#判断数据是否为NaN的方法" class="headerlink" title="判断数据是否为NaN的方法"></a><center><font color="green">判断数据是否为NaN的方法</font></center></h3><h4 id="1-typeof-isNaN"><a href="#1-typeof-isNaN" class="headerlink" title="1.typeof+isNaN()"></a>1.typeof+isNaN()</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//isNaN()</span></span><br><span class="line"><span class="keyword">var</span> a=<span class="title class_">NaN</span></span><br><span class="line"><span class="keyword">var</span> b=<span class="string">&quot;前端阿彪&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">isNaN</span>(a));<span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">isNaN</span>(b));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>一个isNaN()不能确定数据是NaN。</p>
-<p>和其他isNaN()为true的数据不一样的是，NaN的类型为number。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="title class_">NaN</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">isNaN</span>(a));<span class="comment">//true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">typeof</span> a);<span class="comment">//number</span></span><br></pre></td></tr></table></figure>
-<p>封装成一个函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">judgeNaN</span>(<span class="params">data</span>) &#123;</span><br><span class="line">   <span class="keyword">if</span> (<span class="built_in">isNaN</span>(data) == <span class="literal">true</span> &amp;&amp; <span class="keyword">typeof</span> data == <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a=<span class="title class_">NaN</span></span><br><span class="line"><span class="keyword">var</span> b=<span class="string">&quot;前端啊彪&quot;</span></span><br><span class="line"><span class="keyword">var</span> c=<span class="number">123</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">judgeNaN</span>(a));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">judgeNaN</span>(b));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">judgeNaN</span>(c));</span><br><span class="line"><span class="comment">//true</span></span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-<h4 id="2-NaN是唯一一个不等于自身的值"><a href="#2-NaN是唯一一个不等于自身的值" class="headerlink" title="2.NaN是唯一一个不等于自身的值"></a>2.NaN是唯一一个不等于自身的值</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a=<span class="title class_">NaN</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a==a);</span><br><span class="line"><span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-<h4 id="3-Number-isNaN"><a href="#3-Number-isNaN" class="headerlink" title="3.Number.isNaN()"></a>3.Number.isNaN()</h4><p>这个Number.isNaN()与上面的isNaN()不是同一个方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a=<span class="string">&quot;前端&quot;</span></span><br><span class="line"><span class="keyword">let</span> b=a/<span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Number</span>.<span class="built_in">isNaN</span>(a));<span class="comment">//false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Number</span>.<span class="built_in">isNaN</span>(b));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>4.Object.is()<br>Objact.is()也是用于判断两个值是否相等。接收两个参数，判断这两个参数是否相等。这个方法里，NaN是等于自身的。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a=<span class="title class_">NaN</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">is</span>(a,a));</span><br><span class="line"><span class="comment">//true</span></span><br><span class="line">判断数据是否为<span class="title class_">NaN</span>：</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a=<span class="string">&#x27;前端阿彪&#x27;</span></span><br><span class="line"><span class="keyword">let</span> b=a/<span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">is</span>(a,<span class="title class_">NaN</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">is</span>(b,<span class="title class_">NaN</span>));</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="comment">//true </span></span><br></pre></td></tr></table></figure>
+                <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>埋点顾名思义就是监控，对用户行为、页面的性能、页面的异常进行监控。</p>
+<h4 id="前端埋点主要分为以下三类："><a href="#前端埋点主要分为以下三类：" class="headerlink" title="前端埋点主要分为以下三类："></a>前端埋点主要分为以下三类：</h4><ul>
+<li>代码埋点：在需要埋点的地方添加埋点逻辑代码或自定义属性实现。</li>
+<li>可视化埋点：使用可视化的工具进行埋点，即无痕埋点。前端页面加载时根据埋点配置，自动调用接口上传埋点数据。</li>
+<li>无埋点：前端自动采集全部事件并上报埋点数据。</li>
+</ul>
+<p>可视化埋点和无埋点方案前期投入较大，故在此考虑使用代码埋点的方案。</p>
+<hr>
+<h4 id="代码埋点又分为两类："><a href="#代码埋点又分为两类：" class="headerlink" title="代码埋点又分为两类："></a>代码埋点又分为两类：</h4><ul>
+<li>命令式埋点：在需要埋点的地方添加埋点逻辑代码。缺点：工作量大，且会侵入业务逻辑代码。</li>
+<li>声明式埋点：在需要埋点的地方新增自定义属性，通过识别自定义属性绑定事件，采集并上传埋点数据；</li>
+</ul>
+<p>故最终埋点方案使用：声明式代码埋点<br>以下为Vue项目具体埋点步骤：</p>
+<h5 id="1-新增track-js，通过自定义属性track绑定点击事件"><a href="#1-新增track-js，通过自定义属性track绑定点击事件" class="headerlink" title="1.新增track.js，通过自定义属性track绑定点击事件"></a>1.新增track.js，通过自定义属性track绑定点击事件</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; eventLog &#125; <span class="keyword">from</span> <span class="string">&#x27;@/api/bpl/event&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 埋点指令</span></span><br><span class="line"><span class="keyword">let</span> track = <span class="title class_">Vue</span>.<span class="title function_">directive</span>(<span class="string">&#x27;track&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">bind</span>: <span class="function">(<span class="params">el, binding, vnode</span>) =&gt;</span> &#123;</span><br><span class="line">        el.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> data = binding.<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// request API</span></span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">            <span class="title function_">eventLog</span>(data).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">debug</span>(response.<span class="property">data</span>);</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> track</span><br></pre></td></tr></table></figure>
+<h5 id="2-main-js文件中新增绑定track自定义指令"><a href="#2-main-js文件中新增绑定track自定义指令" class="headerlink" title="2.main.js文件中新增绑定track自定义指令"></a>2.main.js文件中新增绑定track自定义指令</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> track <span class="keyword">from</span> <span class="string">&#x27;./components/track.js&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">$track</span> = track;</span><br></pre></td></tr></table></figure>
+<h5 id="3-在需要埋点的标签上，新增v-track自定义指令"><a href="#3-在需要埋点的标签上，新增v-track自定义指令" class="headerlink" title="3.在需要埋点的标签上，新增v-track自定义指令"></a>3.在需要埋点的标签上，新增v-track自定义指令</h5><pre><code class="javascript">&lt;uni-grid :column=&quot;4&quot;&gt;
+        &lt;uni-grid-item v-track=&quot;&#123;eventId:&#39;1101&#39;,location:&#39;home&#39;&#125;&quot;&gt;
+          &lt;view class=&quot;grid-item-box&quot;&gt;
+            &lt;uni-icons type=&quot;person-filled&quot; size=&quot;30&quot;&gt;&lt;/uni-icons&gt;
+            &lt;text class=&quot;text&quot;&gt;用户管理&lt;/text&gt;
+          &lt;/view&gt;
+        &lt;/uni-grid-item&gt;
+&lt;/uni-grid&gt;
+</code></pre>
+<p>以上三步即可完成页面元素的点击事件埋点。</p>
 
             </div>
 
@@ -176,10 +194,8 @@
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
         <ul class="pagination d-block text-center">
             
-                <li class="previous page-item d-inline"><a href="/2024/01/23/vue%E5%A6%82%E6%9E%9C%E4%BC%98%E9%9B%85%E7%9A%84%E5%9F%8B%E7%82%B9/" class="page-link float-left">&larr;  Newer</a></li>
             
-            
-                <li class="next page-item d-inline"><a href="/2024/01/22/axios%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" class="page-link float-right">Older  &rarr;</a></li>
+                <li class="next page-item d-inline"><a href="/2024/01/22/js%E5%88%A4%E6%96%ADNaN%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/" class="page-link float-right">Older  &rarr;</a></li>
             
         </ul>
     </div>
