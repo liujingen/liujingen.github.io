@@ -9,9 +9,6 @@
 
 
 
-    <meta name="description" content="nginx 常用的几个命名123456789101112131415//查看版本号nginx -v//启动nginxnginx//停止nginxnginx -s stop//重新加载配置文件nginx -s reload //重新打开日志文件nginx -s reopen 
-实战部署vue项目配置 "/>
-
 
 <!--Author-->
 
@@ -20,13 +17,10 @@
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="vue项目nginx的配置"/>
+    <meta property="og:title" content="&lt;img src=&#34;/images/liu.jpg&#34; style=&#34;width:100px; height:100px; object-fit:cover; border-radius:50%; object-position:top;&#34; /&gt;"/>
 
 
 <!--Open Graph Description-->
-
-    <meta property="og:description" content="nginx 常用的几个命名123456789101112131415//查看版本号nginx -v//启动nginxnginx//停止nginxnginx -s stop//重新加载配置文件nginx -s reload //重新打开日志文件nginx -s reopen 
-实战部署vue项目配置 "/>
 
 
 <!--Open Graph Site Name-->
@@ -34,7 +28,7 @@
 
 <!--Type page-->
 
-    <meta property="og:type" content="article"/>
+    <meta property="og:type" content="website"/>
 
 
 <!--Page Cover-->
@@ -114,128 +108,69 @@
 </nav>
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<!-- Set your background image for this header in your post front-matter: cover -->
+    
 
+<!-- Page Header -->
+<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-md-12 text-center">
-                <div class="post-heading text-white">
-                    <h1>vue项目nginx的配置</h1>
-                    
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                <div class="site-heading text-center text-white">
+                    <h1>2024</h1>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <!-- Post Main Content -->
-            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-                
-                    <span class="meta d-inline-block">
-    
-    
-    <!-- Date -->
-    
-        <span class="post-meta-split">&nbsp;|&nbsp;</span>
-        <i class="far fa-calendar-check fa-fw"></i>
-        2024-01-25
-    
-    <!-- word count and read count -->
+<!-- Main Content -->
+<div class="container page-archives">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center mb-5">
+            <div class="btn-group archives-filter-group" role="group" aria-label="archives filter">
     
 
     
-
+        
+            <button type="button" class="btn btn-info" disabled>
+                2024
+            </button>
+        
     
-</span>  
-                
-                <h3 id="nginx-常用的几个命名"><a href="#nginx-常用的几个命名" class="headerlink" title="nginx 常用的几个命名"></a>nginx 常用的几个命名</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查看版本号</span></span><br><span class="line">nginx -v</span><br><span class="line"></span><br><span class="line"><span class="comment">//启动nginx</span></span><br><span class="line">nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">//停止nginx</span></span><br><span class="line">nginx -s stop</span><br><span class="line"></span><br><span class="line"><span class="comment">//重新加载配置文件</span></span><br><span class="line">nginx -s reload </span><br><span class="line"></span><br><span class="line"><span class="comment">//重新打开日志文件</span></span><br><span class="line">nginx -s reopen </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="实战部署vue项目"><a href="#实战部署vue项目" class="headerlink" title="实战部署vue项目"></a>实战部署vue项目</h3><p>配置 Nginx：找到 Nginx 的配置文件，一般位于 &#x2F;etc&#x2F;nginx&#x2F;nginx.conf 或 &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;default.conf。编辑该文件，添加以下配置块来指向 Vue 项目的构建目录：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen <span class="number">80</span>;  # 监听的端口号</span><br><span class="line"></span><br><span class="line">    server_name xxxxxx;  # 域名或服务器 <span class="variable constant_">IP</span>,可以填localhost</span><br><span class="line"></span><br><span class="line">	location / &#123;</span><br><span class="line">	            root   /home/www/dist;  # <span class="title class_">Vue</span> 项目打包后的dist所在的路径</span><br><span class="line">	            index  index.<span class="property">html</span> index.<span class="property">htm</span>;</span><br><span class="line">	            try_files $uri $uri/ /index.<span class="property">html</span>;	</span><br><span class="line">	        &#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>运行命令启动或重启 Nginx 服务：</p>
-<p>在sbin目录下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+</div>
 
-<p>访问你的域名或服务器 IP，如果一切配置正确，你应该能够看到 Vue 项目在 Nginx 上成功部署并运行。</p>
-
-            </div>
-
-            <!-- Post information -->
+    <a class="btn btn-light archives-filter-all" href="/archives/" role="button">
+        All    
+        <span class="badge badge-secondary">11</span>
+    </a>
+ 
+        </div>
+        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
             
+                <div class="post-preview post-preview-archive-archive">
+    <a href="/2024/01/18/m/">
+        <h1 class="post-title">
+            hexo更换主题色
+        </h1>
+    </a>
+    <p class="post-meta">
+        <!-- Date and Author -->
+        
+        2024-01-18
+    </p>
+</div>
             
-    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-        <ul class="pagination d-block text-center">
-            
-                <li class="previous page-item d-inline"><a href="/2024/01/26/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3with%E8%AF%AD%E6%B3%95/" class="page-link float-left">&larr;  Newer</a></li>
-            
-            
-                <li class="next page-item d-inline"><a href="/2024/01/23/vue%E5%A6%82%E6%9E%9C%E4%BC%98%E9%9B%85%E7%9A%84%E5%9F%8B%E7%82%B9/" class="page-link float-right">Older  &rarr;</a></li>
-            
-        </ul>
-    </div>
-
-
-            
-                <!-- Comments -->
-                
-
-                
-
-            
-
+            <div class="archive-before-pagination"></div>
+            <ul class="pagination d-block text-center">
+    
+        <li class="previous page-item d-inline"><a href="/archives/2024/" class="page-link float-left">&larr;  Newer</a></li>
+    
+    
+</ul>
         </div>
     </div>
-</article> 
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-    <style>
-        #toc-content .toc-link::before {
-            background-color: transparent;
-            max-height: 25px;
-        }
-
-        #toc-content .toc-link.is-active-link::before {
-            background-color: #404040;
-        }
-    </style>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
-    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
-        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-            <i class="fas fa-list"></i>
-        </button>
-        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
-            <div class="toc-widget">
-                <div id="toc-content" class="text-truncate">
-                </div>
-            </div>
-            <div class="toc-menu pt-3 pl-4">
-                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">Expand all</span><span class="close-text" style="display: none;">Collapse all</span></a>
-                <a class="back-to-top d-block py-1" href="#">Back to top</a>
-                <a class="go-to-bottom d-block py-1" href="#">Go to bottom</a>
-            </div>
-        </div>
-    </div>
-    <script>
-        tocbot.init({
-            // Where to render the table of contents.
-            tocSelector: '#toc-content',
-            // Where to grab the headings to build the table of contents.
-            contentSelector: 'article',
-            // Which headings to grab inside of the contentSelector element.
-            headingSelector: 'h1, h2, h3',
-            // For headings inside relative or absolute positioned containers within content.
-            hasInnerContainers: true,
-        });
-    </script>
-
-
-    
+</div>
 
 
     <!-- Footer -->

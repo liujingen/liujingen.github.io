@@ -9,8 +9,10 @@
 
 
 
-    <meta name="description" content="nginx 常用的几个命名123456789101112131415//查看版本号nginx -v//启动nginxnginx//停止nginxnginx -s stop//重新加载配置文件nginx -s reload //重新打开日志文件nginx -s reopen 
-实战部署vue项目配置 "/>
+    <meta name="description" content="概述
+with 是一个不推荐使用的语法，因为它的作用是改变上下文，而上下文环境对开发者影响很大。本周通过 JavaScript’s Forgotten Keyword (with) 这篇文章介绍一下 with 的功能。
+下面是一种使用 with 的例子：
+123with (console) &amp;#12"/>
 
 
 <!--Author-->
@@ -20,13 +22,15 @@
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="vue项目nginx的配置"/>
+    <meta property="og:title" content="深入理解with语法"/>
 
 
 <!--Open Graph Description-->
 
-    <meta property="og:description" content="nginx 常用的几个命名123456789101112131415//查看版本号nginx -v//启动nginxnginx//停止nginxnginx -s stop//重新加载配置文件nginx -s reload //重新打开日志文件nginx -s reopen 
-实战部署vue项目配置 "/>
+    <meta property="og:description" content="概述
+with 是一个不推荐使用的语法，因为它的作用是改变上下文，而上下文环境对开发者影响很大。本周通过 JavaScript’s Forgotten Keyword (with) 这篇文章介绍一下 with 的功能。
+下面是一种使用 with 的例子：
+123with (console) &amp;#12"/>
 
 
 <!--Open Graph Site Name-->
@@ -122,7 +126,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 text-center">
                 <div class="post-heading text-white">
-                    <h1>vue项目nginx的配置</h1>
+                    <h1>深入理解with语法</h1>
                     
                 </div>
             </div>
@@ -144,7 +148,7 @@
     
         <span class="post-meta-split">&nbsp;|&nbsp;</span>
         <i class="far fa-calendar-check fa-fw"></i>
-        2024-01-25
+        2024-01-26
     
     <!-- word count and read count -->
     
@@ -154,14 +158,30 @@
     
 </span>  
                 
-                <h3 id="nginx-常用的几个命名"><a href="#nginx-常用的几个命名" class="headerlink" title="nginx 常用的几个命名"></a>nginx 常用的几个命名</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查看版本号</span></span><br><span class="line">nginx -v</span><br><span class="line"></span><br><span class="line"><span class="comment">//启动nginx</span></span><br><span class="line">nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">//停止nginx</span></span><br><span class="line">nginx -s stop</span><br><span class="line"></span><br><span class="line"><span class="comment">//重新加载配置文件</span></span><br><span class="line">nginx -s reload </span><br><span class="line"></span><br><span class="line"><span class="comment">//重新打开日志文件</span></span><br><span class="line">nginx -s reopen </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="实战部署vue项目"><a href="#实战部署vue项目" class="headerlink" title="实战部署vue项目"></a>实战部署vue项目</h3><p>配置 Nginx：找到 Nginx 的配置文件，一般位于 &#x2F;etc&#x2F;nginx&#x2F;nginx.conf 或 &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;default.conf。编辑该文件，添加以下配置块来指向 Vue 项目的构建目录：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen <span class="number">80</span>;  # 监听的端口号</span><br><span class="line"></span><br><span class="line">    server_name xxxxxx;  # 域名或服务器 <span class="variable constant_">IP</span>,可以填localhost</span><br><span class="line"></span><br><span class="line">	location / &#123;</span><br><span class="line">	            root   /home/www/dist;  # <span class="title class_">Vue</span> 项目打包后的dist所在的路径</span><br><span class="line">	            index  index.<span class="property">html</span> index.<span class="property">htm</span>;</span><br><span class="line">	            try_files $uri $uri/ /index.<span class="property">html</span>;	</span><br><span class="line">	        &#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>运行命令启动或重启 Nginx 服务：</p>
-<p>在sbin目录下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+                <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><hr>
+<p>with 是一个不推荐使用的语法，因为它的作用是改变上下文，而上下文环境对开发者影响很大。<br>本周通过 <a target="_blank" rel="noopener" href="https://dev.to/mistval/javascript-s-forgotten-keyword-with-48id">JavaScript’s Forgotten Keyword (with)</a> 这篇文章介绍一下 with 的功能。</p>
+<p>下面是一种使用 with 的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> (<span class="variable language_">console</span>) &#123;</span><br><span class="line">  <span class="title function_">log</span>(<span class="string">&#x27;I dont need the &quot;console.&quot; part anymore!&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们往上下文注入了 console 对象，而 console.log 这个属性就被注册到了这个 Scope 里。<br>再比如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> (<span class="variable language_">console</span>) &#123;</span><br><span class="line">  <span class="keyword">with</span> ([<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]) &#123;</span><br><span class="line">    <span class="title function_">log</span>(<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>)); <span class="comment">// writes &quot;abc&quot; to the console.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过嵌套，我们可以追加注入上下文。其中 with ([‘a’, ‘b’, ‘c’]) 其实是把 [‘a’, ‘b’, ‘c’] 的返回值对象注入到了上下文，而数组对象具有 .join 成员函数，所以可以直接调用 join(‘’) 输出 “abc”。为了不让结果这么 Magic，建议以枚举方式申明要注入的 key：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> (&#123; <span class="attr">myProperty</span>: <span class="string">&#x27;Hello world!&#x27;</span> &#125;) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(myProperty); <span class="comment">// Logs &quot;Hello world!&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>访问你的域名或服务器 IP，如果一切配置正确，你应该能够看到 Vue 项目在 Nginx 上成功部署并运行。</p>
+<p>那为什么不推荐使用 with 呢？比如下面的情况：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getAverage</span>(<span class="params">min, max</span>) &#123;</span><br><span class="line">  <span class="keyword">with</span> (<span class="title class_">Math</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">round</span>((min + max) / <span class="number">2</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">getAverage</span>(<span class="number">1</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<p>注入的上下文可能与已有上下文产生冲突，导致输出结果为 NaN。<br>所以业务代码中不推荐使用 with，而且实际上在 严格模式 下 with 也是被禁用的。</p>
+<h4 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h4><hr>
+<p>由于 with 定义的上下文会优先查找，因此在前端沙盒领域是一种解决方案，具体做法是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sandboxCode = <span class="string">`with(scope) &#123; <span class="subst">$&#123;code&#125;</span> &#125;`</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Function</span>(<span class="string">&#x27;scope&#x27;</span>, sandboxCode)</span><br></pre></td></tr></table></figure>
+
+<p>这样就把所有 scope 定义的对象限定住了。但如果访问 scope 外的对象还是会向上冒泡查找，我们可以结合 Proxy 来限制查找范围，这样就能完成一个可用性尚可的沙盒。</p>
+<p>第二种 with 的用法是前端模版引擎。</p>
+<p>我们经常看到模版引擎里会有一些 forEach、map 等特殊用法，这些语法完全可以通过 with 注入。当然并不是所有模版引擎都是这么实现的，还有另一种方案是，现将模版引擎解析为 AST，再根据 AST 构造并执行，如果把这个过程放到编译时，那么 JSX 就是一个例子。</p>
+<p>最后关于 with 注入上下文，还有一个误区，那就是认为下面的代码仅仅注入了 run 属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> (&#123; <span class="attr">run</span>: <span class="function">() =&gt;</span> &#123;&#125; &#125;) &#123;</span><br><span class="line">  <span class="title function_">run</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实不然，因为 with 会在整个原型链上查找，而 {} 的原型链是 Object.prototype，这就导致挂在了许多非预期的属性。<br>如果想要挂载一个纯净的对象，可以使用 Object.create() 创建对象挂载到 with 上。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><hr>
+<p>with 的使用场景很少，一般情况下不推荐使用。</p>
 
             </div>
 
@@ -171,10 +191,8 @@
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
         <ul class="pagination d-block text-center">
             
-                <li class="previous page-item d-inline"><a href="/2024/01/26/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3with%E8%AF%AD%E6%B3%95/" class="page-link float-left">&larr;  Newer</a></li>
             
-            
-                <li class="next page-item d-inline"><a href="/2024/01/23/vue%E5%A6%82%E6%9E%9C%E4%BC%98%E9%9B%85%E7%9A%84%E5%9F%8B%E7%82%B9/" class="page-link float-right">Older  &rarr;</a></li>
+                <li class="next page-item d-inline"><a href="/2024/01/25/vue%E9%A1%B9%E7%9B%AEnginx%E7%9A%84%E9%85%8D%E7%BD%AE/" class="page-link float-right">Older  &rarr;</a></li>
             
         </ul>
     </div>
