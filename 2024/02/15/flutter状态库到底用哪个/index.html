@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<!--Description-->
+
+
+
+    <meta name="description" content="我之前没写过flutter，进了新公司要求使用flutter。由于对flutetr的生态不熟悉，常常感到疑惑，我到底该用哪个库。其中最有争议的就是状态库的选择，在查找了诸多资料和群里询问交流后，写下了这篇文章，对我所接触到的一些flutter库进行调研。
+经过查找资料和群友交流推荐，我现在有两个备选"/>
+
+
+<!--Author-->
+
+    <meta name="author" content="John Doe"/>
+
+
+<!--Open Graph Title-->
+
+    <meta property="og:title" content="flutter状态库到底用哪个"/>
+
+
+<!--Open Graph Description-->
+
+    <meta property="og:description" content="我之前没写过flutter，进了新公司要求使用flutter。由于对flutetr的生态不熟悉，常常感到疑惑，我到底该用哪个库。其中最有争议的就是状态库的选择，在查找了诸多资料和群里询问交流后，写下了这篇文章，对我所接触到的一些flutter库进行调研。
+经过查找资料和群友交流推荐，我现在有两个备选"/>
+
+
+<!--Open Graph Site Name-->
+    <meta property="og:site_name" content="&lt;img src=&#34;/images/liu.jpg&#34; style=&#34;width:100px; height:100px; object-fit:cover; border-radius:50%; object-position:top;&#34; /&gt;"/>
+
+<!--Type page-->
+
+    <meta property="og:type" content="article"/>
+
+
+<!--Page Cover-->
+
+
+    <meta property="og:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+
+
+
+
+    <meta name="twitter:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<!-- Title -->
+
+<title>刘金根个人博客</title>
+
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+<!-- Custom CSS -->
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<!-- Custom Fonts -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Gallery -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/featherlight@1.4.0/src/featherlight.css" integrity="sha256-30DV/STftlyQ6v8yaOWlabammvCYtRJERLj/m0b3zno=" crossorigin="anonymous">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/css/lightgallery.min.css">
+
+<!-- favicon -->
+
+<link rel="icon" href="/img/favicon.png"/>
+
+
+
+    <!-- Google Analytics -->
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<!-- Head tag -->
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top bg-transparent position-absolute w-100 p-0" id="nav">
+    <div class="container pl-0 pr-0">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <a class="navbar-brand text-white p-1 pl-3" href="/">刘金根</a>
+        </div>
+        <div class="navbar-nav float-right">
+            <button class="btn btn-link search-btn navbar-item" data-toggle="modal" data-target="#searchModal">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="post-heading text-white">
+                    <h1>flutter状态库到底用哪个</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                
+                    <span class="meta d-inline-block">
+    
+    
+    <!-- Date -->
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-calendar-check fa-fw"></i>
+        2024-02-15
+    
+    <!-- word count and read count -->
+    
+
+    
+
+    
+</span>  
+                
+                <p>我之前没写过flutter，进了新公司要求使用flutter。由于对flutetr的生态不熟悉，常常感到疑惑，我到底该用哪个库。其中最有争议的就是状态库的选择，在查找了诸多资料和群里询问交流后，写下了这篇文章，对我所接触到的一些flutter库进行调研。</p>
+<p>经过查找资料和群友交流推荐，我现在有两个备选方案，一个是provider，一个是getx，provider是官方推荐，但感觉不是很好用，getx网友褒贬不一，还说什么初学者用了getx就废了(笑哭)，让我不知该如何是好，令刚开始接触flutter的我甚为纠结，因为我都不熟悉，后来又了解到provider的作者还写了一个更好用的库riverpod，去了解了一下，然后现在选择就变成了getx or riverpod。</p>
+<blockquote>
+<p>由于一时之间不能决定，于是我决定分开两个分支来写，一个使用riverpod + flutter_hooks，一个用getx。</p>
+</blockquote>
+<h2 id="使用riverpod-flutter-hooks"><a href="#使用riverpod-flutter-hooks" class="headerlink" title="使用riverpod + flutter_hooks"></a>使用riverpod + flutter_hooks</h2><p>需要安装的依赖： <code>flutter pub add hooks_riverpod flutter_hooks</code> 这个写法使用的hook对于react和vue3开发者非常的友好，符合使用习惯，最重要的是很方便。</p>
+<p>写法如下：</p>
+<p>使用 <code>HookConsumerWidget</code>，定义一个响应式更新到变量使用useState: <code>final isButtonDisabled = useState&lt;bool&gt;(false);&lt;/bool&gt;</code>，这样就可以愉快的使用定义的变量了，页面会响应式更新的。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EmailVerificationScreen</span> <span class="keyword">extends</span> <span class="title">HookConsumerWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">dynamic</span>&gt;? arguments;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> EmailVerificationScreen(<span class="keyword">this</span>.arguments, &#123;<span class="keyword">super</span>.key&#125;);</span><br><span class="line"></span><br><span class="line">  Widget build(BuildContext context, WidgetRef ref) &#123;</span><br><span class="line">    <span class="keyword">final</span> formKey = useMemoized(() =&gt; GlobalKey());</span><br><span class="line">    <span class="keyword">final</span> emailCodeController = useTextEditingController();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> isButtonDisabled = useState&lt;<span class="built_in">bool</span>&gt;(<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">    Future&lt;<span class="keyword">void</span>&gt; nextStep(BuildContext context) <span class="keyword">async</span> &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        SRouter(context).pushNamed(<span class="string">&quot;SetPassword&quot;</span>, queryParameters: &#123;</span><br><span class="line">          <span class="string">&quot;account&quot;</span>: arguments?[<span class="string">&#x27;account&#x27;</span>],</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="built_in">print</span>(e);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    useEffect(() &#123;</span><br><span class="line">      listener() &#123;</span><br><span class="line">        isButtonDisabled.value = emailCodeController.text.length &lt; <span class="number">6</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      emailCodeController.addListener(listener);</span><br><span class="line">      <span class="keyword">return</span> () &#123;</span><br><span class="line">        emailCodeController.removeListener(listener);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;, [emailCodeController]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Form(</span><br><span class="line">      key: formKey,</span><br><span class="line">      child: Column(</span><br><span class="line">        crossAxisAlignment: CrossAxisAlignment.start,</span><br><span class="line">        children: [</span><br><span class="line">          Text(</span><br><span class="line">            S.of(context).emailVerification,</span><br><span class="line">            style: TextStyle(fontSize: <span class="number">18.</span>sp, fontWeight: FontWeight.w400),</span><br><span class="line">          ),</span><br><span class="line">          SizedBox(height: <span class="number">8.</span>w),</span><br><span class="line">          Text(</span><br><span class="line">            S.current</span><br><span class="line">                .enterThe6DigitVerificationCodeReceivedInYourEmailTheCodeIsValidFor30Minutes,</span><br><span class="line">            style: TextStyle(</span><br><span class="line">              color: <span class="keyword">const</span> Color.fromRGBO(<span class="number">143</span>, <span class="number">143</span>, <span class="number">143</span>, <span class="number">1</span>),</span><br><span class="line">              fontSize: <span class="number">12.</span>sp,</span><br><span class="line">              fontWeight: FontWeight.w400,</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">          SizedBox(height: <span class="number">39.</span>w),</span><br><span class="line">          SStyledInput(</span><br><span class="line">            controller: emailCodeController,</span><br><span class="line">            labelText: S.of(context).emailVerificationCode,</span><br><span class="line">            validator: (value) =&gt; Validators.validateEmail(value, context),</span><br><span class="line">          ),</span><br><span class="line">          SizedBox(height: <span class="number">10.</span>w),</span><br><span class="line">          SizedBox(</span><br><span class="line">            height: <span class="number">50.</span>w,</span><br><span class="line">            width: <span class="built_in">double</span>.infinity,</span><br><span class="line">            child: ElevatedButton(</span><br><span class="line">              onPressed:</span><br><span class="line">                  isButtonDisabled.value ? <span class="keyword">null</span> : () =&gt; nextStep(context),</span><br><span class="line">              child: Text(S.of(context).nextStep),</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">          SizedBox(</span><br><span class="line">            height: <span class="number">26.</span>w,</span><br><span class="line">          ),</span><br><span class="line">          GestureDetector(</span><br><span class="line">            onTap: () &#123;</span><br><span class="line">              SRouter(context).pushNamed(<span class="string">&quot;Register&quot;</span>);</span><br><span class="line">            &#125;,</span><br><span class="line">            child: Text(</span><br><span class="line">              S.of(context).didNotReceiveTheCode,</span><br><span class="line">              style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">                color: Color.fromRGBO(<span class="number">79</span>, <span class="number">160</span>, <span class="number">255</span>, <span class="number">1.0</span>),</span><br><span class="line">                fontSize: <span class="number">12</span>,</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          )</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>全局状态管理：</li>
+</ul>
+<p>大体如下，使用一个全局的 <code>NotifierProvider</code></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> userProvider = <span class="type">NotifierProvider</span>&lt;<span class="type">UserProvide</span>, <span class="type">UserState</span>&gt;(<span class="type">UserProvide</span>.<span class="keyword">new</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserState</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="type">User</span>? activeUser;</span><br><span class="line"></span><br><span class="line">  <span class="type">List</span>&lt;<span class="type">User</span>&gt; userList = [];</span><br><span class="line"></span><br><span class="line">  <span class="type">String</span>? get getToken &#123;</span><br><span class="line">    <span class="keyword">return</span> activeUser?.accessToken;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserProvide</span> <span class="keyword">extends</span> <span class="title">Notifier</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="type">UserState</span> build() =&gt; <span class="type">UserState</span>();</span><br><span class="line"></span><br><span class="line">  <span class="type">Future</span> login(<span class="type">User</span> user) async &#123;</span><br><span class="line">    <span class="keyword">final</span> existingUser =</span><br><span class="line">        state.userList.firstWhereOrNull((u) =&gt; u.userId == user.userId);</span><br></pre></td></tr></table></figure>
+
+<h2 id="getx"><a href="#getx" class="headerlink" title="getx"></a>getx</h2><p>getx是使用的 <code>false.obs</code>的形式</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isButtonDisabled = <span class="keyword">false</span>.obs;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>由于getx还有路由的相关功能，所以这里再加一个getx 路由和go_router的对比，go_router是官方推荐的。</p>
+</blockquote>
+<h2 id="getx-router"><a href="#getx-router" class="headerlink" title="getx router"></a>getx router</h2><ul>
+<li>router.dart getx路由提供了一些转场动画，挺方便的</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">Transition</span> transition = Transition.rightToLeft;</span><br><span class="line"></span><br><span class="line">List routes = [</span><br><span class="line">  <span class="title function_ invoke__">GetPage</span>(</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">      <span class="attr">page</span>: () =&gt; <span class="keyword">const</span> <span class="variable constant_">HomeScreen</span>(username: <span class="string">&#x27;&#x27;</span>),</span><br><span class="line">      transition: transition),</span><br><span class="line">  <span class="title function_ invoke__">GetPage</span>(</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;/login&#x27;</span>,</span><br><span class="line">      <span class="attr">page</span>: () =&gt; <span class="keyword">const</span> <span class="variable constant_">DefaultLayout</span>(</span><br><span class="line">            title: LocaleKeys.login,</span><br><span class="line">            child: <span class="title function_ invoke__">LoginScreen</span>(),</span><br><span class="line">          ),</span><br><span class="line">      transition: transition),</span><br><span class="line">  <span class="title function_ invoke__">GetPage</span>(</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;/welcomeBack&#x27;</span>,</span><br><span class="line">      <span class="attr">page</span>: () =&gt; <span class="title function_ invoke__">DefaultLayout</span>(</span><br><span class="line">            <span class="attr">title</span>: LocaleKeys.welcomeBack,</span><br><span class="line">            <span class="attr">child</span>: <span class="title function_ invoke__">WelcomeBackScreen</span>(),</span><br><span class="line">          ),</span><br><span class="line">      transition: transition),</span><br><span class="line">  <span class="title function_ invoke__">GetPage</span>(</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;/notFound&#x27;</span>,</span><br><span class="line">      <span class="attr">page</span>: () =&gt; <span class="keyword">const</span> <span class="variable constant_">NotFoundScreen</span>(),</span><br><span class="line">      transition: Transition.fade),</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>跳转：</li>
+</ul>
+<p>可以看到getx并没有依赖context</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Get.toNamed(</span><br><span class="line">  <span class="string">&#x27;/welcomeBack&#x27;</span>,</span><br><span class="line">  arguments: &#123;<span class="string">&#x27;email&#x27;</span>: email&#125;,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="go-router"><a href="#go-router" class="headerlink" title="go_router"></a>go_router</h2><p>这里要吐槽一句go_router的官方文档容易让人误解。上来就让人 <code>context.go(&#39;/users/123&#39;)</code>，也没说清楚一点，这个操作数据是不进入路由栈的。所以路由回退不了，让我疑惑半天，差点就换库了，和群友交流了一下才晓得，不少哥们都被坑过。</p>
+<ul>
+<li>index.dart</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> goRouter = <span class="title function_ invoke__">GoRouter</span>(</span><br><span class="line">  <span class="attr">initialLocation</span>: FlutterConfig.initialLocation,</span><br><span class="line">  <span class="attr">redirect</span>: routeBeforeHook,</span><br><span class="line">  // <span class="attr">debugLogDiagnostics</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">routes</span>: baseRoutes + whiteList,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>routes.dart</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List baseRoutes = [  <span class="title function_ invoke__">GoRoute</span>(</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;Home&quot;</span>,</span><br><span class="line">  <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">  <span class="attr">builder</span>: (context, state) =&gt; <span class="keyword">const</span> <span class="variable constant_">HomeScreen</span>(),</span><br><span class="line">),];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>跳转：</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context.pushNamed(name)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里需要说一下的就是go_router配合riverpod的使用，如何在go_router里面拿到riverpod的状态：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">String</span>? <span class="title function_">routeBeforeHook</span>(<span class="params">BuildContext context, GoRouterState state</span>) &#123;</span><br><span class="line">  final userState = <span class="title class_">ProviderScope</span>.<span class="title function_">containerOf</span>(context).<span class="title function_">read</span>(userProvider);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (userState.<span class="property">getToken</span> == <span class="literal">null</span> &amp;&amp;</span><br><span class="line">      !whiteList.<span class="title function_">map</span>(<span class="function">(<span class="params">e</span>) =&gt;</span> e.<span class="property">path</span>).<span class="title function_">contains</span>(state.<span class="property">uri</span>.<span class="property">path</span>)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;/login&#x27;</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="getx-1"><a href="#getx-1" class="headerlink" title="getx"></a>getx</h2><p>如果使用getx的国际化功能，建议配合getx_cli使用，因为这个可以根据json文件生成，json是通用文件，可以方便替换和多项目使用，而且生成之后就有提示了。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;package:get/get.dart&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Messages</span> <span class="keyword">extends</span> <span class="title">Translations</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt;&gt; <span class="keyword">get</span> keys =&gt; &#123;</span><br><span class="line">        <span class="string">&#x27;zh_CN&#x27;</span>: &#123;</span><br><span class="line">          <span class="string">&#x27;hello&#x27;</span>: <span class="string">&#x27;你好 世界&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&#x27;de_DE&#x27;</span>: &#123;</span><br><span class="line">          <span class="string">&#x27;hello&#x27;</span>: <span class="string">&#x27;Hallo Welt&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用：</li>
+</ul>
+<p>这个使用方式虽然也方便，但是没有提示</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Text(<span class="string">&#x27;title&#x27;</span>.<span class="built_in">tr</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="flutter-localizations"><a href="#flutter-localizations" class="headerlink" title="flutter_localizations"></a>flutter_localizations</h2><p>这是官方推荐的，配合编辑器插件 <code>Flutter Intl</code>使用。在lib目录下创建I10n文件夹，使用的是 <code>.arb</code>后缀的文件，这个文件的格式和json一模一样，插件就会自动帮助生成相应代码了。</p>
+<p>总结下来，于我来说大概就是两条路线，一条是getx全家桶一把梭，一条就是散装自定义路线hooks_riverpod + fluter_hooks + go_route + flutter_localizations。</p>
+<p>接下来还要写react的项目，我对react的生态也不太熟，还要去继续去调研一下react的状态库以及相关的生态。</p>
+
+            </div>
+
+            <!-- Post information -->
+            
+            
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <ul class="pagination d-block text-center">
+            
+            
+                <li class="next page-item d-inline"><a href="/2024/02/15/%E4%BD%BF%E7%94%A8Pinia%E7%9A%84%E4%BA%94%E4%B8%AA%E6%8A%80%E5%B7%A7/" class="page-link float-right">下一页  &rarr;</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+                <!-- Comments -->
+                
+
+                
+
+            
+
+        </div>
+    </div>
+</article> 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <style>
+        #toc-content .toc-link::before {
+            background-color: transparent;
+            max-height: 25px;
+        }
+
+        #toc-content .toc-link.is-active-link::before {
+            background-color: #404040;
+        }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
+        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
+            <div class="toc-widget">
+                <div id="toc-content" class="text-truncate">
+                </div>
+            </div>
+            <div class="toc-menu pt-3 pl-4">
+                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">全部展开</span><span class="close-text" style="display: none;">全部收起</span></a>
+                <a class="back-to-top d-block py-1" href="#">回到顶部</a>
+                <a class="go-to-bottom d-block py-1" href="#">移至底部</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '#toc-content',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: 'article',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+        });
+    </script>
+
+
+    
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center">
+                <ul class="list-inline">
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <ul class="copyright footer-menu list-inline">
+                    
+                    
+                        <li class="list-inline-item">
+                            
+                            
+                            <a href="/">
+                                
+                                    首页
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/archives">
+                                
+                                    归档
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/tags">
+                                
+                                    标签
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/categories">
+                                
+                                    类别
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/about">
+                                
+                                    关于
+                                
+                            </a>
+                        </li>
+                    
+                </ul>
+                <p class="copyright footer-author">
+                    &copy; -2024 
+                    <a rel="external" class="copyright-link" href="" target="_blank">John Doe</a><br/>
+                    Powered by <a rel="external" class="copyright-link" href="https://hexo.io/" target="_blank">Hexo</a>  
+                    <span class="copyright-split">&nbsp;|&nbsp;&nbsp;</span>
+                    Theme <a rel="external" class="copyright-link" href="https://github.com/luswdev/hexo-theme-clean.git" target="_blank">Clean</a>
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+<script src="//cdn.jsdelivr.net/npm/jquery@2.1.4/dist/jquery.min.js"></script>
+
+<!-- For drop down -->
+<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+<!-- Gallery -->
+<script src="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/js/lightgallery-all.min.js"></script>
+<!-- Busuanzi -->
+
+
+<!-- Search script -->
+
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        searchFunc( '/search.xml' , 'searchInput', 'searchResult');
+    });
+</script>
+
+
+
+<script src="/js/main.js"></script>
+
+
+
+    <!-- Search Modal -->
+    <!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content overflow-auto">
+            <div class="modal-header">
+                <input type="text" class="form-control" placeholder="搜索关键词..." id="searchInput">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="searchResult">
+                    <div class="search-empty text-center text-muted p-5">
+                        <i class="far fa-meh"></i>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
