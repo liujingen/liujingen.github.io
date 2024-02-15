@@ -157,8 +157,8 @@
                 <p>在 JavaScript 学习过程中，往往出现一些与我们常理相违背的结果，比如我们今天的论题 <code>[] == ![]</code> ，它的返回的结果竟然是 <code>true</code> ，这着实让初学者感到困惑。因为根据直觉， <code>[]</code>和 <code>![]</code>两者应该是不相等的。面试官恰恰就会抓住这一点，对程序员们进行考察。</p>
 <p>而本文将结合官方文档对该题进行深度剖析。</p>
 <h2 id="看看官方文档怎么说"><a href="#看看官方文档怎么说" class="headerlink" title="看看官方文档怎么说"></a>看看官方文档怎么说</h2><h3 id="关于"><a href="#关于" class="headerlink" title="关于 =="></a>关于 <code>==</code></h3><p>关于 <code>==</code>，文档这样描述：<a href="https://link.juejin.cn/?target=https://es5.github.io/%23x11.9.1" title="https://es5.github.io/#x11.9.1">Annotated ES5 11.9.1</a></p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/974ce8282bb642cfbf0f14bdcff5f088~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.jpg"></p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6ad3699c380045b89d0047d7fec7df8b~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.jpg"></p>
+<p><img src="/../images/2024/2/974ce8282bb642cfbf0f14bdcff5f088~tplv-k3u1fbpfcp-jj-mark_3024_0_0_0_q75.jpg"></p>
+<p><img src="/../images/2024/2/6ad3699c380045b89d0047d7fec7df8b~tplv-k3u1fbpfcp-jj-mark_3024_0_0_0_q75.jpg"></p>
 <p>根据官方文档，我总结了以下 <code>==</code> 的隐式转换规则，一些简单的就忽略掉了：</p>
 <ol>
 <li><strong>类型相同的比较：</strong> （1）如果类型是 Undefined 或 Null，返回 <code>true</code>。</li>
@@ -211,11 +211,11 @@
 <ol>
 <li><strong>关系转换图如下：</strong></li>
 </ol>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/eaf399a47c6f44ee8bcb54996ba8cc28~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.jpg"></p>
+<p><img src="/../images/2024/2/eaf399a47c6f44ee8bcb54996ba8cc28~tplv-k3u1fbpfcp-jj-mark_3024_0_0_0_q75.jpg"></p>
 <p>回到 <code>[] == ! [] </code></p>
 <p>这里判断 <code>[]</code>与 <code>![]</code>，两边都是对象，那怎么比呢，我们发现右边还有一个 <code>!</code>，我们知道 <code>!</code>的优先级是要大于 <code>==</code>的，那么先进行非运算。</p>
-<h3 id="关于-1"><a href="#关于-1" class="headerlink" title="关于 !"></a>关于 <code>!</code></h3><p>关于 <code>!</code>，文档这样描述：<a href="https://link.juejin.cn/?target=https://es5.github.io/%23x11.4.9" title="https://es5.github.io/#x11.4.9">Annotated ES5 11.4.9</a> <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/744fe88550fe4c1898cb0531dfd3ff05~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.jpg"></p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/04d61953adad4811aaae747aac5bc178~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.jpg"></p>
+<h3 id="关于-1"><a href="#关于-1" class="headerlink" title="关于 !"></a>关于 <code>!</code></h3><p>关于 <code>!</code>，文档这样描述：<a href="https://link.juejin.cn/?target=https://es5.github.io/%23x11.4.9" title="https://es5.github.io/#x11.4.9">Annotated ES5 11.4.9</a> <img src="/../images/2024/2/744fe88550fe4c1898cb0531dfd3ff05~tplv-k3u1fbpfcp-jj-mark_3024_0_0_0_q75.jpg"></p>
+<p><img src="/../images/2024/2/04d61953adad4811aaae747aac5bc178~tplv-k3u1fbpfcp-jj-mark_3024_0_0_0_q75.jpg"></p>
 <p>上表为各数据类型转换成布尔值的结果。</p>
 <p>简而言之， <code>!</code>这个运算符会进行两步操作：</p>
 <blockquote>
