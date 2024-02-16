@@ -9,8 +9,7 @@
 
 
 
-    <meta name="description" content="在 JavaScript 学习过程中，往往出现一些与我们常理相违背的结果，比如我们今天的论题 [] == ![] ，它的返回的结果竟然是 true ，这着实让初学者感到困惑。因为根据直觉， []和 ![]两者应该是不相等的。面试官恰恰就会抓住这一点，对程序员们进行考察。
-而本文将结合官方文档对该题进"/>
+    <meta name="description" content="在工作的过程中会遇到要将dom变成图片并下载的问题，刚开始使用的 html2canvas进行转换的，但是我老大告诉我说，咱们做的是面向国外的网页，插件太大会导致页面加载慢的问题（国外部分地区网络没有国内这么发达），就让我用原生dom或一些比较小的插件，在原生dom下载的时候遇到了 context.d"/>
 
 
 <!--Author-->
@@ -20,13 +19,12 @@
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="为什么返回true"/>
+    <meta property="og:title" content="前端如何将dom转换成图片"/>
 
 
 <!--Open Graph Description-->
 
-    <meta property="og:description" content="在 JavaScript 学习过程中，往往出现一些与我们常理相违背的结果，比如我们今天的论题 [] == ![] ，它的返回的结果竟然是 true ，这着实让初学者感到困惑。因为根据直觉， []和 ![]两者应该是不相等的。面试官恰恰就会抓住这一点，对程序员们进行考察。
-而本文将结合官方文档对该题进"/>
+    <meta property="og:description" content="在工作的过程中会遇到要将dom变成图片并下载的问题，刚开始使用的 html2canvas进行转换的，但是我老大告诉我说，咱们做的是面向国外的网页，插件太大会导致页面加载慢的问题（国外部分地区网络没有国内这么发达），就让我用原生dom或一些比较小的插件，在原生dom下载的时候遇到了 context.d"/>
 
 
 <!--Open Graph Site Name-->
@@ -122,7 +120,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 text-center">
                 <div class="post-heading text-white">
-                    <h1>为什么返回true</h1>
+                    <h1>前端如何将dom转换成图片</h1>
                     
                 </div>
             </div>
@@ -144,7 +142,7 @@
     
         <span class="post-meta-split">&nbsp;|&nbsp;</span>
         <i class="far fa-calendar-check fa-fw"></i>
-        2024-02-15
+        2024-02-16
     
     <!-- word count and read count -->
     
@@ -154,82 +152,32 @@
     
 </span>  
                 
-                <p>在 JavaScript 学习过程中，往往出现一些与我们常理相违背的结果，比如我们今天的论题 <code>[] == ![]</code> ，它的返回的结果竟然是 <code>true</code> ，这着实让初学者感到困惑。因为根据直觉， <code>[]</code>和 <code>![]</code>两者应该是不相等的。面试官恰恰就会抓住这一点，对程序员们进行考察。</p>
-<p>而本文将结合官方文档对该题进行深度剖析。</p>
-<h2 id="看看官方文档怎么说"><a href="#看看官方文档怎么说" class="headerlink" title="看看官方文档怎么说"></a>看看官方文档怎么说</h2><h3 id="关于"><a href="#关于" class="headerlink" title="关于 =="></a>关于 <code>==</code></h3><p>关于 <code>==</code>，文档这样描述：<a href="https://link.juejin.cn/?target=https://es5.github.io/%23x11.9.1" title="https://es5.github.io/#x11.9.1">Annotated ES5 11.9.1</a></p>
-<p><img src="/../images/2024/2/974ce8282bb642cfbf0f14bdcff5f088~tplv-k3u1fbpfcp-jj-mark_3024_0_0_0_q75.jpg"></p>
-<p><img src="/../images/2024/2/6ad3699c380045b89d0047d7fec7df8b~tplv-k3u1fbpfcp-jj-mark_3024_0_0_0_q75.jpg"></p>
-<p>根据官方文档，我总结了以下 <code>==</code> 的隐式转换规则，一些简单的就忽略掉了：</p>
-<ol>
-<li><strong>类型相同的比较：</strong> （1）如果类型是 Undefined 或 Null，返回 <code>true</code>。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
-
-<p>（2）如果一个是 +0，另一个是 -0，返回 <code>true</code>：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+<span class="number">0</span> == -<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-
-<p>（3）如果类型是对象，二者引用同一个对象，返回 <code>true</code>，反之返回 <code>false</code>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125; == &#123;&#125;;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li><strong>null 和 undefined 比较：</strong> 仅当它们之间的比较时，返回 <code>true</code>。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span>;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><strong>NaN 比较：</strong> NaN 与任何值比较都返回 <code>false</code>，包括NaN自己。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">NaN</span> == <span class="title class_">NaN</span>;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><strong>字符串与数字比较：</strong> 如果其中一个操作数是字符串，另一个是数字，将字符串转换为数字，然后进行比较。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;5&#x27;</span> == <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><strong>布尔值与非布尔值比较：</strong> 布尔值无法直接比较，需先将布尔值转换为数字（ <code>true</code> 转换为 <code>1</code>， <code>false</code> 转换为 <code>0</code>），非布尔值也需要转换成数字再比较。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span> == <span class="number">1</span>;</span><br><span class="line"><span class="literal">false</span> == <span class="string">&#x27;123&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><strong>对象与原始类型比较：</strong> 如果其中一个是对象，另一个是原始类型，将对象通过 <code>ToPrimitive</code> 转换为原始类型，然后进行比较。 <em>（即如果原始类型为字符串，则对象转换成字符串再比较；如果原始类为布尔值，则将布尔值与对象都转换成数字进行比较；如果原始类为数字，则将对象转换成数字进行比较。）</em></li>
-</ol>
-<p>举个例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125; == <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
-<p><code>ToPrimitive</code> 在我的上篇文章（<a target="_blank" rel="noopener" href="https://juejin.cn/post/7307857937699405862" title="https://juejin.cn/post/7307857937699405862">看了一天的官方文档，终于搞懂了 JS 类型转换机制</a>）中详细介绍过，这里我们直接当做公式套用。</p>
+                <p>在工作的过程中会遇到要将dom变成图片并下载的问题，刚开始使用的 <code>html2canvas</code>进行转换的，但是我老大告诉我说，咱们做的是面向国外的网页，插件太大会导致页面加载慢的问题（国外部分地区网络没有国内这么发达），就让我用原生dom或一些比较小的插件，在原生dom下载的时候遇到了 <code>context.drawImage(element, 0, 0, width, height)</code>这一方法传入参数要传类型HTMLCanvasElement的问题，所以要将一个HTMLElement转换成HTMLCanvasElement，但是经过一些信息的查找，我发现有个很好用且轻量化的插件，可以完美解决这一问题，所以这里给大家推荐一个轻量级的插件 <code>dom-to-image</code>（23kb），这个插件可以不用进行类型转换，直接将dom元素转换成需要的文件格式。</p>
+<h2 id="2-1-dom-to-image的安装"><a href="#2-1-dom-to-image的安装" class="headerlink" title="2.1 dom-to-image的安装"></a>2.1 dom-to-image的安装</h2><p>在终端输入以下代码进行 <code>dom-to-image</code>安装</p>
 <blockquote>
-<p>ToPrimitive(obj, Number) &#x3D;&#x3D;&gt; Number({})</p>
+<p>npm install dom-to-image</p>
 </blockquote>
-<ol>
-<li>如果 obj 是基本类型，直接返回</li>
-<li>否则，调用 valueOf 方法，如果得到原始值，则返回</li>
-<li>否则，调用 toString 方法，如果得到原始值，则返回</li>
-<li>否则，报错</li>
-</ol>
-<p>首先 <code>&#123;&#125;</code>先被 <code>ToPrimitive</code>转换成字符串 <code>&quot;[object Object]&quot;</code>，就相当于直接判断 <code>&quot;[object Object]&quot; == 1</code>，字符串与数字的比较中，又要将字符串转换成数字，”[object Object]”转换成数字为 <code>NaN</code>，而 <code>NaN</code> 与任何值比较都为 <code>false</code>。</p>
-<p>所以 <code>&#123;&#125; == 1</code> 返回 <code>false</code>。</p>
-<ol>
-<li><strong>关系转换图如下：</strong></li>
-</ol>
-<p><img src="/../images/2024/2/eaf399a47c6f44ee8bcb54996ba8cc28~tplv-k3u1fbpfcp-jj-mark_3024_0_0_0_q75.jpg"></p>
-<p>回到 <code>[] == ! [] </code></p>
-<p>这里判断 <code>[]</code>与 <code>![]</code>，两边都是对象，那怎么比呢，我们发现右边还有一个 <code>!</code>，我们知道 <code>!</code>的优先级是要大于 <code>==</code>的，那么先进行非运算。</p>
-<h3 id="关于-1"><a href="#关于-1" class="headerlink" title="关于 !"></a>关于 <code>!</code></h3><p>关于 <code>!</code>，文档这样描述：<a href="https://link.juejin.cn/?target=https://es5.github.io/%23x11.4.9" title="https://es5.github.io/#x11.4.9">Annotated ES5 11.4.9</a> <img src="/../images/2024/2/744fe88550fe4c1898cb0531dfd3ff05~tplv-k3u1fbpfcp-jj-mark_3024_0_0_0_q75.jpg"></p>
-<p><img src="/../images/2024/2/04d61953adad4811aaae747aac5bc178~tplv-k3u1fbpfcp-jj-mark_3024_0_0_0_q75.jpg"></p>
-<p>上表为各数据类型转换成布尔值的结果。</p>
-<p>简而言之， <code>!</code>这个运算符会进行两步操作：</p>
-<blockquote>
-</blockquote>
-<ol>
-<li><strong>对 <code>!</code> 后面的操作数转换成布尔值</strong></li>
-<li><strong>将这个布尔值取反</strong></li>
-</ol>
-<p>于是我们判断 <code>![]</code>，将 <code>[]</code>转换成布尔值，我们在官方文档中就知道了，任何对象转换成布尔值都得到 <code>ture</code>，然后在取反，得到 <code>![]</code>为 <code>false</code>。</p>
-<h2 id="最终判断"><a href="#最终判断" class="headerlink" title="最终判断"></a>最终判断</h2><p>原式 <code>[] == ![]</code>经过 <code>!</code>运算将等式右边转换成了 <code>false</code>。即 <code>[] == false</code>。</p>
-<p>接着，根据 <code>==</code>隐式转换规则，等式两边为对象和布尔，那么它们都应该转换成数字进行比较。</p>
-<p><code>[]</code>经过 <code>ToPrimitive</code>会被转换成字符串 <code>&quot;&quot;</code>。再将等号两边的字符串 <code>&quot;&quot;</code>和布尔值 <code>false</code>转换成数字 <code>0</code> ，得到 <code>0 == 0</code> 。打印得到 <code>true</code>。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>所以实际在进行 <code>[] == ! []</code>判断时，在JS引擎内部，会将这行代码执行成这个样子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[] == ![]</span><br><span class="line"></span><br><span class="line">[] == !<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">[] == <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;</span> == <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> == <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-2-dom-to-image引入"><a href="#2-2-dom-to-image引入" class="headerlink" title="2.2 dom-to-image引入"></a>2.2 dom-to-image引入</h2><p>在需要使用这个插件的页面使用以下代码进行局部引入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> domToImage <span class="keyword">from</span> <span class="string">&#x27;dom-to-image&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以通过以下代码进行图片的转换了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> palGradientGap = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;element&#x27;</span>)</span><br><span class="line">      <span class="keyword">const</span> canvas = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;canvas&#x27;</span>)</span><br><span class="line">      canvas.<span class="property">width</span> = element.<span class="property">offsetWidth</span></span><br><span class="line">      canvas.<span class="property">height</span> = element.<span class="property">offsetHeight</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">domtoimage</span>.<span class="title function_">toPng</span>(element).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">canvas</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> link = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">        link.<span class="property">href</span> = canvas</span><br><span class="line">        link.<span class="property">download</span> = <span class="string">&#x27;image.png&#x27;</span></span><br><span class="line">        link.<span class="title function_">click</span>()</span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>当然也可以进行全局引入 创建一个 <code>domToImage.js</code>文件写入以下代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> domToImage <span class="keyword">from</span> <span class="string">&#x27;dom-to-image&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> domToImagePlugin = &#123;</span><br><span class="line">    <span class="title function_">install</span>(<span class="params">Vue</span>) &#123;</span><br><span class="line">        <span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">$domToImage</span> = domToImage;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(domToImagePlugin);</span><br></pre></td></tr></table></figure>
+
+<p>然后再入口文件 <code>main.js</code>写入以下代码全局引入插件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./domToImage.js&#x27;</span>;</span><br><span class="line"><span class="title class_">Vue</span>.<span class="property">config</span>.<span class="property">productionTip</span> = <span class="literal">false</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Vue</span>(&#123; <span class="attr">render</span>: <span class="function"><span class="params">h</span> =&gt;</span> <span class="title function_">h</span>(<span class="title class_">App</span>), &#125;).$mount(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>其中， <code>Options</code> 参数是一个可选的配置对象，用于设置转换选项。以下是一些常用的选项：</p>
+<ul>
+<li><code>width</code>：输出图像的宽度，默认值为元素的实际宽度。</li>
+<li><code>height</code>：输出图像的高度，默认值为元素的实际高度。</li>
+<li><code>style</code>：要应用于元素的样式对象。</li>
+<li><code>filter</code>：要应用于元素的 CSS 滤镜。</li>
+<li><code>bgcolor</code>：输出图像的背景颜色，默认值为透明。</li>
+<li><code>quality</code>：输出图像的质量，仅适用于 JPEG 格式，默认值为 0.92。</li>
+</ul>
 
             </div>
 
@@ -239,10 +187,8 @@
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
         <ul class="pagination d-block text-center">
             
-                <li class="previous page-item d-inline"><a href="/2024/02/16/async%E5%92%8Cawait%E4%BD%A0%E6%AD%A3%E5%9C%A8%E5%B0%86%E5%BC%82%E6%AD%A5%E5%86%99%E6%88%90%E5%90%8C%E6%AD%A5/" class="page-link float-left">&larr;  上一页</a></li>
             
-            
-                <li class="next page-item d-inline"><a href="/2024/02/15/flutter%E7%8A%B6%E6%80%81%E5%BA%93%E5%88%B0%E5%BA%95%E7%94%A8%E5%93%AA%E4%B8%AA/" class="page-link float-right">下一页  &rarr;</a></li>
+                <li class="next page-item d-inline"><a href="/2024/02/16/async%E5%92%8Cawait%E4%BD%A0%E6%AD%A3%E5%9C%A8%E5%B0%86%E5%BC%82%E6%AD%A5%E5%86%99%E6%88%90%E5%90%8C%E6%AD%A5/" class="page-link float-right">下一页  &rarr;</a></li>
             
         </ul>
     </div>

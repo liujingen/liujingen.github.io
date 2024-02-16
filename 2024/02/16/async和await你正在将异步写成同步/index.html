@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<!--Description-->
+
+
+
+    <meta name="description" content="前言你是否察觉到自己随手写的异步函数，实际却是”同步”的效果！
+正文以一个需求为例：获取给定目录下的全部文件，返回所有文件的路径数组。
+第一版思路很简单：读取目录内容，如果是文件，添加进结果数组，如果还是目录，我们递归执行。
+1234567891011121314151617181920212223"/>
+
+
+<!--Author-->
+
+    <meta name="author" content="John Doe"/>
+
+
+<!--Open Graph Title-->
+
+    <meta property="og:title" content="async和await你正在将异步写成同步"/>
+
+
+<!--Open Graph Description-->
+
+    <meta property="og:description" content="前言你是否察觉到自己随手写的异步函数，实际却是”同步”的效果！
+正文以一个需求为例：获取给定目录下的全部文件，返回所有文件的路径数组。
+第一版思路很简单：读取目录内容，如果是文件，添加进结果数组，如果还是目录，我们递归执行。
+1234567891011121314151617181920212223"/>
+
+
+<!--Open Graph Site Name-->
+    <meta property="og:site_name" content="&lt;img src=&#34;/images/liu.jpg&#34; style=&#34;width:100px; height:100px; object-fit:cover; border-radius:50%; object-position:top;&#34; /&gt;"/>
+
+<!--Type page-->
+
+    <meta property="og:type" content="article"/>
+
+
+<!--Page Cover-->
+
+
+    <meta property="og:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+
+
+
+
+    <meta name="twitter:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<!-- Title -->
+
+<title>刘金根个人博客</title>
+
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+<!-- Custom CSS -->
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<!-- Custom Fonts -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Gallery -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/featherlight@1.4.0/src/featherlight.css" integrity="sha256-30DV/STftlyQ6v8yaOWlabammvCYtRJERLj/m0b3zno=" crossorigin="anonymous">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/css/lightgallery.min.css">
+
+<!-- favicon -->
+
+<link rel="icon" href="/img/favicon.png"/>
+
+
+
+    <!-- Google Analytics -->
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<!-- Head tag -->
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top bg-transparent position-absolute w-100 p-0" id="nav">
+    <div class="container pl-0 pr-0">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <a class="navbar-brand text-white p-1 pl-3" href="/">刘金根</a>
+        </div>
+        <div class="navbar-nav float-right">
+            <button class="btn btn-link search-btn navbar-item" data-toggle="modal" data-target="#searchModal">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="post-heading text-white">
+                    <h1>async和await你正在将异步写成同步</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                
+                    <span class="meta d-inline-block">
+    
+    
+    <!-- Date -->
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-calendar-check fa-fw"></i>
+        2024-02-16
+    
+    <!-- word count and read count -->
+    
+
+    
+
+    
+</span>  
+                
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>你是否察觉到自己随手写的异步函数，实际却是”同步”的效果！</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>以一个需求为例：获取给定目录下的全部文件，返回所有文件的路径数组。</p>
+<h3 id="第一版"><a href="#第一版" class="headerlink" title="第一版"></a>第一版</h3><p>思路很简单：读取目录内容，如果是文件，添加进结果数组，如果还是目录，我们递归执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">&#x27;node:path&#x27;</span></span><br><span class="line"><span class="keyword">import</span> fs <span class="keyword">from</span> <span class="string">&#x27;node:fs/promises&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; existsSync &#125; <span class="keyword">from</span> <span class="string">&#x27;node:fs&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">findFiles</span>(<span class="params">root</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="title function_">existsSync</span>(root)) <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> rootStat = <span class="keyword">await</span> fs.<span class="title function_">stat</span>(root)</span><br><span class="line">    <span class="keyword">if</span> (rootStat.<span class="title function_">isFile</span>()) <span class="keyword">return</span> [root]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> result = []</span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">find</span> = <span class="keyword">async</span> (<span class="params">dir</span>) =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> files = <span class="keyword">await</span> fs.<span class="title function_">readdir</span>(dir)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> file <span class="keyword">of</span> files) &#123;</span><br><span class="line">            file = path.<span class="title function_">resolve</span>(dir, file)</span><br><span class="line">            <span class="keyword">const</span> stat = <span class="keyword">await</span> fs.<span class="title function_">stat</span>(file)</span><br><span class="line">            <span class="keyword">if</span> (stat.<span class="title function_">isFile</span>()) &#123;</span><br><span class="line">                result.<span class="title function_">push</span>(file)</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stat.<span class="title function_">isDirectory</span>()) &#123;</span><br><span class="line">                <span class="keyword">await</span> <span class="title function_">find</span>(file)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">find</span>(root)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>机智的你是否已经发现了问题？</p>
+<p>我们递归查询子目录的过程是不需要等待上一个结果的，但是第 20 行代码，只有查询完一个子目录之后才会查询下一个，显然让并发的异步，变成了顺序的”同步”执行。</p>
+<p>那我们去掉 20 行的 <code>await</code> 是不是就可以了，当然不行，这样的话 <code>await find(root)</code> 在没有完全遍历目录之前就会立刻返回，我们无法拿到正确的结果。</p>
+<p>思考一下，怎么修改它呢？……让我们看第二版代码。</p>
+<h3 id="第二版"><a href="#第二版" class="headerlink" title="第二版"></a>第二版</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">&#x27;node:path&#x27;</span></span><br><span class="line"><span class="keyword">import</span> fs <span class="keyword">from</span> <span class="string">&#x27;node:fs/promises&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; existsSync &#125; <span class="keyword">from</span> <span class="string">&#x27;node:fs&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">findFiles</span>(<span class="params">root</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="title function_">existsSync</span>(root)) <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> rootStat = <span class="keyword">await</span> fs.<span class="title function_">stat</span>(root)</span><br><span class="line">    <span class="keyword">if</span> (rootStat.<span class="title function_">isFile</span>()) <span class="keyword">return</span> [root]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> result = []</span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">find</span> = <span class="keyword">async</span> (<span class="params">dir</span>) =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> task = (<span class="keyword">await</span> fs.<span class="title function_">readdir</span>(dir)).<span class="title function_">map</span>(<span class="keyword">async</span> (file) =&gt; &#123;</span><br><span class="line">            file = path.<span class="title function_">resolve</span>(dir, file)</span><br><span class="line">            <span class="keyword">const</span> stat = <span class="keyword">await</span> fs.<span class="title function_">stat</span>(file)</span><br><span class="line">            <span class="keyword">if</span> (stat.<span class="title function_">isFile</span>()) &#123;</span><br><span class="line">                result.<span class="title function_">push</span>(file)</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stat.<span class="title function_">isDirectory</span>()) &#123;</span><br><span class="line">                <span class="keyword">await</span> <span class="title function_">find</span>(file)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(task)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">find</span>(root)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们把每个子目录内容的查询作为独立的任务，扔给 <code>Promise.all</code> 执行，就是这个简单的改动，性能得到了质的提升，让我们看看测试，究竟能差多少。</p>
+<h3 id="对比测试"><a href="#对比测试" class="headerlink" title="对比测试"></a>对比测试</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>(<span class="string">&#x27;v1&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> files1 = <span class="keyword">await</span> <span class="title function_">findFiles1</span>(<span class="string">&#x27;D:\\Videos&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>(<span class="string">&#x27;v1&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>(<span class="string">&#x27;v2&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> files2 = <span class="keyword">await</span> <span class="title function_">findFiles2</span>(<span class="string">&#x27;D:\\Videos&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>(<span class="string">&#x27;v2&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(files1?.<span class="property">length</span>, files2?.<span class="property">length</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/2024/2/68e2ac52c8f64a3ea3f294f64bc6a50e~tplv-k3u1fbpfcp-jj-mark_3024_0_0_0_q75.jpg"></p>
+<p>版本二快了三倍不止，如果是并发的接口请求被不小心搞成了顺序执行，差距比这还要夸张。</p>
+
+            </div>
+
+            <!-- Post information -->
+            
+            
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <ul class="pagination d-block text-center">
+            
+                <li class="previous page-item d-inline"><a href="/2024/02/16/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E5%B0%86dom%E8%BD%AC%E6%8D%A2%E6%88%90%E5%9B%BE%E7%89%87/" class="page-link float-left">&larr;  上一页</a></li>
+            
+            
+                <li class="next page-item d-inline"><a href="/2024/02/15/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9Etrue/" class="page-link float-right">下一页  &rarr;</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+                <!-- Comments -->
+                
+
+                
+
+            
+
+        </div>
+    </div>
+</article> 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <style>
+        #toc-content .toc-link::before {
+            background-color: transparent;
+            max-height: 25px;
+        }
+
+        #toc-content .toc-link.is-active-link::before {
+            background-color: #404040;
+        }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
+        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
+            <div class="toc-widget">
+                <div id="toc-content" class="text-truncate">
+                </div>
+            </div>
+            <div class="toc-menu pt-3 pl-4">
+                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">全部展开</span><span class="close-text" style="display: none;">全部收起</span></a>
+                <a class="back-to-top d-block py-1" href="#">回到顶部</a>
+                <a class="go-to-bottom d-block py-1" href="#">移至底部</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '#toc-content',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: 'article',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+        });
+    </script>
+
+
+    
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center">
+                <ul class="list-inline">
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <ul class="copyright footer-menu list-inline">
+                    
+                    
+                        <li class="list-inline-item">
+                            
+                            
+                            <a href="/">
+                                
+                                    首页
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/archives">
+                                
+                                    归档
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/tags">
+                                
+                                    标签
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/categories">
+                                
+                                    类别
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/about">
+                                
+                                    关于
+                                
+                            </a>
+                        </li>
+                    
+                </ul>
+                <p class="copyright footer-author">
+                    &copy; -2024 
+                    <a rel="external" class="copyright-link" href="" target="_blank">John Doe</a><br/>
+                    Powered by <a rel="external" class="copyright-link" href="https://hexo.io/" target="_blank">Hexo</a>  
+                    <span class="copyright-split">&nbsp;|&nbsp;&nbsp;</span>
+                    Theme <a rel="external" class="copyright-link" href="https://github.com/luswdev/hexo-theme-clean.git" target="_blank">Clean</a>
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+<script src="//cdn.jsdelivr.net/npm/jquery@2.1.4/dist/jquery.min.js"></script>
+
+<!-- For drop down -->
+<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+<!-- Gallery -->
+<script src="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/js/lightgallery-all.min.js"></script>
+<!-- Busuanzi -->
+
+
+<!-- Search script -->
+
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        searchFunc( '/search.xml' , 'searchInput', 'searchResult');
+    });
+</script>
+
+
+
+<script src="/js/main.js"></script>
+
+
+
+    <!-- Search Modal -->
+    <!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content overflow-auto">
+            <div class="modal-header">
+                <input type="text" class="form-control" placeholder="搜索关键词..." id="searchInput">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="searchResult">
+                    <div class="search-empty text-center text-muted p-5">
+                        <i class="far fa-meh"></i>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
