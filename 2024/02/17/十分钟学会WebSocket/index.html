@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<!--Description-->
+
+
+
+    <meta name="description" content="WebSocket简介WebSocket是一种在客户端和服务器之间实现双向通信的网络协议。它通过在单个TCP连接上提供全双工通信功能，使得服务器可以主动向客户端推送数据，而不需要客户端发起请求。
+WebSocket与HTTP的区别与传统的HTTP协议相比，WebSocket具有以下几个显著的区别：
+"/>
+
+
+<!--Author-->
+
+    <meta name="author" content="John Doe"/>
+
+
+<!--Open Graph Title-->
+
+    <meta property="og:title" content="十分钟学会WebSocket"/>
+
+
+<!--Open Graph Description-->
+
+    <meta property="og:description" content="WebSocket简介WebSocket是一种在客户端和服务器之间实现双向通信的网络协议。它通过在单个TCP连接上提供全双工通信功能，使得服务器可以主动向客户端推送数据，而不需要客户端发起请求。
+WebSocket与HTTP的区别与传统的HTTP协议相比，WebSocket具有以下几个显著的区别：
+"/>
+
+
+<!--Open Graph Site Name-->
+    <meta property="og:site_name" content="&lt;img src=&#34;/images/liu.jpg&#34; style=&#34;width:100px; height:100px; object-fit:cover; border-radius:50%; object-position:top;&#34; /&gt;"/>
+
+<!--Type page-->
+
+    <meta property="og:type" content="article"/>
+
+
+<!--Page Cover-->
+
+
+    <meta property="og:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+
+
+
+
+    <meta name="twitter:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<!-- Title -->
+
+<title>刘金根个人博客</title>
+
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+<!-- Custom CSS -->
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<!-- Custom Fonts -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Gallery -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/featherlight@1.4.0/src/featherlight.css" integrity="sha256-30DV/STftlyQ6v8yaOWlabammvCYtRJERLj/m0b3zno=" crossorigin="anonymous">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/css/lightgallery.min.css">
+
+<!-- favicon -->
+
+<link rel="icon" href="/img/favicon.png"/>
+
+
+
+    <!-- Google Analytics -->
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<!-- Head tag -->
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top bg-transparent position-absolute w-100 p-0" id="nav">
+    <div class="container pl-0 pr-0">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <a class="navbar-brand text-white p-1 pl-3" href="/">刘金根</a>
+        </div>
+        <div class="navbar-nav float-right">
+            <button class="btn btn-link search-btn navbar-item" data-toggle="modal" data-target="#searchModal">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="post-heading text-white">
+                    <h1>十分钟学会WebSocket</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                
+                    <span class="meta d-inline-block">
+    
+    
+    <!-- Date -->
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-calendar-check fa-fw"></i>
+        2024-02-17
+    
+    <!-- word count and read count -->
+    
+
+    
+
+    
+</span>  
+                
+                <h2 id="WebSocket简介"><a href="#WebSocket简介" class="headerlink" title="WebSocket简介"></a>WebSocket简介</h2><p>WebSocket是一种在客户端和服务器之间实现双向通信的网络协议。它通过在单个TCP连接上提供全双工通信功能，使得服务器可以主动向客户端推送数据，而不需要客户端发起请求。</p>
+<h2 id="WebSocket与HTTP的区别"><a href="#WebSocket与HTTP的区别" class="headerlink" title="WebSocket与HTTP的区别"></a>WebSocket与HTTP的区别</h2><p>与传统的HTTP协议相比，WebSocket具有以下几个显著的区别：</p>
+<ul>
+<li><strong>双向通信</strong>：WebSocket支持客户端和服务器之间的实时双向通信，而HTTP协议是单向请求-响应模式。</li>
+<li><strong>低延迟</strong>：由于WebSocket使用长连接，避免了HTTP的连接建立和断开过程，可以降低通信延迟。</li>
+<li><strong>更少的数据传输</strong>：WebSocket头部信息相对较小，减少了数据传输的开销。</li>
+<li><strong>跨域支持</strong>：WebSocket可以轻松跨域，而HTTP需要通过CORS等机制来实现。</li>
+</ul>
+<h2 id="WebSocket的工作原理"><a href="#WebSocket的工作原理" class="headerlink" title="WebSocket的工作原理"></a>WebSocket的工作原理</h2><p>WebSocket的握手过程和HTTP有所不同。客户端通过发送特定的HTTP请求进行握手，服务器收到请求后进行验证，如果验证通过，则会建立WebSocket连接。</p>
+<p>建立连接后，客户端和服务器之间可以通过WebSocket发送和接收消息，可以使用文本、二进制数据等进行通信。</p>
+<h2 id="WebSocket的应用场景"><a href="#WebSocket的应用场景" class="headerlink" title="WebSocket的应用场景"></a>WebSocket的应用场景</h2><p>WebSocket的实时双向通信特性使得它在许多应用场景中发挥重要作用，例如：</p>
+<ul>
+<li><strong>即时聊天</strong>：WebSocket可以实现实时的聊天功能，用户可以发送和接收消息，实现快速、低延迟的聊天体验。</li>
+<li><strong>实时数据更新</strong>：对于需要实时更新数据的应用，如股票行情、实时监控等，WebSocket可以将数据实时推送给客户端，确保数据的及时更新。</li>
+<li><strong>在线游戏</strong>：在线游戏需要实时的双向通信，WebSocket可以提供稳定的通信通道，支持实时交互和多人游戏。</li>
+</ul>
+<h2 id="WebSocket的使用"><a href="#WebSocket的使用" class="headerlink" title="WebSocket的使用"></a>WebSocket的使用</h2><p>以下是使用JavaScript与WebSocket建立连接的示例代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title class_">Socket</span> = <span class="keyword">new</span> <span class="title class_">WebSocket</span>(<span class="string">&quot;url, [protocol]&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码中的第一个参数 <code>url</code>, 指定连接的 URL。第二个参数 <code>protocol</code>是可选的，指定了可接受的子协议。</p>
+<p>以下是 WebSocket 对象的属性。</p>
+<p>属性描述Socket.readyState只读属性readyState表示连接状态，可以是以下值：0-表示连接尚未建立。1-表示连接已建立，可以进行通信。2-表示连接正在进行关闭。3-表示连接已经关闭或者连接不能打开。Socket.bufferedAmount只读属性bufferedAmount已被send()放入正在队列中等待传输，但是还没有发出的UTF-8文本字节数。</p>
+<ul>
+<li>0-表示连接尚未建立。</li>
+<li>1-表示连接已建立，可以进行通信。</li>
+<li>2-表示连接正在进行关闭。</li>
+<li>3-表示连接已经关闭或者连接不能打开。</li>
+</ul>
+<p>以下是 WebSocket 对象的相关事件。</p>
+<p>事件事件处理程序描述openSocket.onopen连接建立时触发messageSocket.onmessage客户端接收服务端数据时触发errorSocket.onerror通信发生错误时触发closeSocket.onclose连接关闭时触发</p>
+<ul>
+<li>下面是相关示例代码：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Socket</span>.<span class="property">onopen</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;WebSocket连接已建立&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Socket</span>.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> message = event.<span class="property">data</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;收到消息：&quot;</span> + message);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Socket</span>.<span class="property">onerror</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;WebSocket连接发生了错误&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Socket</span>.<span class="property">onclose</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;WebSocket连接已关闭&quot;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>以下是 WebSocket 对象的相关方法。</p>
+<p>方法描述Socket.send()使用连接发送数据Socket.close()关闭连接</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="title class_">Socket</span>.<span class="title function_">send</span>(<span class="string">&#x27;你好&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title class_">Socket</span>.<span class="title function_">close</span>()</span><br></pre></td></tr></table></figure>
+
+<p>WebSocket 除了发送和接收文本消息外，还支持发送和接收二进制数据。对于发送二进制数据，可以使用 <code>send()</code> 方法传递一个 <code>ArrayBuffer</code> 或 <code>Blob</code> 对象，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> buffer = <span class="keyword">new</span> <span class="title class_">ArrayBuffer</span>(<span class="number">4</span>);</span><br><span class="line"><span class="keyword">const</span> view = <span class="keyword">new</span> <span class="title class_">DataView</span>(buffer);</span><br><span class="line">view.<span class="title function_">setUint32</span>(<span class="number">0</span>, <span class="number">1234</span>);</span><br><span class="line">socket.<span class="title function_">send</span>(buffer);</span><br></pre></td></tr></table></figure>
+
+<p>在接收二进制数据时，可以通过 <code>event.data</code> 获取到 <code>ArrayBuffer</code> 对象，然后进行处理。</p>
+<h2 id="WebSocket的心跳机制"><a href="#WebSocket的心跳机制" class="headerlink" title="WebSocket的心跳机制"></a>WebSocket的心跳机制</h2><p>WebSocket的心跳机制是一种用于保持WebSocket连接的稳定性和活跃性的方法。心跳机制的目的是定期发送小的探测消息，以确保连接仍然有效，如果连接断开或出现问题，可以及时发现并采取措施。</p>
+<p>下面是WebSocket心跳机制的详细步骤和相关代码示例：</p>
+<p><strong>定义心跳间隔</strong>：为了定期发送心跳消息，你需要定义一个心跳间隔，通常以毫秒为单位。在示例中，我们将心跳间隔设置为30秒。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> heartbeatInterval = <span class="number">30000</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>定义心跳消息</strong>：你需要定义用于发送心跳的消息内容。这通常是一个简单的字符串，如”heartbeat”，但可以根据应用的需求自定义。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> heartbeatMessage = <span class="string">&#x27;heartbeat&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>设置心跳定时器</strong>：一旦WebSocket连接打开，你可以使用 <code>setInterval</code>函数设置一个定时器，以便每隔一段时间发送心跳消息。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> heartbeat;</span><br><span class="line"></span><br><span class="line">socket.<span class="title function_">addEventListener</span>(<span class="string">&#x27;open&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;WebSocket连接已打开&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    heartbeat = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        socket.<span class="title function_">send</span>(heartbeatMessage);</span><br><span class="line">    &#125;, heartbeatInterval);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>处理心跳消息</strong>：当你接收到来自 <code>&amp;#x670D;&amp;#x52A1;&amp;#x5668;</code>的消息时，你需要检查它是否是心跳消息。这可以通过比较接收到的消息内容和心跳消息的内容来实现。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">socket.<span class="title function_">addEventListener</span>(<span class="string">&#x27;message&#x27;</span>, <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> message = event.<span class="property">data</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (message === heartbeatMessage) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;接收到心跳消息&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;接收到其他消息：&#x27;</span>, message);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>清除心跳定时器</strong>：当WebSocket连接关闭时，你应该清除之前设置的心跳定时器，以防止继续发送心跳消息。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">socket.<span class="title function_">addEventListener</span>(<span class="string">&#x27;close&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;WebSocket连接已关闭&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">clearInterval</span>(heartbeat);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>通过这些步骤，你可以实现WebSocket的心跳机制，确保连接的持续稳定，以适应长时间的通信需求。如果连接断开或出现问题，你可以根据需要添加进一步的错误处理机制。</p>
+<h2 id="WebSocket-的安全性和跨域问题如何处理？"><a href="#WebSocket-的安全性和跨域问题如何处理？" class="headerlink" title="WebSocket 的安全性和跨域问题如何处理？"></a>WebSocket 的安全性和跨域问题如何处理？</h2><p>WebSocket 支持通过 <code>wss://</code> 前缀建立加密的安全连接，使用 TLS&#x2F;SSL 加密通信，确保数据的安全性。在使用加密连接时，服务器需要配置相应的证书。</p>
+<h2 id="有哪些好用的客户端WebSocket第三方库"><a href="#有哪些好用的客户端WebSocket第三方库" class="headerlink" title="有哪些好用的客户端WebSocket第三方库"></a>有哪些好用的客户端WebSocket第三方库</h2><p>这些库都提供了良好的接口封装和功能特性，可以根据项目需求选择适合的库来进行浏览器端的 WebSocket 开发。</p>
+<p>WebSocket 协议是一种基于 TCP 的应用层协议，它提供了在客户端和服务器之间进行双向通信的能力。相比传统的 HTTP 协议，它具有更低的延迟和更高的实时性。</p>
+<p>WebSocket 协议通过建立一条持久化的连接来实现双向通信，从而避免了 HTTP 协议中频繁建立和断开连接的过程，减少了网络开销和服务器的负担。客户端可以发送消息给服务器，服务器也可以发送消息给客户端，实现了真正的双向通信。</p>
+<p>在使用 WebSocket 协议时，客户端和服务器会进行一次握手过程，以建立起 WebSocket 连接。握手过程中，客户端会发送一个 HTTP 请求，请求头中包含 Upgrade 和 Connection 字段，告诉服务器它希望升级到 WebSocket 连接。服务器收到请求后会返回一个 HTTP 响应，响应头中包含 Upgrade 和 Connection 字段，以及一个 Sec-WebSocket-Accept 字段，用于验证请求的合法性。握手成功后，客户端和服务器就可以开始使用 WebSocket 协议进行通信了。</p>
+<p>WebSocket 协议支持二进制数据和文本数据的传输，开发者可以根据实际需求进行选择。同时，WebSocket 还提供了心跳机制、自动重连等功能，可以提高连接的稳定性和可靠性。</p>
+<p>总之，WebSocket 协议在实时通信、游戏、在线聊天等场景中得到了广泛应用，它为 Web 应用提供了更加高效、可靠的双向通信方式。</p>
+
+            </div>
+
+            <!-- Post information -->
+            
+            
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <ul class="pagination d-block text-center">
+            
+            
+                <li class="next page-item d-inline"><a href="/2024/02/17/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E7%94%A8Day-js/" class="page-link float-right">下一页  &rarr;</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+                <!-- Comments -->
+                
+
+                
+
+            
+
+        </div>
+    </div>
+</article> 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <style>
+        #toc-content .toc-link::before {
+            background-color: transparent;
+            max-height: 25px;
+        }
+
+        #toc-content .toc-link.is-active-link::before {
+            background-color: #404040;
+        }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
+        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
+            <div class="toc-widget">
+                <div id="toc-content" class="text-truncate">
+                </div>
+            </div>
+            <div class="toc-menu pt-3 pl-4">
+                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">全部展开</span><span class="close-text" style="display: none;">全部收起</span></a>
+                <a class="back-to-top d-block py-1" href="#">回到顶部</a>
+                <a class="go-to-bottom d-block py-1" href="#">移至底部</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '#toc-content',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: 'article',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+        });
+    </script>
+
+
+    
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center">
+                <ul class="list-inline">
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <ul class="copyright footer-menu list-inline">
+                    
+                    
+                        <li class="list-inline-item">
+                            
+                            
+                            <a href="/">
+                                
+                                    首页
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/archives">
+                                
+                                    归档
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/tags">
+                                
+                                    标签
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/categories">
+                                
+                                    类别
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/about">
+                                
+                                    关于
+                                
+                            </a>
+                        </li>
+                    
+                </ul>
+                <p class="copyright footer-author">
+                    &copy; -2024 
+                    <a rel="external" class="copyright-link" href="" target="_blank">John Doe</a><br/>
+                    Powered by <a rel="external" class="copyright-link" href="https://hexo.io/" target="_blank">Hexo</a>  
+                    <span class="copyright-split">&nbsp;|&nbsp;&nbsp;</span>
+                    Theme <a rel="external" class="copyright-link" href="https://github.com/luswdev/hexo-theme-clean.git" target="_blank">Clean</a>
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+<script src="//cdn.jsdelivr.net/npm/jquery@2.1.4/dist/jquery.min.js"></script>
+
+<!-- For drop down -->
+<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+<!-- Gallery -->
+<script src="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/js/lightgallery-all.min.js"></script>
+<!-- Busuanzi -->
+
+
+<!-- Search script -->
+
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        searchFunc( '/search.xml' , 'searchInput', 'searchResult');
+    });
+</script>
+
+
+
+<script src="/js/main.js"></script>
+
+
+
+    <!-- Search Modal -->
+    <!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content overflow-auto">
+            <div class="modal-header">
+                <input type="text" class="form-control" placeholder="搜索关键词..." id="searchInput">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="searchResult">
+                    <div class="search-empty text-center text-muted p-5">
+                        <i class="far fa-meh"></i>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

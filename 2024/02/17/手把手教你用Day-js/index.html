@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<!--Description-->
+
+
+
+    <meta name="description" content="Day.js的主要功能包括日期解析、日期格式化、日期操作、相对时间和本地化。日期解析包括字符串解析和日期对象解析，可以将字符串转换为日期对象，也可以将日期对象转换为字符串。日期格式化可以将日期对象格式化为指定的字符串格式。日期操作可以进行日期的加减、比较和判断。相对时间可以将日期转换为相对于当前时间"/>
+
+
+<!--Author-->
+
+    <meta name="author" content="John Doe"/>
+
+
+<!--Open Graph Title-->
+
+    <meta property="og:title" content="手把手教你用Day.js"/>
+
+
+<!--Open Graph Description-->
+
+    <meta property="og:description" content="Day.js的主要功能包括日期解析、日期格式化、日期操作、相对时间和本地化。日期解析包括字符串解析和日期对象解析，可以将字符串转换为日期对象，也可以将日期对象转换为字符串。日期格式化可以将日期对象格式化为指定的字符串格式。日期操作可以进行日期的加减、比较和判断。相对时间可以将日期转换为相对于当前时间"/>
+
+
+<!--Open Graph Site Name-->
+    <meta property="og:site_name" content="&lt;img src=&#34;/images/liu.jpg&#34; style=&#34;width:100px; height:100px; object-fit:cover; border-radius:50%; object-position:top;&#34; /&gt;"/>
+
+<!--Type page-->
+
+    <meta property="og:type" content="article"/>
+
+
+<!--Page Cover-->
+
+
+    <meta property="og:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+
+
+
+
+    <meta name="twitter:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<!-- Title -->
+
+<title>刘金根个人博客</title>
+
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+<!-- Custom CSS -->
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<!-- Custom Fonts -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Gallery -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/featherlight@1.4.0/src/featherlight.css" integrity="sha256-30DV/STftlyQ6v8yaOWlabammvCYtRJERLj/m0b3zno=" crossorigin="anonymous">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/css/lightgallery.min.css">
+
+<!-- favicon -->
+
+<link rel="icon" href="/img/favicon.png"/>
+
+
+
+    <!-- Google Analytics -->
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<!-- Head tag -->
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top bg-transparent position-absolute w-100 p-0" id="nav">
+    <div class="container pl-0 pr-0">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <a class="navbar-brand text-white p-1 pl-3" href="/">刘金根</a>
+        </div>
+        <div class="navbar-nav float-right">
+            <button class="btn btn-link search-btn navbar-item" data-toggle="modal" data-target="#searchModal">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="post-heading text-white">
+                    <h1>手把手教你用Day.js</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                
+                    <span class="meta d-inline-block">
+    
+    
+    <!-- Date -->
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-calendar-check fa-fw"></i>
+        2024-02-17
+    
+    <!-- word count and read count -->
+    
+
+    
+
+    
+</span>  
+                
+                <p><code>Day.js</code>的主要功能包括日期解析、日期格式化、日期操作、相对时间和本地化。日期解析包括字符串解析和日期对象解析，可以将字符串转换为日期对象，也可以将日期对象转换为字符串。日期格式化可以将日期对象格式化为指定的字符串格式。日期操作可以进行日期的加减、比较和判断。相对时间可以将日期转换为相对于当前时间的时间差，如”2分钟前”、”1小时前”等。本地化可以将日期格式化为本地化的格式，包括日期格式、时间格式、相对时间格式等。</p>
+<p>总之，Day.js是一个非常有用的JavaScript日期库，可以帮助开发人员轻松地处理日期和时间。它具有轻量级、易于使用和扩展、支持链式语法等优点。如果你需要在JavaScript中处理日期和时间，那么Day.js是一个不错的选择。</p>
+<p>Day.js 是JavaScript中最受推荐的日期和时间格式化库之一，因为它可以用于客户端和服务器端渲染，并且在这两种情况下都能完美地工作。</p>
+<p>下面是一个图表，显示了 Day.js 每月的 NPM 下载量。</p>
+<p><img src="/../images/2024/2/c6b3731d7d1e457b864426e38bfaab83~tplv-k3u1fbpfcp-zoom-in-crop-mark_1512_0_0_0.jpg"></p>
+<p>下面是一张图表，显示了已经添加到 GitHub 上的 Day.js 星标。</p>
+<p><img src="/../images/2024/2/145616c3158e4bfe963d47a9a1078c75~tplv-k3u1fbpfcp-zoom-in-crop-mark_1512_0_0_0.jpg"></p>
+<p>在本文中，我们将展示如何使用它来可能替代 <code>Moment.js</code>。</p>
+<h2 id="为什么要替换-Moment-js？"><a href="#为什么要替换-Moment-js？" class="headerlink" title="为什么要替换 Moment.js？"></a>为什么要替换 Moment.js？</h2><p>Moment.js是一个JavaScript包，它使得在JavaScript中解析、验证、操作和显示日期和时间非常简单。</p>
+<p>自从 Moment.js 团队发布了关于其使用的弃用通知以来，开发人员被迫迁移到 Day.js 和其他建议的库。下面列出了 Moment.js 的缺点。</p>
+<ul>
+<li>与树摇优化不兼容，因为它会导致较大的捆绑包大小和性能问题</li>
+<li>Moment.js存在一个影响可变性的问题。</li>
+<li>由于其复杂的API和庞大的捆绑包大小，如果正在开发需要高性能的Web应用程序，则可能会导致显着的性能损失</li>
+</ul>
+<h2 id="Day-js-的好处"><a href="#Day-js-的好处" class="headerlink" title="Day.js 的好处"></a>Day.js 的好处</h2><p>使用类似的 API，Day.js 旨在成为 Moment.js 的简单替代品。Day.js 不是一个完全兼容的替代品；但是，如果你习惯于使用 Moment 的 API 并且需要快速迁移，请考虑使用 Day.js：</p>
+<ul>
+<li>使用 Day.js 性能高。</li>
+<li>Day.js比Moment.js更轻，因为Date.js的软件包大小仅约为232 kB。 Day JS的最新版本为7Kb（已压缩），大小为2Kb（已压缩）。</li>
+<li>Day.js可以作为JavaScript文件从CDN或本地文件中包含，同时支持import和require。</li>
+</ul>
+<p>不过，有一个缺点：</p>
+<ul>
+<li>Day.js 的功能比 Moment.js 少</li>
+</ul>
+<h2 id="JavaScript社区中的Day-js支持"><a href="#JavaScript社区中的Day-js支持" class="headerlink" title="JavaScript社区中的Day.js支持"></a>JavaScript社区中的Day.js支持</h2><p>持续更新工具的需求是开发人员面临的问题的触发因素。任何 Web 开发人员都会始终以最大化优化为目标，以生产简单、快速的应用程序。为了保证软件产品的高性能并维护其安全性，我们必须定期升级我们的库和框架到最新版本。</p>
+<p>Day.js是一个优秀的替代Moment.js的选择，当比较大小和性能时。</p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>寻找 Day.js 的 CDN 很简单，cdnjs.com 提供了一个 Day.js CDN，可用于我们的浏览器。CDN 链接具有一个脚本标签，可以添加到我们的 HTML 代码的顶部或底部。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.5/dayjs.min.js&quot;</span> integrity=<span class="string">&quot;sha512-Ot7ArUEhJDU0cwoBNNnWe487kjL5wAOsIYig8llY/l0P2TUFwgsAHVmrZMHsT8NGo+HwkjTJsNErS6QqIkBxDw==&quot;</span> crossorigin=<span class="string">&quot;anonymous&quot;</span> referrerpolicy=<span class="string">&quot;no-referrer&quot;</span>&gt;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>使用 Unpkg：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;https://unpkg.com/dayjs@1.8.21/dayjs.min.js&quot;</span>&gt;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>要在Node.js中安装day，请运行下面的代码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i dayjs</span><br></pre></td></tr></table></figure>
+
+<p>使用以下代码将 Day.js 作为 Node.js 项目的依赖项：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dayjs = <span class="built_in">require</span>(<span class="string">&quot;dayjs&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用Babel或ES6：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Dayjs</span> <span class="keyword">from</span> <span class="string">&quot;dayjs&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在本教程中，我们将使用Day.js CDN和纯JavaScript在浏览器中格式化日期和时间。</p>
+<h2 id="ISO概述"><a href="#ISO概述" class="headerlink" title="ISO概述"></a>ISO概述</h2><p>表达数字日历日期并消除歧义的标准方法是国际标准化组织（ISO）日期格式。可以使用JavaScript日期方法 <code>toISOString()</code>，它以ISO格式返回新形成的日期，以确认此格式。</p>
+<h2 id="格式化日期"><a href="#格式化日期" class="headerlink" title="格式化日期"></a>格式化日期</h2><p>当我们在浏览器中运行 Day.js 时， <code>.format()</code> 方法会返回一个 ISO 格式的字符串。这与原生 JavaScript 的 <code>toISOString()</code> 日期构造函数方法非常相似。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">dayjs</span>().<span class="title function_">format</span>())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在方括号内放置转义字符（例如 [MM，DD，YY]）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>()</span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;MM&#x27;</span>)</span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;DD&#x27;</span>)</span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;YY&#x27;</span>)</span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;MMMM&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>此外，可以定义你希望日期以哪种格式返回：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">dayjs</span>(<span class="string">&#x27;2022-04-2&#x27;</span>).<span class="title function_">format</span>(<span class="string">&#x27;DD/MM/YYYY&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>更多格式化内容：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;A&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;ZZ&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;SSS&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;h:mm A  &#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;h:mm:ss A&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;MM/DD/YYYY&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;M/D/YYYY&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;ddd, hA&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;MMM D, YYYY&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们还可以看到一些高级的日期格式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;ddd, MMM D, YYYY h:mm A &#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;MMM D, YYYY h:mm A&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;dddd, MMMM D YYYY, h:mm:ss A&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">dayjs</span>().<span class="title function_">format</span>(<span class="string">&#x27;dddd, MMMM Do YYYY, h:mm:ss A&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="RelativeTime-插件"><a href="#RelativeTime-插件" class="headerlink" title="RelativeTime 插件"></a>RelativeTime 插件</h2><p>在继续其他示例之前，我们来讨论一下 RelativeTime 插件。使用 RelativeTime 插件，可以将日期和时间数字转换为相对语句，例如”5小时前”。</p>
+<p>使用CD安装浏览器：我们必须使用Relativetime CDN，然后使用Day.js设置它，以使RelativeTime插件正常工作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">src&lt;<span class="regexp">/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;https:/</span><span class="regexp">/cdnjs.cloudflare.com/</span>ajax/libs/dayjs/<span class="number">1.11</span><span class="number">.5</span>/dayjs.<span class="property">min</span>.<span class="property">js</span><span class="string">&quot;&lt;/span&gt;</span></span><br><span class="line"><span class="string">    &lt;span class=&quot;</span>hljs-attr<span class="string">&quot;&gt;integrity&lt;/span&gt;=&lt;span class=&quot;</span>hljs-string<span class="string">&quot;&gt;&quot;</span>sha512-<span class="title class_">Ot7ArUEhJDU0</span>cwoBNNnWe487kjL5wAOsIYig8llY/l0P2TUFwgsAHVmrZMHsT8NGo+<span class="title class_">HwkjTJsNErS6QqIkBxDw</span>==<span class="string">&quot;&lt;/span&gt;</span></span><br><span class="line"><span class="string">    &lt;span class=&quot;</span>hljs-attr<span class="string">&quot;&gt;crossorigin&lt;/span&gt;=&lt;span class=&quot;</span>hljs-string<span class="string">&quot;&gt;&quot;</span>anonymous<span class="string">&quot;&lt;/span&gt; referrerpolicy=&lt;span class=&quot;</span>hljs-string<span class="string">&quot;&gt;&quot;</span>no-referrer<span class="string">&quot;&lt;/span&gt;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其次 从cdnjs.com获取的CDN。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.5/plugin/relativeTime.min.js&quot;</span>&gt;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>相对时间插件正在为 Day.js 进行设置:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    dayjs.<span class="title function_">extend</span>(<span class="variable language_">window</span>.<span class="property">dayjs_plugin_relativeTime</span>)</span><br><span class="line">script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Node-js和ES6导入的-RelativeTime-插件"><a href="#Node-js和ES6导入的-RelativeTime-插件" class="headerlink" title="Node.js和ES6导入的 RelativeTime 插件"></a>Node.js和ES6导入的 RelativeTime 插件</h2><p>当使用 <code>npm i dayjs </code>时，RelativeTime 插件位于 Day.js 包内。只需要Day内的RelativeTime 路径即可使用它。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dayjs = <span class="built_in">require</span>(<span class="string">&#x27;dayjs&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> relativeTime = <span class="built_in">require</span>(<span class="string">&#x27;dayjs/plugin/relativeTime&#x27;</span>)</span><br><span class="line">dayjs.<span class="title function_">extend</span>(relativeTime)</span><br></pre></td></tr></table></figure>
+
+<p>ES6 import</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Dayjs</span> <span class="keyword">from</span> <span class="string">&quot;dayjs&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> relativeTIme <span class="keyword">from</span> <span class="string">&quot;dayjs/plugin/relativeTime&quot;</span>;</span><br><span class="line"><span class="title class_">Dayjs</span>.<span class="title function_">extend</span>(relativeTIme);</span><br></pre></td></tr></table></figure>
+
+<h2 id="从-X-获取时间"><a href="#从-X-获取时间" class="headerlink" title="从 X 获取时间"></a>从 X 获取时间</h2><p>提供表示相对于X的时间字符串。相对时间插件将使我们能够实现这一点。</p>
+<p>始终确保使用 dayjs.extend 配置相关插件。您可以阅读更多关于 Day.js <a href="https://link.juejin.cn/?target=https://day.js.org/docs/en/plugin/plugin" title="https://day.js.org/docs/en/plugin/plugin">插件的信息</a>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dayjs.<span class="title function_">extend</span>(<span class="variable language_">window</span>.<span class="property">dayjs_plugin_relativeTime</span>);</span><br><span class="line"><span class="keyword">var</span> a = <span class="title function_">dayjs</span>(<span class="string">&quot;2022-01-01&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">dayjs</span>(<span class="string">&quot;2020-01-01&quot;</span>).<span class="title function_">from</span>(a))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如果传递 true，可以获得没有后缀的值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dayjs.<span class="title function_">extend</span>(<span class="variable language_">window</span>.<span class="property">dayjs_plugin_relativeTime</span>);</span><br><span class="line"><span class="keyword">var</span> a = <span class="title function_">dayjs</span>(<span class="string">&quot;2022-01-01&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">dayjs</span>(<span class="string">&quot;2020-01-01&quot;</span>).<span class="title function_">from</span>(a, <span class="literal">true</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="从现在开始计算时间"><a href="#从现在开始计算时间" class="headerlink" title="从现在开始计算时间"></a>从现在开始计算时间</h2><p>这将把相对于现在的时间字符串转换出来。现在需要一个RelativeTime插件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    dayjs.<span class="title function_">extend</span>(<span class="variable language_">window</span>.<span class="property">dayjs_plugin_relativeTime</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">dayjs</span>(<span class="string">&#x27;2000-01-01&#x27;</span>).<span class="title function_">fromNow</span>())</span><br><span class="line">script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>来自未来：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    dayjs.<span class="title function_">extend</span>(<span class="variable language_">window</span>.<span class="property">dayjs_plugin_relativeTime</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">dayjs</span>(<span class="string">&#x27;2050-01-01&#x27;</span>).<span class="title function_">fromNow</span>())</span><br><span class="line">script&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Output: in 27 years</span></span><br></pre></td></tr></table></figure>
+
+<p>没有后缀：您]可以使用true布尔值提供返回日期字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dayjs.<span class="title function_">extend</span>(<span class="variable language_">window</span>.<span class="property">dayjs_plugin_relativeTime</span>);</span><br><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;2000-01-01&#x27;</span>).<span class="title function_">fromNow</span>(<span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取当前时间"><a href="#获取当前时间" class="headerlink" title="获取当前时间"></a>获取当前时间</h2><p>这将返回一个表示相对时间到现在的字符串。请记住，这取决于相对时间插件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dayjs.<span class="title function_">extend</span>(<span class="variable language_">window</span>.<span class="property">dayjs_plugin_relativeTime</span>);</span><br><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;1980-01-01&#x27;</span>).<span class="title function_">toNow</span>()</span><br></pre></td></tr></table></figure>
+
+<p>缺少后缀</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;1980-01-01&#x27;</span>).<span class="title function_">toNow</span>(<span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何生成日期的Unix时间戳"><a href="#如何生成日期的Unix时间戳" class="headerlink" title="如何生成日期的Unix时间戳"></a>如何生成日期的Unix时间戳</h2><p>这将给出 Day.js 对象的 Unix 时间戳，即自 Unix 纪元以来的秒数。Unix 时间戳对象是 Day.js 中的内置对象，因此使用它不需要调用插件。</p>
+<p>没有毫秒:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;2019-01-25&#x27;</span>).<span class="title function_">unix</span>()</span><br></pre></td></tr></table></figure>
+
+<p>以毫秒为单位：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;2019-01-25&#x27;</span>).<span class="title function_">valueOf</span>()</span><br></pre></td></tr></table></figure>
+
+<p>根据 Day.js 文档，始终建议使用 Unix 时间戳。</p>
+<h2 id="计算一个月的天数"><a href="#计算一个月的天数" class="headerlink" title="计算一个月的天数"></a>计算一个月的天数</h2><p>获取当前月份的天数，无需插件:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;2020-02-04&#x27;</span>).<span class="title function_">daysInMonth</span>()</span><br></pre></td></tr></table></figure>
+
+<h2 id="将日期作为对象返回"><a href="#将日期作为对象返回" class="headerlink" title="将日期作为对象返回"></a>将日期作为对象返回</h2><p>为了以对象格式返回日期，应该使用带有CDN的 <code>toObject</code>插件，或在node.js或ES6导入中要求它。</p>
+<p>CDN:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">src&lt;<span class="regexp">/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;https:/</span><span class="regexp">/cdnjs.cloudflare.com/</span>ajax/libs/dayjs/<span class="number">1.11</span><span class="number">.5</span>/plugin/toObject.<span class="property">min</span>.<span class="property">js</span><span class="string">&quot;&lt;/span&gt;</span></span><br><span class="line"><span class="string">    &lt;span class=&quot;</span>hljs-attr<span class="string">&quot;&gt;integrity&lt;/span&gt;=&lt;span class=&quot;</span>hljs-string<span class="string">&quot;&gt;&quot;</span>sha512-qWOc7v2jfO5Zg34fVOIfnpvDopsqDBilo8Onabl/<span class="title class_">MHIr5</span>idHpg73tVRUGDMVOQs2dUEsmayiagk75Ihjn6yanA==<span class="string">&quot;&lt;/span&gt;</span></span><br><span class="line"><span class="string">    &lt;span class=&quot;</span>hljs-attr<span class="string">&quot;&gt;crossorigin&lt;/span&gt;=&lt;span class=&quot;</span>hljs-string<span class="string">&quot;&gt;&quot;</span>anonymous<span class="string">&quot;&lt;/span&gt; referrerpolicy=&lt;span class=&quot;</span>hljs-string<span class="string">&quot;&gt;&quot;</span>no-referrer<span class="string">&quot;&lt;/span&gt;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Node.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dayjs = <span class="built_in">require</span>(<span class="string">&#x27;dayjs&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> toObject = <span class="built_in">require</span>(<span class="string">&#x27;dayjs/plugin/toObject&#x27;</span>)</span><br><span class="line">dayjs.<span class="title function_">extend</span>(toObject)</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code> toObject()</code> 扩展 CDN:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    dayjs.<span class="title function_">extend</span>(<span class="variable language_">window</span>.<span class="property">dayjs_plugin_toObject</span>);</span><br><span class="line">    <span class="title function_">dayjs</span>(<span class="string">&#x27;2020-01-25&#x27;</span>).<span class="title function_">toObject</span>()</span><br><span class="line">script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">date</span>: <span class="number">25</span>, <span class="attr">hours</span>: <span class="number">0</span>, <span class="attr">milliseconds</span>: <span class="number">0</span>, <span class="attr">minutes</span>: <span class="number">0</span>, <span class="attr">months</span>: <span class="number">0</span>, <span class="attr">seconds</span>: <span class="number">0</span>, <span class="attr">years</span>: <span class="number">2020</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="将日期作为数组返回"><a href="#将日期作为数组返回" class="headerlink" title="将日期作为数组返回"></a>将日期作为数组返回</h2><p>为了以数组格式返回日期，应该使用带有CDN的 <code>ToArray</code> 插件，或在node.js或ES6导入中要求它。</p>
+<p>CDN:</p>
+<p>Node.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> toArray = <span class="built_in">require</span>(<span class="string">&#x27;dayjs/plugin/toArray&#x27;</span>)</span><br><span class="line">dayjs.<span class="title function_">extend</span>(toArray)</span><br><span class="line"></span><br><span class="line">dayjs.<span class="title function_">extend</span>(<span class="variable language_">window</span>.<span class="property">dayjs_plugin_toArray</span>);</span><br><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;2022-08-04&#x27;</span>).<span class="title function_">toArray</span>()</span><br></pre></td></tr></table></figure>
+
+<h2 id="以-JSON-格式获取时间和日期"><a href="#以-JSON-格式获取时间和日期" class="headerlink" title="以 JSON 格式获取时间和日期"></a>以 JSON 格式获取时间和日期</h2><p>将其序列化为 ISO 8601 字符串格式，无需插件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;2019-06-25&#x27;</span>).<span class="title function_">toJSON</span>()</span><br><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;1996-01-11&#x27;</span>).<span class="title function_">toJSON</span>()</span><br><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;2025-05-10&#x27;</span>).<span class="title function_">toJSON</span>()</span><br></pre></td></tr></table></figure>
+
+<h2 id="提供日期和时间作为字符串"><a href="#提供日期和时间作为字符串" class="headerlink" title="提供日期和时间作为字符串"></a>提供日期和时间作为字符串</h2><p>返回一个包含日期表示的字符串，不需要插件:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;2025-03-20&#x27;</span>).<span class="title function_">toString</span>()</span><br><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;2010-08-08&#x27;</span>).<span class="title function_">toString</span>()</span><br><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;01-2005-25&#x27;</span>).<span class="title function_">toString</span>()</span><br></pre></td></tr></table></figure>
+
+<h2 id="解析日期"><a href="#解析日期" class="headerlink" title="解析日期"></a>解析日期</h2><p>Day.js 对象是不可变的，这意味着所有修改它的 API 操作都会产生一个新的对象实例。</p>
+<p>字符串转日期：检查以下代码以解析字符串并以日期格式返回它：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;2020-08-04T15:00:00.000Z&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>一个已存在的本地 JavaScript Date 对象可以用来创建一个 Day.js 对象:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> d = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">2021</span>, <span class="number">02</span>, <span class="number">11</span>)</span><br><span class="line"><span class="keyword">let</span> day = <span class="title function_">dayjs</span>()</span><br></pre></td></tr></table></figure>
+
+<p>现在使用Parse：请参见下面的代码，以使用Parse返回当前日期</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">2021</span>, <span class="number">02</span>, <span class="number">11</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">dayjs</span>(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br></pre></td></tr></table></figure>
+
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>要检查日期和时间是否有效，请使用 Day.js 中的 .isValid() 方法。该方法会产生一个布尔结果:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;1996-05-01&#x27;</span>).<span class="title function_">isValid</span>();</span><br><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;dummy text&#x27;</span>).<span class="title function_">isValid</span>();</span><br><span class="line"><span class="title function_">dayjs</span>(<span class="string">&#x27;2005-06-09&#x27;</span>).<span class="title function_">isValid</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="时区"><a href="#时区" class="headerlink" title="时区"></a>时区</h2><p>Day.js为观察相同标准时间的地区提供时区兼容性。使用Day.js时区需要一个插件。要在Day.js中使用时区，我们需要同时安装时区和UTC插件:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dayjs = <span class="built_in">require</span>(<span class="string">&#x27;dayjs&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> utc = <span class="built_in">require</span>(<span class="string">&#x27;dayjs/plugin/utc&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> timezone = <span class="built_in">require</span>(<span class="string">&#x27;dayjs/plugin/timezone&#x27;</span>)</span><br><span class="line">dayjs.<span class="title function_">extend</span>(utc)</span><br><span class="line">dayjs.<span class="title function_">extend</span>(timezone)</span><br></pre></td></tr></table></figure>
+
+<p>UTC插件的 CDN</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">src&lt;<span class="regexp">/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;https:/</span><span class="regexp">/cdnjs.cloudflare.com/</span>ajax/libs/dayjs/<span class="number">1.11</span><span class="number">.5</span>/plugin/utc.<span class="property">min</span>.<span class="property">js</span><span class="string">&quot;&lt;/span&gt;</span></span><br><span class="line"><span class="string">    &lt;span class=&quot;</span>hljs-attr<span class="string">&quot;&gt;integrity&lt;/span&gt;=&lt;span class=&quot;</span>hljs-string<span class="string">&quot;&gt;&quot;</span>sha512-z84O912dDT9nKqvpBnl1tri5IN0j/<span class="title class_">OEgMzLN</span>1GlkpKLMscs5ZHVu+G2CYtA6dkS0YnOGi3cODt3BOPnYc8Agjg==<span class="string">&quot;&lt;/span&gt;</span></span><br><span class="line"><span class="string">    &lt;span class=&quot;</span>hljs-attr<span class="string">&quot;&gt;crossorigin&lt;/span&gt;=&lt;span class=&quot;</span>hljs-string<span class="string">&quot;&gt;&quot;</span>anonymous<span class="string">&quot;&lt;/span&gt; referrerpolicy=&lt;span class=&quot;</span>hljs-string<span class="string">&quot;&gt;&quot;</span>no-referrer<span class="string">&quot;&lt;/span&gt;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>时区插件的 CDN</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">src&lt;<span class="regexp">/span&gt;=&lt;span class=&quot;hljs-string&quot;&gt;&quot;https:/</span><span class="regexp">/cdnjs.cloudflare.com/</span>ajax/libs/dayjs/<span class="number">1.11</span><span class="number">.5</span>/plugin/timezone.<span class="property">min</span>.<span class="property">js</span><span class="string">&quot;&lt;/span&gt;</span></span><br><span class="line"><span class="string">    &lt;span class=&quot;</span>hljs-attr<span class="string">&quot;&gt;integrity&lt;/span&gt;=&lt;span class=&quot;</span>hljs-string<span class="string">&quot;&gt;&quot;</span>sha512-fG1tT/<span class="title class_">Wn</span>/<span class="title class_">ZOyH</span>6/<span class="title class_">Djm8HQBuqvztPQdK</span>/vBgNFLx6DQVt3yYYDPN3bXnGZT4z4kAnURzGQwAnM3CspmhLJAD/5Q==<span class="string">&quot;&lt;/span&gt;</span></span><br><span class="line"><span class="string">    &lt;span class=&quot;</span>hljs-attr<span class="string">&quot;&gt;crossorigin&lt;/span&gt;=&lt;span class=&quot;</span>hljs-string<span class="string">&quot;&gt;&quot;</span>anonymous<span class="string">&quot;&lt;/span&gt; referrerpolicy=&lt;span class=&quot;</span>hljs-string<span class="string">&quot;&gt;&quot;</span>no-referrer<span class="string">&quot;&lt;/span&gt;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Day.js 扩展时区和 UTC 插件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    dayjs.<span class="title function_">extend</span>(<span class="variable language_">window</span>.<span class="property">dayjs_plugin_utc</span>)</span><br><span class="line">    dayjs.<span class="title function_">extend</span>(<span class="variable language_">window</span>.<span class="property">dayjs_plugin_timezone</span>);</span><br><span class="line"></span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<p>事例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dayjs.<span class="title function_">tz</span>(<span class="string">&quot;2020-06-01 12:00&quot;</span>, <span class="string">&quot;America/Toronto&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在控制台上输出：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> time = &#123;</span><br><span class="line">    <span class="attr">$D</span>: <span class="number">18</span>,</span><br><span class="line">    <span class="attr">$H</span>: <span class="number">11</span>,</span><br><span class="line">    <span class="attr">$L</span>: <span class="string">&quot;en&quot;</span>,</span><br><span class="line">    <span class="attr">$M</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">$W</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">$d</span>: <span class="string">&quot;Mon Nov 18 2013 11:55:00 GMT+0100 (West Africa Standard Time) &#123;&#125;&quot;</span>,</span><br><span class="line">    <span class="attr">$m</span>: <span class="number">55</span>,</span><br><span class="line">    <span class="attr">$ms</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">$offset</span>: -<span class="number">300</span>,</span><br><span class="line">    <span class="attr">$s</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">$x</span>: &#123;</span><br><span class="line">        <span class="attr">$localOffset</span>: -<span class="number">60</span>,</span><br><span class="line">        <span class="attr">$timezone</span>: <span class="string">&quot;America/Toronto&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>还可以使用 Day.js 中包含的 <code>.toString()</code> 方法，将时区作为普通字符串返回。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dayjs.<span class="title function_">tz</span>(<span class="string">&quot;2013-11-18 11:55&quot;</span>, <span class="string">&quot;America/Toronto&quot;</span>).<span class="title function_">toString</span>()</span><br><span class="line"><span class="comment">// Output: Mon, 18 Nov 2013 16:55:00 GMT</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+            </div>
+
+            <!-- Post information -->
+            
+            
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <ul class="pagination d-block text-center">
+            
+                <li class="previous page-item d-inline"><a href="/2024/02/17/%E5%8D%81%E5%88%86%E9%92%9F%E5%AD%A6%E4%BC%9AWebSocket/" class="page-link float-left">&larr;  上一页</a></li>
+            
+            
+                <li class="next page-item d-inline"><a href="/2024/02/16/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AF%BC%E5%87%BA%E5%AD%97%E9%9D%A2%E9%87%8F%E4%BC%9A%E6%8A%A5%E9%94%99%EF%BC%8C%E8%80%8C%E9%BB%98%E8%AE%A4%E5%AF%BC%E5%87%BA%E5%B0%B1%E4%B8%8D%E4%BC%9A%EF%BC%9F/" class="page-link float-right">下一页  &rarr;</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+                <!-- Comments -->
+                
+
+                
+
+            
+
+        </div>
+    </div>
+</article> 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <style>
+        #toc-content .toc-link::before {
+            background-color: transparent;
+            max-height: 25px;
+        }
+
+        #toc-content .toc-link.is-active-link::before {
+            background-color: #404040;
+        }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
+        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
+            <div class="toc-widget">
+                <div id="toc-content" class="text-truncate">
+                </div>
+            </div>
+            <div class="toc-menu pt-3 pl-4">
+                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">全部展开</span><span class="close-text" style="display: none;">全部收起</span></a>
+                <a class="back-to-top d-block py-1" href="#">回到顶部</a>
+                <a class="go-to-bottom d-block py-1" href="#">移至底部</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '#toc-content',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: 'article',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+        });
+    </script>
+
+
+    
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center">
+                <ul class="list-inline">
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <ul class="copyright footer-menu list-inline">
+                    
+                    
+                        <li class="list-inline-item">
+                            
+                            
+                            <a href="/">
+                                
+                                    首页
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/archives">
+                                
+                                    归档
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/tags">
+                                
+                                    标签
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/categories">
+                                
+                                    类别
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/about">
+                                
+                                    关于
+                                
+                            </a>
+                        </li>
+                    
+                </ul>
+                <p class="copyright footer-author">
+                    &copy; -2024 
+                    <a rel="external" class="copyright-link" href="" target="_blank">John Doe</a><br/>
+                    Powered by <a rel="external" class="copyright-link" href="https://hexo.io/" target="_blank">Hexo</a>  
+                    <span class="copyright-split">&nbsp;|&nbsp;&nbsp;</span>
+                    Theme <a rel="external" class="copyright-link" href="https://github.com/luswdev/hexo-theme-clean.git" target="_blank">Clean</a>
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+<script src="//cdn.jsdelivr.net/npm/jquery@2.1.4/dist/jquery.min.js"></script>
+
+<!-- For drop down -->
+<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+<!-- Gallery -->
+<script src="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/js/lightgallery-all.min.js"></script>
+<!-- Busuanzi -->
+
+
+<!-- Search script -->
+
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        searchFunc( '/search.xml' , 'searchInput', 'searchResult');
+    });
+</script>
+
+
+
+<script src="/js/main.js"></script>
+
+
+
+    <!-- Search Modal -->
+    <!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content overflow-auto">
+            <div class="modal-header">
+                <input type="text" class="form-control" placeholder="搜索关键词..." id="searchInput">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="searchResult">
+                    <div class="search-empty text-center text-muted p-5">
+                        <i class="far fa-meh"></i>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
