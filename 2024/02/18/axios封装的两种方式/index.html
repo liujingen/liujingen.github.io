@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<!--Description-->
+
+
+
+    <meta name="description" content="作为前端工程师，经常需要对axios进行封装以满足复用的目的。在不同的前端项目中使用相同的axios封装有利于保持一致性，有利于数据之间的传递和处理。本文提供两种对axios进行封装的思路。
+1. 将请求方式作为调用参数传递进来
+首先导入了 axios, AxiosInstance&amp;amp;#x54"/>
+
+
+<!--Author-->
+
+    <meta name="author" content="John Doe"/>
+
+
+<!--Open Graph Title-->
+
+    <meta property="og:title" content="axios封装的两种方式"/>
+
+
+<!--Open Graph Description-->
+
+    <meta property="og:description" content="作为前端工程师，经常需要对axios进行封装以满足复用的目的。在不同的前端项目中使用相同的axios封装有利于保持一致性，有利于数据之间的传递和处理。本文提供两种对axios进行封装的思路。
+1. 将请求方式作为调用参数传递进来
+首先导入了 axios, AxiosInstance&amp;amp;#x54"/>
+
+
+<!--Open Graph Site Name-->
+    <meta property="og:site_name" content="&lt;img src=&#34;/images/liu.jpg&#34; style=&#34;width:100px; height:100px; object-fit:cover; border-radius:50%; object-position:top;&#34; /&gt;"/>
+
+<!--Type page-->
+
+    <meta property="og:type" content="article"/>
+
+
+<!--Page Cover-->
+
+
+    <meta property="og:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+
+
+
+
+    <meta name="twitter:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<!-- Title -->
+
+<title>刘金根个人博客</title>
+
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+<!-- Custom CSS -->
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<!-- Custom Fonts -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Gallery -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/featherlight@1.4.0/src/featherlight.css" integrity="sha256-30DV/STftlyQ6v8yaOWlabammvCYtRJERLj/m0b3zno=" crossorigin="anonymous">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/css/lightgallery.min.css">
+
+<!-- favicon -->
+
+<link rel="icon" href="/img/favicon.png"/>
+
+
+
+    <!-- Google Analytics -->
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<!-- Head tag -->
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top bg-transparent position-absolute w-100 p-0" id="nav">
+    <div class="container pl-0 pr-0">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <a class="navbar-brand text-white p-1 pl-3" href="/">刘金根</a>
+        </div>
+        <div class="navbar-nav float-right">
+            <button class="btn btn-link search-btn navbar-item" data-toggle="modal" data-target="#searchModal">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="post-heading text-white">
+                    <h1>axios封装的两种方式</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                
+                    <span class="meta d-inline-block">
+    
+    
+    <!-- Date -->
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-calendar-check fa-fw"></i>
+        2024-02-18
+    
+    <!-- word count and read count -->
+    
+
+    
+
+    
+</span>  
+                
+                <p>作为前端工程师，经常需要对axios进行封装以满足复用的目的。在不同的前端项目中使用相同的axios封装有利于保持一致性，有利于数据之间的传递和处理。本文提供两种对axios进行封装的思路。</p>
+<h2 id="1-将请求方式作为调用参数传递进来"><a href="#1-将请求方式作为调用参数传递进来" class="headerlink" title="1. 将请求方式作为调用参数传递进来"></a>1. 将请求方式作为调用参数传递进来</h2><ol>
+<li>首先导入了 <code>axios, AxiosInstance&amp;#x548C;AxiosResponse&amp;#x6A21;&amp;#x5757;</code>，用于创建一个http请求的实例和处理响应结果。</li>
+<li>定义了一个 <code>getBaseUrl&amp;#x51FD;&amp;#x6570;</code>，用于获取请求的基础URL。</li>
+<li>创建了 <code>httpProto&amp;#x5B9E;&amp;#x4F8B;</code>，使用 <code>axios.create&amp;#x65B9;&amp;#x6CD5;</code>进行创建。并配置了请求的超时时间为5000ms，不携带凭证，设置请求的 <code>Content-Type&amp;#x4E3A;application/json;charset=UTF-8</code>，并允许跨域访问。</li>
+<li>添加了一个 <strong>请求拦截器</strong>，通过 <code>httpProto.interceptors.request.use</code>方法，对请求进行处理。首先使用 <code>getBaseUrl</code>函数获取基础URL，并将其添加到请求的 <code>baseURL</code>属性中。然后通过 <code>getToken</code>函数获取凭证，如果凭证存在，则将其添加到请求的 <code>Authorization</code>头部字段中。最后返回处理后的请求配置。</li>
+<li>添加了一个 <strong>响应拦截器</strong>，通过 <code>httpProto.interceptors.response.use</code>方法，对响应进行处理。首先获取响应的data字段，然后判断 <code>data.result</code>的值，如果为0则表示请求成功，直接返回data。否则将返回一个失败的Promise，reject的值为data。</li>
+<li>定义了一个 <code>http</code>函数，用于发送请求。这个函数接收一个 <code>method&amp;#x53C2;&amp;#x6570;&amp;#x548C;&amp;#x5176;&amp;#x4ED6;&amp;#x53C2;&amp;#x6570;(rest)</code>，然后通过 <code>httpProto[method](...rest)</code>的形式调用 <code>httpProto</code>实例的对应方法发送请求。</li>
+<li>定义了一个 <code>urls</code>对象，用于存储可供使用的URL路径，其中有一个示例路径example。</li>
+<li>定义了一个 <code>methods</code>对象，用于存储常用的请求方法名称，包括 <code>get&amp;#x3001;post&amp;#x548C;delete</code>。</li>
+</ol>
+<p>完整的代码如下所示：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios, &#123; <span class="title class_">AxiosInstance</span>, <span class="title class_">AxiosResponse</span> &#125; <span class="keyword">from</span> <span class="string">&quot;axios&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; getToken &#125; <span class="keyword">from</span> <span class="string">&quot;./token&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getBaseUrl</span> = (<span class="params"></span>) =&gt; <span class="string">`http://<span class="subst">$&#123;<span class="variable language_">window</span>.constant.serverIp&#125;</span>:8888&#125;`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">httpProto</span>: <span class="title class_">AxiosInstance</span> = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">timeout</span>: <span class="number">5000</span>,</span><br><span class="line">  <span class="attr">withCredentials</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">headers</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json;charset=UTF-8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">httpProto.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(<span class="function">(<span class="params">config: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  config.<span class="property">baseURL</span> = <span class="title function_">getBaseUrl</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> token = <span class="title function_">getToken</span>();</span><br><span class="line">  <span class="keyword">if</span> (token) &#123;</span><br><span class="line"></span><br><span class="line">    config.<span class="property">headers</span>.<span class="property">Authorization</span> = <span class="string">`<span class="subst">$&#123;token&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;, <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">httpProto.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(</span><br><span class="line">  <span class="function">(<span class="params">response: AxiosResponse</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; data &#125; = response</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (data.<span class="property">result</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> data;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(data);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">http</span> = (<span class="params">method: <span class="built_in">string</span>, ...rest: <span class="built_in">any</span></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> httpProto[method](...rest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> urls = &#123;</span><br><span class="line">  <span class="attr">example</span>: <span class="string">`/prod/example`</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> methods = &#123;</span><br><span class="line">  <span class="attr">get</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">  <span class="attr">post</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">  <span class="attr">delete</span>: <span class="string">&#x27;delete&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; http, urls, methods &#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-直接调用某请求方式对应的请求方法"><a href="#2-直接调用某请求方式对应的请求方法" class="headerlink" title="2. 直接调用某请求方式对应的请求方法"></a>2. 直接调用某请求方式对应的请求方法</h2><ol>
+<li>导入了 <code>axios</code>模块的相关类型和函数。</li>
+<li>定义了 <code>printLog</code>函数，用于处理 <strong>日志输出</strong>。</li>
+<li>定义了 <code>IResponse</code>接口，表示请求响应对象的格式。</li>
+<li>定义了 <code>RequestParams</code>接口，表示发送请求的配置项的格式。</li>
+<li>定义了 <code>IHttp</code>接口，表示封装对象支持的请求方式&#x2F;方法。</li>
+<li>定义了 <code>req</code>对象，用于向外暴露支持的请求方法。</li>
+<li>定义了 <code>methods</code>数组，表示支持的请求方式类型。</li>
+<li><strong>使用forEach方法遍历methods数组，逐步构造req对象上的各个方法</strong>。</li>
+<li>在每个方法的构造过程中，进行以下步骤：</li>
+</ol>
+<ul>
+<li><code>&amp;#x53C2;&amp;#x6570;&amp;#x5408;&amp;#x5E76;</code>，将默认的responseType设置为’json’。</li>
+<li>从params对象中 <code>&amp;#x89E3;&amp;#x6784;</code>需要的参数。</li>
+<li>使用 <code>axios.create</code>方法创建一个 <code>AxiosInstance</code>实例对象。</li>
+<li>创建 <code>&amp;#x8BF7;&amp;#x6C42;&amp;#x5934;&amp;#x5BF9;&amp;#x8C61;</code>，并设置一些常用的请求头信息。</li>
+<li>构造请求配置对象 <code>AxiosRequestConfig</code>。</li>
+<li>根据请求方式对请求配置进行 <strong>修正</strong>，主要是将data赋值到相应的字段中。</li>
+<li><strong>添加请求拦截器</strong>，并在成功和失败的情况下返回配置。</li>
+<li><strong>添加响应拦截器</strong>，并在成功和失败的情况下返回处理结果。</li>
+<li>构造请求成功的回调函数，对返回数据进行格式化的操作。</li>
+<li>构造请求失败的回调函数，处理错误日志和断网情况。</li>
+<li>发送请求并将请求结果作为函数的返回值。</li>
+</ul>
+<ol start="10">
+<li>默认导出req对象。</li>
+</ol>
+<p>以下是加上注释的完整代码：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios, &#123; <span class="title class_">AxiosRequestConfig</span>, <span class="title class_">AxiosResponse</span>, <span class="title class_">AxiosError</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> printLog = <span class="variable language_">console</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> <span class="title class_">IResponse</span> &#123;</span><br><span class="line">  <span class="attr">code</span>: <span class="built_in">number</span>;</span><br><span class="line">  <span class="attr">msg</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">result</span>: &#123;</span><br><span class="line">    <span class="attr">lastOperaTime</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="attr">data</span>: <span class="built_in">any</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> <span class="title class_">RequestParams</span> &#123;</span><br><span class="line">  <span class="attr">url</span>: <span class="built_in">string</span>;</span><br><span class="line">  baseUrl?: <span class="built_in">string</span>;</span><br><span class="line">  data?: <span class="built_in">object</span>;</span><br><span class="line">  filter?: <span class="built_in">boolean</span>;</span><br><span class="line">  responseType?: <span class="string">&#x27;arraybuffer&#x27;</span> | <span class="string">&#x27;blob&#x27;</span> | <span class="string">&#x27;document&#x27;</span> | <span class="string">&#x27;json&#x27;</span> | <span class="string">&#x27;text&#x27;</span> | <span class="string">&#x27;stream&#x27;</span>;</span><br><span class="line">  headers?: <span class="built_in">any</span>;</span><br><span class="line">  timeout?: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">IHttp</span> &#123;</span><br><span class="line">  get?: <span class="function">(<span class="params">params: RequestParams</span>) =&gt;</span> <span class="title class_">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">  post?: <span class="function">(<span class="params">params: RequestParams</span>) =&gt;</span> <span class="title class_">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">  put?: <span class="function">(<span class="params">params: RequestParams</span>) =&gt;</span> <span class="title class_">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">  patch?: <span class="function">(<span class="params">params: RequestParams</span>) =&gt;</span> <span class="title class_">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">  <span class="keyword">delete</span>?: <span class="function">(<span class="params">params: RequestParams</span>) =&gt;</span> <span class="title class_">Promise</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> <span class="title class_">HttpMethod</span> = <span class="string">&#x27;get&#x27;</span> | <span class="string">&#x27;post&#x27;</span> | <span class="string">&#x27;put&#x27;</span> | <span class="string">&#x27;patch&#x27;</span> | <span class="string">&#x27;delete&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">req</span>: <span class="title class_">IHttp</span> = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">methods</span>: <span class="title class_">HttpMethod</span>[] = [<span class="string">&#x27;get&#x27;</span>, <span class="string">&#x27;post&#x27;</span>, <span class="string">&#x27;put&#x27;</span>, <span class="string">&#x27;patch&#x27;</span>, <span class="string">&#x27;delete&#x27;</span>];</span><br><span class="line"></span><br><span class="line">methods.<span class="title function_">forEach</span>(<span class="function">(<span class="params">_m: HttpMethod</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  req[_m] = <span class="function">(<span class="params">params: RequestParams</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">    params = &#123;</span><br><span class="line">      ...params,</span><br><span class="line">      <span class="attr">responseType</span>: params.<span class="property">responseType</span> || <span class="string">&#x27;json&#x27;</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">      url,</span><br><span class="line">      data,</span><br><span class="line">      filter = <span class="literal">true</span>,</span><br><span class="line">      responseType,</span><br><span class="line">      timeout,</span><br><span class="line">    &#125; = params;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> instance = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">      <span class="attr">baseURL</span>: params.<span class="property">baseUrl</span> ?? <span class="string">`http://<span class="subst">$&#123;<span class="variable language_">window</span>.location.hostname&#125;</span>`</span>,</span><br><span class="line">      timeout,</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> headers = &#123;</span><br><span class="line">      <span class="attr">lastOperaTime</span>: <span class="title class_">Date</span>.<span class="title function_">now</span>(),</span><br><span class="line">      <span class="attr">token</span>: <span class="title function_">getToken</span>(),</span><br><span class="line">      <span class="attr">lang</span>: <span class="title function_">getLocalLocale</span>(),</span><br><span class="line">      <span class="title class_">Accept</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json; charset=utf-8&#x27;</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="attr">axiosConfig</span>: <span class="title class_">AxiosRequestConfig</span> = &#123;</span><br><span class="line">      <span class="attr">method</span>: _m,</span><br><span class="line">      url,</span><br><span class="line">      <span class="attr">headers</span>: &#123;</span><br><span class="line"></span><br><span class="line">        ...headers,</span><br><span class="line">        ...(params.<span class="property">headers</span> || &#123;&#125;),</span><br><span class="line">      &#125;,</span><br><span class="line">      responseType,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (data) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (_m === <span class="string">&#x27;get&#x27;</span>) &#123;</span><br><span class="line">        axiosConfig.<span class="property">params</span> = data;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (data <span class="keyword">instanceof</span> <span class="title class_">FormData</span>) &#123;</span><br><span class="line">        axiosConfig.<span class="property">data</span> = data;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        axiosConfig.<span class="property">data</span> = data;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    instance.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(</span><br><span class="line"></span><br><span class="line">      <span class="function">(<span class="params">config: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> config;</span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      <span class="function">(<span class="params">error: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    instance.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(</span><br><span class="line"></span><br><span class="line">      <span class="function">(<span class="params">res: <span class="built_in">any</span></span>) =&gt;</span> <span class="title function_">handleSuccess</span>(res, params),</span><br><span class="line"></span><br><span class="line">      <span class="function">(<span class="params">err: <span class="built_in">any</span></span>) =&gt;</span> <span class="title function_">handleError</span>(err, params)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">handleSuccess</span>(<span class="params">response: AxiosResponse, requestParams: RequestParams</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (response.<span class="property">data</span>) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">const</span> &#123; code, msg, result &#125; = response.<span class="property">data</span>;</span><br><span class="line">        <span class="keyword">if</span> (code !== <span class="number">0</span>) &#123;</span><br><span class="line">          printLog.<span class="title function_">error</span>(msg);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> filter ? result?.<span class="property">data</span> ?? result : response.<span class="property">data</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        printLog.<span class="title function_">error</span>(<span class="string">&#x27;incorrect data format&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span> response.<span class="property">data</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">handleError</span>(<span class="params">err: AxiosError, requestParams: RequestParams</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (err.<span class="property">response</span>) &#123;</span><br><span class="line">        printLog.<span class="title function_">error</span>(<span class="string">`api: <span class="subst">$&#123;requestParams.url&#125;</span>: <span class="subst">$&#123;err.response.status&#125;</span>`</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (err <span class="keyword">instanceof</span> <span class="title class_">Error</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (err.<span class="property">message</span>) &#123;</span><br><span class="line">          printLog.<span class="title function_">error</span>(err.<span class="property">message</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (!<span class="variable language_">window</span>.<span class="property">navigator</span>.<span class="property">onLine</span>) &#123;</span><br><span class="line"></span><br><span class="line">        printLog.<span class="title function_">error</span>(<span class="string">&#x27;netwrok error&#x27;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(err);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> instance.<span class="title function_">request</span>(axiosConfig);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> req;</span><br></pre></td></tr></table></figure>
+
+            </div>
+
+            <!-- Post information -->
+            
+            
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <ul class="pagination d-block text-center">
+            
+                <li class="previous page-item d-inline"><a href="/2024/02/18/DOM%E4%BA%8B%E4%BB%B6%E6%B5%81/" class="page-link float-left">&larr;  上一页</a></li>
+            
+            
+                <li class="next page-item d-inline"><a href="/2024/02/17/%E5%8D%81%E5%88%86%E9%92%9F%E5%AD%A6%E4%BC%9AWebSocket/" class="page-link float-right">下一页  &rarr;</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+                <!-- Comments -->
+                
+
+                
+
+            
+
+        </div>
+    </div>
+</article> 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <style>
+        #toc-content .toc-link::before {
+            background-color: transparent;
+            max-height: 25px;
+        }
+
+        #toc-content .toc-link.is-active-link::before {
+            background-color: #404040;
+        }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
+        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
+            <div class="toc-widget">
+                <div id="toc-content" class="text-truncate">
+                </div>
+            </div>
+            <div class="toc-menu pt-3 pl-4">
+                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">全部展开</span><span class="close-text" style="display: none;">全部收起</span></a>
+                <a class="back-to-top d-block py-1" href="#">回到顶部</a>
+                <a class="go-to-bottom d-block py-1" href="#">移至底部</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '#toc-content',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: 'article',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+        });
+    </script>
+
+
+    
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center">
+                <ul class="list-inline">
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <ul class="copyright footer-menu list-inline">
+                    
+                    
+                        <li class="list-inline-item">
+                            
+                            
+                            <a href="/">
+                                
+                                    首页
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/archives">
+                                
+                                    归档
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/tags">
+                                
+                                    标签
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/categories">
+                                
+                                    类别
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/about">
+                                
+                                    关于
+                                
+                            </a>
+                        </li>
+                    
+                </ul>
+                <p class="copyright footer-author">
+                    &copy; -2024 
+                    <a rel="external" class="copyright-link" href="" target="_blank">John Doe</a><br/>
+                    Powered by <a rel="external" class="copyright-link" href="https://hexo.io/" target="_blank">Hexo</a>  
+                    <span class="copyright-split">&nbsp;|&nbsp;&nbsp;</span>
+                    Theme <a rel="external" class="copyright-link" href="https://github.com/luswdev/hexo-theme-clean.git" target="_blank">Clean</a>
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+<script src="//cdn.jsdelivr.net/npm/jquery@2.1.4/dist/jquery.min.js"></script>
+
+<!-- For drop down -->
+<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+<!-- Gallery -->
+<script src="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/js/lightgallery-all.min.js"></script>
+<!-- Busuanzi -->
+
+
+<!-- Search script -->
+
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        searchFunc( '/search.xml' , 'searchInput', 'searchResult');
+    });
+</script>
+
+
+
+<script src="/js/main.js"></script>
+
+
+
+    <!-- Search Modal -->
+    <!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content overflow-auto">
+            <div class="modal-header">
+                <input type="text" class="form-control" placeholder="搜索关键词..." id="searchInput">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="searchResult">
+                    <div class="search-empty text-center text-muted p-5">
+                        <i class="far fa-meh"></i>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
