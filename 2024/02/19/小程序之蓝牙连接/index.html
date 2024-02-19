@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<!--Description-->
+
+
+
+    <meta name="description" content="打开适配器（ _openBluetoothAdapter_）
+监听蓝牙适配器状态变化（ _onBluetoothAdapterStateChange_）
+搜索蓝牙（ _startBluetoothDevicesDiscovery_）
+寻找到蓝牙新设备（ _onBluetoothDeviceFound"/>
+
+
+<!--Author-->
+
+    <meta name="author" content="John Doe"/>
+
+
+<!--Open Graph Title-->
+
+    <meta property="og:title" content="小程序之蓝牙连接"/>
+
+
+<!--Open Graph Description-->
+
+    <meta property="og:description" content="打开适配器（ _openBluetoothAdapter_）
+监听蓝牙适配器状态变化（ _onBluetoothAdapterStateChange_）
+搜索蓝牙（ _startBluetoothDevicesDiscovery_）
+寻找到蓝牙新设备（ _onBluetoothDeviceFound"/>
+
+
+<!--Open Graph Site Name-->
+    <meta property="og:site_name" content="&lt;img src=&#34;/images/liu.jpg&#34; style=&#34;width:100px; height:100px; object-fit:cover; border-radius:50%; object-position:top;&#34; /&gt;"/>
+
+<!--Type page-->
+
+    <meta property="og:type" content="article"/>
+
+
+<!--Page Cover-->
+
+
+    <meta property="og:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+
+
+
+
+    <meta name="twitter:image" content="http://example.com/img/home-bg.jpg"/>
+
+
+<!-- Title -->
+
+<title>刘金根个人博客</title>
+
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+<!-- Custom CSS -->
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<!-- Custom Fonts -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.min.css" />
+<link href="//fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Gallery -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/featherlight@1.4.0/src/featherlight.css" integrity="sha256-30DV/STftlyQ6v8yaOWlabammvCYtRJERLj/m0b3zno=" crossorigin="anonymous">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/css/lightgallery.min.css">
+
+<!-- favicon -->
+
+<link rel="icon" href="/img/favicon.png"/>
+
+
+
+    <!-- Google Analytics -->
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<!-- Head tag -->
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top bg-transparent position-absolute w-100 p-0" id="nav">
+    <div class="container pl-0 pr-0">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <a class="navbar-brand text-white p-1 pl-3" href="/">刘金根</a>
+        </div>
+        <div class="navbar-nav float-right">
+            <button class="btn btn-link search-btn navbar-item" data-toggle="modal" data-target="#searchModal">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="post-heading text-white">
+                    <h1>小程序之蓝牙连接</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                
+                    <span class="meta d-inline-block">
+    
+    
+    <!-- Date -->
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-calendar-check fa-fw"></i>
+        2024-02-19
+    
+    <!-- word count and read count -->
+    
+
+    
+
+    
+</span>  
+                
+                <p><strong>打开适配器</strong>（ _openBluetoothAdapter_）</p>
+<p><strong>监听蓝牙适配器状态变化</strong>（ _onBluetoothAdapterStateChange_）</p>
+<p><strong>搜索蓝牙</strong>（ _startBluetoothDevicesDiscovery_）</p>
+<p><strong>寻找到蓝牙新设备</strong>（ _onBluetoothDeviceFound_）</p>
+<p><strong>连接蓝牙</strong>（ _createBLEConnection_）</p>
+<p><strong>停止搜索搜索蓝牙</strong>（ _stopBluetoothDevicesDiscovery_）</p>
+<p><strong>监听蓝牙连接状态</strong>（ _onBLEConnectionStateChange_）</p>
+<p><strong>获取蓝牙设备所有服务</strong>（ _getBLEDeviceServices_）</p>
+<p><strong>获取蓝牙设备某个服务中所有特征值</strong>（ _getBLEDeviceCharacteristics_）</p>
+<p><strong>开启notify</strong>（ _notifyBLECharacteristicValueChange_）</p>
+<p><strong>监听低功耗蓝牙设备的特征值变化</strong>（ _onBLECharacteristicValueChange_）</p>
+<p><strong>蓝牙设备特征值中写入二进制数据</strong>（ _writeBLECharacteristicValue_）</p>
+<p><strong>断开蓝牙</strong>（ _closeBLEConnection_）</p>
+<p><strong>关闭蓝牙模块</strong>（ _closeBluetoothAdapter_）</p>
+<h2 id="1-打开适配器"><a href="#1-打开适配器" class="headerlink" title="1.打开适配器"></a>1.打开适配器</h2><p>详细步骤：先判断当前微信版本是否支持打开适配器，过程需监听适配器的状态，打开适配器后再去判断手机蓝牙是否打开，手机蓝牙也打开后，去搜索蓝牙设备。</p>
+<p>代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">openBluetoothAdapterBefore</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> that = <span class="variable language_">this</span>;</span><br><span class="line">  <span class="keyword">if</span> (!wx.<span class="property">openBluetoothAdapter</span>) &#123;</span><br><span class="line">    wx.<span class="title function_">showModal</span>(&#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&#x27;提示&#x27;</span>,</span><br><span class="line">      <span class="attr">showCancel</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">content</span>: <span class="string">&#x27;当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。&#x27;</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  wx.<span class="title function_">openBluetoothAdapter</span>(&#123;</span><br><span class="line">    <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;openBluetoothAdapter success&#x27;</span>, res)</span><br><span class="line">      that.<span class="title function_">startBluetoothDevicesDiscovery</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">fail</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (res.<span class="property">errCode</span> === <span class="number">10001</span>) &#123;</span><br><span class="line">        wx.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">          <span class="attr">title</span>: <span class="string">&#x27;请开启手机蓝牙&#x27;</span>,</span><br><span class="line">          <span class="attr">duration</span>: <span class="number">5000</span></span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        wx.<span class="title function_">onBluetoothAdapterStateChange</span>(<span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;onBluetoothAdapterStateChange&#x27;</span>, res)</span><br><span class="line">          <span class="keyword">if</span> (res.<span class="property">available</span>) &#123;</span><br><span class="line">            that.<span class="title function_">startBluetoothDevicesDiscovery</span>()</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-监听蓝牙适配器状态变化"><a href="#2-监听蓝牙适配器状态变化" class="headerlink" title="2.监听蓝牙适配器状态变化"></a>2.监听蓝牙适配器状态变化</h2><p>详细介绍：在打开适配器后，会出现手机蓝牙未打开的情况，这时就需要去监听适配器的状态变化，以便于手机蓝牙打开后，去搜索蓝牙</p>
+<p>代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wx.<span class="title function_">onBluetoothAdapterStateChange</span>(<span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;onBluetoothAdapterStateChange&#x27;</span>, res)</span><br><span class="line">   <span class="keyword">if</span> (res.<span class="property">available</span>) &#123;</span><br><span class="line">     that.<span class="title function_">startBluetoothDevicesDiscovery</span>()</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-搜索蓝牙"><a href="#3-搜索蓝牙" class="headerlink" title="3. 搜索蓝牙"></a>3. 搜索蓝牙</h2><p>代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">startBluetoothDevicesDiscovery</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> that = <span class="variable language_">this</span>;</span><br><span class="line">  wx.<span class="title function_">startBluetoothDevicesDiscovery</span>(&#123;</span><br><span class="line"></span><br><span class="line">    <span class="attr">allowDuplicatesKey</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;startBluetoothDevicesDiscovery success&#x27;</span>, res)</span><br><span class="line">      wx.<span class="title function_">showLoading</span>(&#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&#x27;搜索蓝牙...&#x27;</span>,</span><br><span class="line">      &#125;)</span><br><span class="line">      that.<span class="title function_">onBluetoothDeviceFound</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-寻找到蓝牙新设备"><a href="#4-寻找到蓝牙新设备" class="headerlink" title="4.寻找到蓝牙新设备"></a>4.寻找到蓝牙新设备</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">function inArray(arr, key, val) &#123;</span><br><span class="line">  for (let <span class="attr">i</span> = <span class="number">0</span></span><br><span class="line">    if (arr<span class="section">[i]</span><span class="section">[key]</span> === val) &#123;</span><br><span class="line">      return i</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return -1</span><br><span class="line">&#125;</span><br><span class="line">/** 监听寻找到新设备的事件 */</span><br><span class="line">onBluetoothDeviceFound: function() &#123;</span><br><span class="line">  var <span class="attr">that</span> = this</span><br><span class="line">  var <span class="attr">devices</span> = data.devices</span><br><span class="line">  var <span class="attr">item</span> = []</span><br><span class="line">  console.log(&quot;监听寻找到新设备：&quot;,devices)</span><br><span class="line">  wx.onBluetoothDeviceFound((res) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">    res.devices.forEach(<span class="attr">device</span> =&gt; &#123;</span><br><span class="line">      if (!device.name &amp;&amp; !device.localName) &#123;</span><br><span class="line">        return</span><br><span class="line">      &#125;</span><br><span class="line">      const <span class="attr">foundDevices</span> = devices</span><br><span class="line">      const <span class="attr">idx</span> = inArray(foundDevices, <span class="string">&#x27;deviceId&#x27;</span>, device.deviceId)</span><br><span class="line">      const <span class="attr">data</span> = &#123;&#125;</span><br><span class="line"></span><br><span class="line">      if (<span class="attr">idx</span> === -<span class="number">1</span>) &#123;</span><br><span class="line">      //这里可以写连接此设备的蓝牙设备的条件</span><br><span class="line">     	that.connectBle(devices.deviceId)</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        data<span class="section">[`devices[$&#123;idx&#125;]</span>`] = device</span><br><span class="line">        let <span class="attr">ballType</span> = device.localName.substring(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>寻找已经添加的蓝牙设备</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">onBleDeviceFound</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> that = <span class="variable language_">this</span>;</span><br><span class="line">  wx.<span class="title function_">getBluetoothDevices</span>(&#123;</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;寻找设备成功:&quot;</span>, res)</span><br><span class="line">      <span class="keyword">let</span> devices = res.<span class="property">devices</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; devices.<span class="property">length</span>; i++) &#123;</span><br><span class="line"></span><br><span class="line">      that.<span class="title function_">connectBle</span>(devices[i].<span class="property">deviceId</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">fail</span>: <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;搜索蓝牙设备失败&quot;</span>, res)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-连接蓝牙"><a href="#5-连接蓝牙" class="headerlink" title="5.连接蓝牙"></a>5.连接蓝牙</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">connectBle</span>: <span class="keyword">function</span>(<span class="params">deviceId</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> that = <span class="variable language_">this</span>;</span><br><span class="line">  <span class="keyword">const</span> name = that.<span class="property">data</span>.<span class="property">deviceName</span></span><br><span class="line">  wx.<span class="title function_">showLoading</span>(&#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;连接中&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">  wx.<span class="title function_">createBLEConnection</span>(&#123;</span><br><span class="line">    deviceId,</span><br><span class="line">    <span class="attr">timeout</span>: <span class="number">5000</span>,</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">     wx.<span class="title function_">showLoading</span>(&#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&#x27;连接成功&#x27;</span>,</span><br><span class="line">       <span class="attr">icon</span>: <span class="string">&#x27;success&#x27;</span>,</span><br><span class="line">     &#125;)</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;连接蓝牙成功&quot;</span>, res)</span><br><span class="line">      that.<span class="title function_">setData</span>(&#123;</span><br><span class="line">        name,</span><br><span class="line">        deviceId,</span><br><span class="line">        <span class="attr">btnName</span>: <span class="string">&quot;已连接&quot;</span>,</span><br><span class="line">      &#125;)</span><br><span class="line">      that.<span class="title function_">onBleConnectState</span>();</span><br><span class="line">      that.<span class="title function_">getBLEDeviceServices</span>(deviceId);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">fail</span>: <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;连接失败&quot;</span>, res);</span><br><span class="line">      <span class="keyword">if</span> (res.<span class="property">errCode</span> === <span class="number">10003</span>) &#123;</span><br><span class="line">        that.<span class="title function_">onBleDeviceFound</span>()</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (res.<span class="property">errCode</span> === <span class="number">10012</span>) &#123;</span><br><span class="line">        wx.<span class="title function_">showLoading</span>(&#123;</span><br><span class="line">          <span class="attr">title</span>: <span class="string">&#x27;请打开蓝牙设备&#x27;</span></span><br><span class="line">        &#125;)</span><br><span class="line">        that.<span class="title function_">onBleDeviceFound</span>()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="title function_">complete</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        wx.<span class="title function_">hideLoading</span>()</span><br><span class="line">      &#125;, <span class="number">2000</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-停止搜索搜索蓝牙"><a href="#6-停止搜索搜索蓝牙" class="headerlink" title="6.停止搜索搜索蓝牙"></a>6.停止搜索搜索蓝牙</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">stopBluetoothDevicesDiscovery</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  wx.<span class="title function_">stopBluetoothDevicesDiscovery</span>(&#123;</span><br><span class="line">    <span class="attr">success</span>:<span class="function">(<span class="params">res</span>)=&gt;</span>&#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;停止搜索蓝牙成功：&quot;</span>,res)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">fail</span>:<span class="function">(<span class="params">res</span>)=&gt;</span>&#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;停止搜索蓝牙失败：&quot;</span>,res)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="7-监听蓝牙连接状态"><a href="#7-监听蓝牙连接状态" class="headerlink" title="7.监听蓝牙连接状态"></a>7.监听蓝牙连接状态</h2><p>代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">onBleConnectState</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> that = <span class="variable language_">this</span>;</span><br><span class="line">  wx.<span class="title function_">onBLEConnectionStateChange</span>(<span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;蓝牙连接状态：&quot;</span>, res.<span class="property">connected</span>);</span><br><span class="line">    <span class="keyword">if</span> (!res.<span class="property">connected</span>) &#123;</span><br><span class="line">      that.<span class="property">onBleDeviceFound</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-获取蓝牙设备所有服务"><a href="#8-获取蓝牙设备所有服务" class="headerlink" title="8. 获取蓝牙设备所有服务"></a>8. 获取蓝牙设备所有服务</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">getBLEDeviceServices</span>: <span class="keyword">function</span>(<span class="params">deviceId</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> that = <span class="variable language_">this</span>;</span><br><span class="line">  wx.<span class="title function_">getBLEDeviceServices</span>(&#123;</span><br><span class="line">    deviceId,</span><br><span class="line">    <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;获取蓝牙设备所有服务成功&quot;</span>, res)</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; res.<span class="property">services</span>.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> uuid_slice = res.<span class="property">services</span>[i].<span class="property">uuid</span>.<span class="title function_">slice</span>(<span class="number">4</span>, <span class="number">8</span>);</span><br><span class="line">        <span class="keyword">if</span> (uuid_slice != <span class="string">&quot;180A&quot;</span> &amp;&amp; uuid_slice != <span class="string">&quot;1800&quot;</span> &amp;&amp; uuid_slice != <span class="string">&quot;1801&quot;</span> &amp;&amp; uuid_slice != <span class="string">&quot;1802&quot;</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (res.<span class="property">services</span>[i].<span class="property">isPrimary</span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;serviceId:&quot;</span> + res.<span class="property">services</span>[i].<span class="property">uuid</span>)</span><br><span class="line">            that.<span class="title function_">getBLEDeviceCharacteristics</span>(deviceId, res.<span class="property">services</span>[i].<span class="property">uuid</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">fail</span>:<span class="function">(<span class="params">res</span>)=&gt;</span>&#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;获取蓝牙设备所有服务失败：&quot;</span>,res)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="9-获取蓝牙设备某个服务中所有特征值"><a href="#9-获取蓝牙设备某个服务中所有特征值" class="headerlink" title="9. 获取蓝牙设备某个服务中所有特征值"></a>9. 获取蓝牙设备某个服务中所有特征值</h2><p>代码：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">getBLEDeviceCharacteristics: <span class="built_in">function</span>(deviceId, serviceId) &#123;</span><br><span class="line">  <span class="selector-tag">var</span> that = this;</span><br><span class="line">  wx<span class="selector-class">.getBLEDeviceCharacteristics</span>(&#123;</span><br><span class="line">    deviceId,</span><br><span class="line">    serviceId,</span><br><span class="line">    success: (res) =&gt; &#123;</span><br><span class="line">      console<span class="selector-class">.log</span>(&#x27;getBLEDeviceCharacteristics success&#x27;, res.characteristics)</span><br><span class="line">      for (let i = <span class="number">0</span>; i &lt; res.characteristics.length; i++) &#123;</span><br><span class="line">        const item = res<span class="selector-class">.characteristics</span><span class="selector-attr">[i]</span></span><br><span class="line"></span><br><span class="line">        if (item.properties.read) &#123;</span><br><span class="line">          wx<span class="selector-class">.readBLECharacteristicValue</span>(&#123;</span><br><span class="line">            deviceId,</span><br><span class="line">            serviceId,</span><br><span class="line">            characteristicId: item.uuid,</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (item.properties.write) &#123;</span><br><span class="line">          if (item.uuid === &#x27;<span class="number">6</span>E400002-B5A3-F393-E0A9-E50E24DCCA9E&#x27;) &#123;</span><br><span class="line">            that<span class="selector-class">.setData</span>(&#123;</span><br><span class="line">              deviceId: deviceId,</span><br><span class="line">              serviceId: serviceId,</span><br><span class="line">              writeCharacteristicId: item.uuid,</span><br><span class="line">            &#125;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (item.properties.notify || item.properties.indicate) &#123;</span><br><span class="line">          that<span class="selector-class">.setData</span>(&#123;</span><br><span class="line">            deviceId: deviceId,</span><br><span class="line">            serviceId: serviceId,</span><br><span class="line">            characteristicId: item.uuid</span><br><span class="line">          &#125;)</span><br><span class="line">          that<span class="selector-class">.openNotify</span>()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">fail</span>(res) &#123;</span><br><span class="line">      console<span class="selector-class">.error</span>(&#x27;getBLEDeviceCharacteristics&#x27;, res)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="10-开启notify"><a href="#10-开启notify" class="headerlink" title="10. 开启notify"></a>10. 开启notify</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">openNotify: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> that = this;</span><br><span class="line">  wx.<span class="title function_ invoke__">notifyBLECharacteristicValueChange</span>(&#123;</span><br><span class="line">    <span class="attr">deviceId</span>: that.data.deviceId,</span><br><span class="line">    <span class="attr">serviceId</span>: that.data.serviceId,</span><br><span class="line">    <span class="attr">characteristicId</span>: that.data.characteristicId,</span><br><span class="line">    <span class="attr">state</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">success</span>: function(res) &#123;</span><br><span class="line">      that.<span class="title function_ invoke__">onBLECharacteristicValueChange</span>();</span><br><span class="line"></span><br><span class="line">      that.<span class="title function_ invoke__">writeData</span>(<span class="number">0xa0</span>, timestamp);</span><br><span class="line">    &#125;,</span><br><span class="line">    fail: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">      console.<span class="title function_ invoke__">log</span>(<span class="string">&quot;开启notify失败&quot;</span>, res);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="11-监听低功耗蓝牙设备的特征值变化"><a href="#11-监听低功耗蓝牙设备的特征值变化" class="headerlink" title="11. 监听低功耗蓝牙设备的特征值变化"></a>11. 监听低功耗蓝牙设备的特征值变化</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">onBLECharacteristicValueChange</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> that = <span class="variable language_">this</span>;</span><br><span class="line">  wx.<span class="title function_">onBLECharacteristicValueChange</span>(<span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="12-蓝牙设备特征值中写入二进制数据"><a href="#12-蓝牙设备特征值中写入二进制数据" class="headerlink" title="12. 蓝牙设备特征值中写入二进制数据"></a>12. 蓝牙设备特征值中写入二进制数据</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">writeData</span>: <span class="keyword">function</span>(<span class="params">cmd, values</span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> buffer = <span class="keyword">new</span> <span class="title class_">ArrayBuffer</span>(<span class="number">16</span>)</span><br><span class="line">  <span class="keyword">let</span> dataView = <span class="keyword">new</span> <span class="title class_">DataView</span>(buffer)</span><br><span class="line">  dataView.<span class="title function_">setUint8</span>(<span class="number">0</span>, cmd)</span><br><span class="line">  dataView.<span class="title function_">setUint32</span>(<span class="number">1</span>, values)</span><br><span class="line"></span><br><span class="line">  wx.<span class="title function_">writeBLECharacteristicValue</span>(&#123;</span><br><span class="line">    <span class="attr">deviceId</span>: that.<span class="property">data</span>.<span class="property">deviceId</span>,</span><br><span class="line">    <span class="attr">serviceId</span>: that.<span class="property">data</span>.<span class="property">serviceId</span>,</span><br><span class="line">    <span class="attr">characteristicId</span>: that.<span class="property">data</span>.<span class="property">writeCharacteristicId</span>,</span><br><span class="line">    <span class="attr">value</span>: buffer,</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;写入蓝牙特征值成功:&#x27;</span>, res.<span class="property">errMsg</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">fail</span>: <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;写入蓝牙特征值失败:&#x27;</span>, res.<span class="property">errMsg</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="13-断开蓝牙"><a href="#13-断开蓝牙" class="headerlink" title="13. 断开蓝牙"></a>13. 断开蓝牙</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">closeBLEConnection</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  wx.<span class="title function_">closeBLEConnection</span>(&#123;</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;断开蓝牙成功&quot;</span>, res)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">fail</span>: <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;断开蓝牙失败&quot;</span>, res)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="14-关闭蓝牙模块"><a href="#14-关闭蓝牙模块" class="headerlink" title="14. 关闭蓝牙模块"></a>14. 关闭蓝牙模块</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">closeBluetoothAdapter</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  wx.<span class="title function_">closeBluetoothAdapter</span>(&#123;</span><br><span class="line">    <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;关闭适配器成功：&quot;</span>, res)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">fail</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;关闭适配器失败：&quot;</span>, res)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>以上就是微信小程序蓝牙连接过程。</p>
+
+            </div>
+
+            <!-- Post information -->
+            
+            
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <ul class="pagination d-block text-center">
+            
+            
+                <li class="next page-item d-inline"><a href="/2024/02/19/%E6%89%8B%E6%92%B8%E4%B8%80%E4%B8%AA%E8%84%9A%E6%89%8B%E6%9E%B6%E5%85%A5%E9%97%A8/" class="page-link float-right">下一页  &rarr;</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+                <!-- Comments -->
+                
+
+                
+
+            
+
+        </div>
+    </div>
+</article> 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <style>
+        #toc-content .toc-link::before {
+            background-color: transparent;
+            max-height: 25px;
+        }
+
+        #toc-content .toc-link.is-active-link::before {
+            background-color: #404040;
+        }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
+        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
+            <div class="toc-widget">
+                <div id="toc-content" class="text-truncate">
+                </div>
+            </div>
+            <div class="toc-menu pt-3 pl-4">
+                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">全部展开</span><span class="close-text" style="display: none;">全部收起</span></a>
+                <a class="back-to-top d-block py-1" href="#">回到顶部</a>
+                <a class="go-to-bottom d-block py-1" href="#">移至底部</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '#toc-content',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: 'article',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+        });
+    </script>
+
+
+    
+
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center">
+                <ul class="list-inline">
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <ul class="copyright footer-menu list-inline">
+                    
+                    
+                        <li class="list-inline-item">
+                            
+                            
+                            <a href="/">
+                                
+                                    首页
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/archives">
+                                
+                                    归档
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/tags">
+                                
+                                    标签
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/categories">
+                                
+                                    类别
+                                
+                            </a>
+                        </li>
+                    
+                        <li class="list-inline-item">
+                            
+                                <span class="copyright-split">&nbsp;|&nbsp;</span>
+                            
+                            
+                            <a href="/about">
+                                
+                                    关于
+                                
+                            </a>
+                        </li>
+                    
+                </ul>
+                <p class="copyright footer-author">
+                    &copy; -2024 
+                    <a rel="external" class="copyright-link" href="" target="_blank">John Doe</a><br/>
+                    Powered by <a rel="external" class="copyright-link" href="https://hexo.io/" target="_blank">Hexo</a>  
+                    <span class="copyright-split">&nbsp;|&nbsp;&nbsp;</span>
+                    Theme <a rel="external" class="copyright-link" href="https://github.com/luswdev/hexo-theme-clean.git" target="_blank">Clean</a>
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    <!-- jQuery -->
+<script src="//cdn.jsdelivr.net/npm/jquery@2.1.4/dist/jquery.min.js"></script>
+
+<!-- For drop down -->
+<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+<!-- Gallery -->
+<script src="//cdn.jsdelivr.net/npm/lightgallery@1.6.11/dist/js/lightgallery-all.min.js"></script>
+<!-- Busuanzi -->
+
+
+<!-- Search script -->
+
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        searchFunc( '/search.xml' , 'searchInput', 'searchResult');
+    });
+</script>
+
+
+
+<script src="/js/main.js"></script>
+
+
+
+    <!-- Search Modal -->
+    <!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content overflow-auto">
+            <div class="modal-header">
+                <input type="text" class="form-control" placeholder="搜索关键词..." id="searchInput">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="searchResult">
+                    <div class="search-empty text-center text-muted p-5">
+                        <i class="far fa-meh"></i>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
