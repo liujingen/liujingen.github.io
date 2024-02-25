@@ -9,7 +9,7 @@
 
 
 
-    <meta name="description" content="居中是我们在前端布局中经常会遇到的问题，其中包括水平居中和垂直居中。居中的方法很多，比如说水平居中可以使用 text-align: center或者 margin: 0 auto等等来实现，垂直居中则需要使用一些其它的特殊的技巧。比如说常见的做法是使用 transform来实现垂直居中， margi"/>
+    <meta name="description" content="什么是轮询在前端开发中，轮询是一种常见的技术手段，用于定期向服务器发送请求以获取最新数据或状态更新。通过轮询，前端可以实时获取服务器端的数据变化或者定刷新页面内容，从而提高用户体验和页面的实时性。在实际应用中，前端轮询通常会使用定时器来定期发送请求。在前端开发中，轮询通常用于实时监控系统、实时数据展"/>
 
 
 <!--Author-->
@@ -19,12 +19,12 @@
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="居中为什么要使用transform"/>
+    <meta property="og:title" content="聊聊轮询吧"/>
 
 
 <!--Open Graph Description-->
 
-    <meta property="og:description" content="居中是我们在前端布局中经常会遇到的问题，其中包括水平居中和垂直居中。居中的方法很多，比如说水平居中可以使用 text-align: center或者 margin: 0 auto等等来实现，垂直居中则需要使用一些其它的特殊的技巧。比如说常见的做法是使用 transform来实现垂直居中， margi"/>
+    <meta property="og:description" content="什么是轮询在前端开发中，轮询是一种常见的技术手段，用于定期向服务器发送请求以获取最新数据或状态更新。通过轮询，前端可以实时获取服务器端的数据变化或者定刷新页面内容，从而提高用户体验和页面的实时性。在实际应用中，前端轮询通常会使用定时器来定期发送请求。在前端开发中，轮询通常用于实时监控系统、实时数据展"/>
 
 
 <!--Open Graph Site Name-->
@@ -120,7 +120,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 text-center">
                 <div class="post-heading text-white">
-                    <h1>居中为什么要使用transform</h1>
+                    <h1>聊聊轮询吧</h1>
                     
                 </div>
             </div>
@@ -142,7 +142,7 @@
     
         <span class="post-meta-split">&nbsp;|&nbsp;</span>
         <i class="far fa-calendar-check fa-fw"></i>
-        2024-02-21
+        2024-02-25
     
     <!-- word count and read count -->
     
@@ -152,29 +152,20 @@
     
 </span>  
                 
-                <p>居中是我们在前端布局中经常会遇到的问题，其中包括水平居中和垂直居中。居中的方法很多，比如说水平居中可以使用 <code>text-align: center</code>或者 <code>margin: 0 auto</code>等等来实现，垂直居中则需要使用一些其它的特殊的技巧。比如说常见的做法是使用 <code>transform</code>来实现垂直居中， <code>margin-top</code>或者 <code>top</code>属性，或者使用弹性布局。</p>
-<h2 id="transform的优点"><a href="#transform的优点" class="headerlink" title="transform的优点"></a>transform的优点</h2><p>那么我们为什么要使用 <code>transform</code>来实现垂直居中呢？</p>
-<p>因为 <code>transform</code>属于合成属性，而 <code>margin-top</code>和 <code>top</code>属于布局属性。对于合成属性，浏览器会将被动画元素放入一个独立的层中进行动画，而不会对整个页面进行重绘，这可以提高页面的性能。而对于布局属性，任何一点的变化都可能导致整个页面的重排和重绘，这会对页面的性能产生很大的影响。</p>
-<p>如果我们使用 <code>margin-top</code>或者 <code>top</code>来实现垂直居中，那么每次元素发生变化时，浏览器都会对整个页面进行重排和重绘，这会导致页面的性能受到很大的影响。而使用 <code>transform</code>来实现垂直居中，则可以将元素放入一个独立的层中进行动画，避免了对整个页面的重排和重绘，从而提高了页面的性能。</p>
-<p>下面是一个使用 <code>transform</code>实现垂直居中的示例代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一段文字p&gt;</span><br><span class="line">  div&gt;</span><br><span class="line">div&gt;</span><br></pre></td></tr></table></figure>
+                <h2 id="什么是轮询"><a href="#什么是轮询" class="headerlink" title="什么是轮询"></a>什么是轮询</h2><p>在前端开发中，轮询是一种常见的技术手段，用于定期向服务器发送请求以获取最新数据或状态更新。通过轮询，前端可以实时获取服务器端的数据变化或者定刷新页面内容，从而提高用户体验和页面的实时性。在实际应用中，前端轮询通常会使用定时器来定期发送请求。在前端开发中，轮询通常用于实时监控系统、实时数据展示、在线聊天、定时通知等场景。通过轮询，前端可以定期向服务器请求最新数据，并将其展示给用户。</p>
+<h2 id="轮询的原理"><a href="#轮询的原理" class="headerlink" title="轮询的原理"></a>轮询的原理</h2><p>前端定期向服务器发送请求，询问是否有新数据。服务器接收到请求后，检查是否有新数据需要返回给前端。如果有新数据，则服务器将数据返回给前端；前端收到响应后，根据返回的数据来更新页面内容或者执行相应的操作。然后等待一段时间后，再次发送请求，继续轮询服务器。这样就可以实现定时查询服务器数据或者刷新页面内容的效果。</p>
+<h2 id="轮询的过程"><a href="#轮询的过程" class="headerlink" title="轮询的过程"></a>轮询的过程</h2><h2 id="轮询的实现方式"><a href="#轮询的实现方式" class="headerlink" title="轮询的实现方式"></a>轮询的实现方式</h2><p>在前端中，轮询可以通过多种方式来实现。下面介绍几种常见的实现方式：</p>
+<p>使用 <code>setInterval</code>函数可以定期执行一个函数。我们可以在这个函数中发送请求给服务器，实现轮询的效果。例如：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">polling</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">fetch</span>(<span class="string">&#x27;http://example.com/api/data&#x27;</span>)</span><br><span class="line">        .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (response.<span class="property">ok</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> response.<span class="title function_">json</span>();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Network response was not ok&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;Error:&#x27;</span>, error);</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(polling, <span class="number">5000</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#eee</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另一种实现方式是使用 <code>setTimeout</code>函数递归调用自身。这样可以在请求返回后再次发送下一个请求。例如：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">poll</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">fetch</span>(<span class="string">&#x27;/api/data&#x27;</span>)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="built_in">setTimeout</span>(poll, <span class="number">5000</span>); </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">poll</span>(); </span><br></pre></td></tr></table></figure>
 
-<p>在上面的代码中，我们首先将外层容器设置为 <code>position: relative</code>，并指定了一个固定的高度。然后，我们将内层元素设置为 <code>position: absolute</code>，并使用 <code>top: 50%</code>和 <code>left: 50%</code>将其定位到父元素的中心位置。最后，我们使用 <code>transform: translate(-50%, -50%)</code>来将元素向左上方移动自身宽度和高度的一半，从而实现了垂直居中的效果。</p>
-<p>使用 <code>transform</code>来实现垂直居中可以避免对整个页面的重排和重绘，从而提高页面的性能。所以在实际的开发中，我们应该尽可能地使用合成属性来进行动画和布局，避免使用布局属性，从而提高页面的性能和用户体验。</p>
-<p>对于浮动居中，它在进行元素的水平居中时，可能会对页面进行重排。这是因为浏览器需要对元素的左右外边距进行计算，并将元素放置在父容器中间。这个过程会导致浏览器对整个页面进行重排，从而可能影响页面的性能。此外，浮动布局实现多列布局，可能会导致多列高度不一致，需要进行额外处理。</p>
-<p>但是，在某些情况下，浮动居中并不会对页面进行重排。例如，如果我们将元素的宽度设置为固定的像素值，那么浏览器就可以很容易地计算出元素的左右外边距，并将元素放置在父容器中间，而不需要对整个页面进行重排。在这种情况下，浮动居中的性能表现可能会比较好。</p>
-<p>所以说浮动居中可能会对页面进行重排，但在某些情况下，它的性能表现可能会比较好。在实际开发中，我们则应该根据具体的需求和情况来选择。</p>
-<p>弹性布局大家应该也比较熟悉了，用弹性只有一次和无数次，在很多时候使用弹性布局真的很舒服，所以我们关于弹性布局就多描述一些。</p>
-<p>弹性布局的优点在于它可以方便地实现弹性盒子容器中弹性盒子项目的伸缩和排列，但是在使用弹性布局时，如果频繁修改弹性容器的属性或弹性项目的排列顺序，就可能会触发页面重排和重绘，从而影响页面的性能和用户体验。</p>
-<p>具体来说，以下几种情况可能会导致弹性布局的页面重排和重绘：</p>
-<p>如果修改弹性容器的属性，如flex-direction、justify-content、align-items等，会影响弹性盒子项目的排列和布局，从而导致页面重排和重绘。</p>
-<p>如果修改弹性项目的属性，如flex-grow、flex-shrink、flex-basis等，会影响弹性盒子项目的伸缩和尺寸，从而导致页面重排和重绘。</p>
-<p>如果修改弹性项目的排列顺序，会影响弹性盒子项目的排列和布局，从而导致页面重排和重绘。</p>
-<p>以为了避免弹性布局的页面重排和重绘，我们可以采取一些优化措施，如：</p>
-<p>所以说，虽然弹性布局具有灵活和方便的优点，写起来很舒服，但是在使用时我们需要注意优化，减少页面重排和重绘，以提高页面的性能和用户体验。</p>
-<p>那么这篇文章就到这里结束啦~</p>
+<p>除了传统的轮询方式，还可以使用WebSockets来实现实时通讯。WebSocket是一种全双工的通信协议，可以实现实时的双向通信。与前端轮询相比，WebSocket具有更低的延迟和更好的性能，适用于需要实时更新的场景。WebSockets允许服务器主动向客户端推送数据，而不需要客户端定期发送请求。这样可以减少网络开销和延迟。例如：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> socket = <span class="keyword">new</span> <span class="title class_">WebSocket</span>(<span class="string">&#x27;ws://localhost:8080&#x27;</span>);</span><br><span class="line"></span><br><span class="line">socket.<span class="property">onmessage</span> = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> data = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(event.<span class="property">data</span>);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="轮询的优缺点"><a href="#轮询的优缺点" class="headerlink" title="轮询的优缺点"></a>轮询的优缺点</h2><p>轮询作为一种常用的前端技术，具有简单易用、兼容性好、可靠性高的优点和网络开销大、延迟性高、不适合大规模应用的缺点。</p>
+<h2 id="轮询的注意事项"><a href="#轮询的注意事项" class="headerlink" title="轮询的注意事项"></a>轮询的注意事项</h2><h2 id="轮询的应用场景"><a href="#轮询的应用场景" class="headerlink" title="轮询的应用场景"></a>轮询的应用场景</h2><p>前端轮询是一种简单易用的前端技术，可以用于实现实时更新数据的效果。然而，它也有一些缺点，如增加服务器负载和网络流量。为了解决这些问题，可以考虑使用长轮询、WebSockets或SSE等替代解决方案。通过选择合适的技术，可以更好地实现实时更新数据的效果，提升应用程序的性能和用户体验。</p>
 
             </div>
 
@@ -184,10 +175,10 @@
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
         <ul class="pagination d-block text-center">
             
-                <li class="previous page-item d-inline"><a href="/2024/02/25/%E8%81%8A%E8%81%8A%E8%BD%AE%E8%AF%A2%E5%90%A7/" class="page-link float-left">&larr;  上一页</a></li>
+                <li class="previous page-item d-inline"><a href="/2024/02/25/%E7%A8%8B%E5%BA%8F%E7%BB%84%E4%BB%B6%E4%B8%ADwx-createSelectorQuery%E7%9A%84select%E6%97%A0%E6%95%88%E7%BB%93%E6%9E%9C%E4%B8%BAnull/" class="page-link float-left">&larr;  上一页</a></li>
             
             
-                <li class="next page-item d-inline"><a href="/2024/02/21/nextTick%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="page-link float-right">下一页  &rarr;</a></li>
+                <li class="next page-item d-inline"><a href="/2024/02/21/%E5%B1%85%E4%B8%AD%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8transform/" class="page-link float-right">下一页  &rarr;</a></li>
             
         </ul>
     </div>
